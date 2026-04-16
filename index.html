@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Garimpo - Prospecção B2B com IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0e0e0e; }
+    ::-webkit-scrollbar-thumb { background: #252525; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D97706; }
+    /* Data Pulse Animation */
+    @keyframes pulse-ring {
+        0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(217, 119, 6, 0); }
+        100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+    }
+    .data-pulse { animation: pulse-ring 2s infinite; }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "primary": "#D97706",
+                  "primary-dim": "#B45309",
+                  "on-primary": "#000000",
+                  "surface": "#0e0e0e",
+                  "on-surface": "#F5F0E8",
+                  "surface-container": "#151515",
+                  "surface-container-low": "#111111",
+                  "surface-container-high": "#1a1a1a",
+                  "surface-container-highest": "#222222",
+                  "on-surface-variant": "#a3a3a3",
+                  "outline-variant": "#333333",
+                  "error-dim": "#D97706",
+                  "tertiary": "#D97706",
+                  "tertiary-fixed-dim": "#F59E0B"
+          },
+          "borderRadius": { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+          "fontFamily": { "headline": ["Space Grotesk"], "body": ["Inter"], "label": ["Inter"] }
+        },
+      },
+    }
+</script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-lg sticky top-0 w-full z-50 border-b border-white/5">
+<div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+<div class="flex items-center">
+<img alt="Logo Garimpo" height="42" src="./assets/garimpo_logo.png" style="object-fit: contain; margin-right: 12px; border-radius: 4px;" width="42"/>
+<span class="font-headline font-black text-2xl tracking-tighter" style="color: #D97706; letter-spacing: -0.05em;">GARIMPO</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#features">Funcionalidades</a>
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#comparison">Comparação</a>
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#solutions">Soluções</a>
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#pricing">Planos</a>
+</nav>
+<div class="hidden md:flex gap-4 items-center">
+<button class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200">Login</button>
+<button class="bg-primary text-on-primary font-headline font-bold py-2 px-6 hover:bg-primary-dim transition-colors active:scale-95 shadow-[0_0_20px_rgba(217,119,6,0.3)]">Começar Agora</button>
+</div>
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<main>
+<!-- 1. HERO -->
+<section class="relative pt-32 pb-24 overflow-hidden flex flex-col items-center justify-center min-h-[85vh]">
+<div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.15) 0%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 100% 100%, 40px 40px, 40px 40px;"></div>
+<div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-8">
+<div class="w-2 h-2 rounded-full bg-primary data-pulse"></div>
+<span class="text-sm font-medium text-primary">Prospecção B2B com inteligência artificial</span>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 max-w-4xl text-on-surface">Sua equipe perde 80% do dia caçando leads. Nós fazemos isso em 10 minutos.</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant mb-12 max-w-3xl font-light">Pare de perder horas caçando contatos na mão. O Garimpo varre o mercado, filtra as empresas desqualificadas e redige o primeiro contato de vendas por você. Você foca apenas em fechar negócios. Seus concorrentes ficam para trás.</p>
+<div class="flex flex-col sm:flex-row gap-4 mb-16">
+<button class="bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group">COMEÇAR AGORA</button>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-60">
+<span class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Alimentado por dados reais de</span>
+<div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70">
+<span class="font-headline font-bold text-xl">Google Maps</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-headline font-bold text-xl">Receita Federal</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-headline font-bold text-xl">IA Generativa</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. PAIN POINTS -->
+<section class="py-24 bg-surface-container-low border-t border-white/5 relative" id="problem">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16 max-w-3xl">
+<h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-4">Se você ainda prospecta assim, <span class="text-primary">está perdendo dinheiro</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+<div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="search">search</span>
+<h3 class="font-headline font-bold text-lg text-on-surface">A Tortura de Caçar Leads</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Chega de perder tempo montando listas e cruzando contatos no LinkedIn ou internet afora. Vendedor tem que estar vendendo, e não batendo cabeça pra achar contato.</p>
+</div>
+<div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="table_chart">table_chart</span>
+<h3 class="font-headline font-bold text-lg text-on-surface">Cemitério de Planilhas</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Listas infinitas que já nascem desatualizadas. Sua equipe gasta semanas montando um Excel manual que não gera uma única reunião agendada.</p>
+</div>
+<div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="mail_lock">mail_lock</span>
+<h3 class="font-headline font-bold text-lg text-on-surface">Mensagens Ignoradas</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Disparar templates frios em massa acabou. Seus e-mails vão direto pro lixo porque não possuem personalização ou contexto real da empresa.</p>
+</div>
+<div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="payments">payments</span>
+<h3 class="font-headline font-bold text-lg text-on-surface">Dinheiro no Lixo</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Seu time deveria estar negociando, mas passa 80% do dia pesquisando empresa. Tempo é dinheiro perdido, e o Garimpo resolve isso.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. SHIFT -->
+<section class="py-32 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 mix-blend-screen blur-3xl rounded-full w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+<h2 class="font-headline text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-on-surface">
+    E se você pudesse gastar 20 minutos e sair com leads priorizados e mensagens que parecem escritas por um SDR sênior?
+</h2>
+</div>
+</section>
+<!-- 4. SOLUTIONS -->
+<section class="py-24 bg-surface-container-low" id="features">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-16">O Motor da Precisão</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-high border border-white/10 p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">01</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="psychology">psychology</span>
+<h3 class="font-headline font-bold text-xl mb-4">Mapeamento Sniper de ICP</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Diga quem você quer atender. A Inteligência Artificial varre o mapa e seleciona apenas as empresas com o faturamento e o momento perfeito para comprar de você.</p>
+</div>
+</div>
+<div class="bg-surface-container-high border border-white/10 p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">02</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="search_insights">search_insights</span>
+<h3 class="font-headline font-bold text-xl mb-4">Fit Score Implacável</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Analisamos dezenas de dados públicos e damos uma nota para cada empresa. Nós descartamos automaticamente os desqualificados. Foque apenas no Top 20%.</p>
+</div>
+</div>
+<div class="bg-surface-container-highest border border-primary/30 p-8 relative overflow-hidden shadow-[0_20px_40px_rgba(217,119,6,0.05)] ring-1 ring-primary/20">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">03</div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="task_alt" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<h3 class="font-headline font-bold text-xl mb-4 text-primary">Copywriting Hiper-Personalizado</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Receba os contatos já com roteiros de vendas construídos pela IA, baseados de forma exclusiva na realidade daquele cliente. É só copiar, colar e fechar.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. COMPARISON -->
+<section class="py-24 border-y border-white/5" id="comparison">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-16 text-center">Não é uma lista fria...</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+<div class="bg-surface-container/30 border border-white/5 p-8 opacity-70">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="block">block</span>
+<h3 class="font-headline font-bold text-xl text-on-surface-variant">O Jeito Antigo</h3>
+</div>
+<ul class="space-y-4 text-on-surface-variant text-sm">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Lista fria e desatualizada</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Sem contexto do negócio do lead</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Mensagens genéricas que parecem spam</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Você tem que pesquisar empresa por empresa</li>
+</ul>
+</div>
+<div class="bg-surface-container-highest border border-primary/20 p-8 relative shadow-[0_20px_40px_rgba(217,119,6,0.1)]">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6 pb-4 border-b border-primary/20">
+<span class="material-symbols-outlined text-primary" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h3 class="font-headline font-bold text-xl text-on-surface">O Padrão Garimpo</h3>
+</div>
+<ul class="space-y-4 text-on-surface text-sm font-medium">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Dados enriquecidos e validados (CNPJ, Maps)</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Score de qualidade gerado por IA (Foco no top 20%)</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>2 Mensagens redigidas sob medida para cada lead</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Filtro inteligente de ICP antes de gerar a lista</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. STATISTICS BANNER -->
+<section class="py-24">
+<div class="max-w-4xl mx-auto px-6">
+<div class="bg-surface-container-low border border-white/5 p-12 text-center relative overflow-hidden">
+<div class="absolute right-0 top-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full mix-blend-screen -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-10">
+<span class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface">50 leads em <span class="text-primary">10 minutos</span></span>
+<p class="text-xl mt-6 text-on-surface-variant font-medium">Com score médio de <span class="font-bold text-[#22c55e]">85/100</span></p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. PRICING -->
+<section class="py-24 bg-surface border-t border-white/5" id="pricing">
+<div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
+<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-16 text-center text-on-surface">Quanto custa o Garimpo?</h2>
+<div class="w-full max-w-md bg-surface-container-high border border-primary/20 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
+<div class="mb-8 border-b border-white/5 pb-8 text-center">
+<span class="text-primary uppercase tracking-widest text-xs font-bold mb-2 block">Starter</span>
+<div class="flex justify-center items-baseline gap-1">
+<span class="text-on-surface-variant text-xl">R$</span>
+<span class="font-headline text-6xl font-bold text-on-surface">67</span>
+<span class="text-on-surface-variant text-sm">/mês</span>
+</div>
+</div>
+<ul class="space-y-4 mb-10 text-sm text-on-surface-variant">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>50 leads qualificados / mês</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Análise de ICP por IA</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Scoring de Leads Avançado</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Dados completos (CNPJ, Contatos)</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>2 mensagens personalizadas / lead</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Gestão em Kanban integrado</li>
+</ul>
+<button class="w-full bg-primary text-on-primary font-headline font-bold py-4 hover:bg-primary-dim transition-all shadow-lg shadow-primary/20">
+    COMEÇAR AGORA
+</button>
+</div>
+</div>
+</section>
+<!-- 8. FAQ -->
+<section class="py-24 border-t border-white/5">
+<div class="max-w-3xl mx-auto px-6">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-12 text-on-surface">Perguntas Frequentes</h2>
+<div class="space-y-4">
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    Não sei prospectar. O Garimpo serve para mim?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Exatamente por isso ele serve. O Garimpo assume a parte difícil: encontrar as empresas certas e escrever a primeira mensagem. Você só precisa copiar, colar e enviar.</p>
+</details>
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    Como encontram os leads?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Cruzamos dados públicos do Google Maps e Receita Federal com nossa IA para identificar empresas reais, ativas e que têm fit com o que você vende.</p>
+</details>
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    As mensagens não são genéricas?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Não. A inteligência artificial analisa o modelo de negócios de cada lead e os desafios do setor. Com base nesses dados, a IA constrói uma abordagem de vendas B2B altamente qualificada, como se um vendedor sênior tivesse pesquisado a empresa antes de enviá-la. Nenhuma mensagem é igual a outra.</p>
+</details>
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    E se os leads não forem bons?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">É por isso que temos o sistema de Scoring. O Garimpo vai te mostrar logo de cara quais são os leads nota 90+ e alertar sobre os leads com nota baixa para você não perder tempo.</p>
+</details>
+</div>
+</div>
+</section>
+<!-- 9. FINAL CTA -->
+<section class="py-32 bg-surface-container-highest border-t border-primary/20 relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(217,119,6,0.1)_0%,_transparent_60%)] pointer-events-none"></div>
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-8 text-on-surface">Seus concorrentes não vão esperar você decidir.</h2>
+<p class="text-lg text-on-surface-variant mb-12">Comece agora. Cancele quando quiser.</p>
+<button class="bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group">
+    COMEÇAR AGORA
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface w-full py-12 border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-6">
+<div class="flex items-center gap-2">
+<img alt="Logo Garimpo" height="42" src="./assets/garimpo_logo.png" style="object-fit: contain; margin-right: 12px; border-radius: 4px;" width="42"/>
+<span class="text-xl font-black text-on-surface font-headline tracking-tight" style="color: #D97706;">GARIMPO</span>
+</div>
+<nav class="flex gap-6">
+<a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="#">Privacidade</a>
+<a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="#">Termos</a>
+<a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="#">Documentação</a>
+<a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="#">Contato</a>
+</nav>
+<span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2024 Garimpo. Engineered for Lead Precision.</span>
+</div>
+</footer>
+</body>
+</html>
