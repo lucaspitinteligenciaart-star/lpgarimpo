@@ -113,7 +113,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <!-- 1.5. DEMO VIDEO -->
 <section class="max-w-7xl mx-auto px-6 mb-24 relative z-20 flex flex-col items-center mt-12 md:mt-0">
   <div class="text-center mb-8">
-      <span class="font-headline text-lg md:text-xl font-bold tracking-tight text-on-surface">Veja o Garimpo faturando na prática (1 minuto)</span>
+      <span class="font-headline text-lg md:text-xl font-bold tracking-tight text-on-surface">Veja o Garimpo na prática (1 minuto)</span>
       <span class="material-symbols-outlined text-primary block mt-2 animate-bounce" style="font-variation-settings: 'wght' 300;">keyboard_double_arrow_down</span>
   </div>
   
@@ -377,8 +377,8 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
                 iframe.src = currentSrc + '&autoplay=1';
                 iframe.classList.remove('pointer-events-none');
                 
-                // cubic-bezier que sobe pra 70~80% em ~10s, e rasteja o resto
-                progress.style.transition = 'width 60s cubic-bezier(0.05, 0.9, 0.1, 1)';
+                // cubic-bezier sutil: avança rápido no início (ilusão de pouco tempo gasto) de forma natural
+                progress.style.transition = 'width 60s cubic-bezier(0.2, 0.8, 0.3, 1)';
                 setTimeout(() => {
                     progress.style.width = '100%';
                 }, 50);
