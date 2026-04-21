@@ -79,15 +79,19 @@
 </header>
 <main>
 <!-- 1. HERO -->
-<section class="relative pt-32 pb-24 overflow-hidden flex flex-col items-center justify-center min-h-[85vh]">
+<section class="relative pt-16 pb-12 md:pt-32 md:pb-24 overflow-hidden flex flex-col items-center justify-center min-h-[70vh] md:min-h-[85vh]">
 <div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.15) 0%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 100% 100%, 40px 40px, 40px 40px;"></div>
 <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-6 md:mb-8 mt-4 md:mt-0">
 <div class="w-2 h-2 rounded-full bg-primary data-pulse"></div>
-<span class="text-sm font-medium text-primary">Prospecção B2B com inteligência artificial</span>
+<span class="text-xs md:text-sm font-medium text-primary">Prospecção B2B com inteligência artificial</span>
 </div>
-<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 max-w-4xl text-on-surface">Sua equipe perde 80% do dia caçando leads. Nós fazemos isso em 10 minutos.</h1>
-<p class="text-xl md:text-2xl text-on-surface-variant mb-12 max-w-3xl font-light">Pare de perder horas caçando contatos na mão. O Garimpo varre o mercado, filtra as empresas desqualificadas e redige o primeiro contato de vendas por você. Você foca apenas em fechar negócios. Seus concorrentes ficam para trás.</p>
+<h1 class="font-headline text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-6 max-w-4xl text-on-surface">Sua equipe perde 80% do dia caçando leads.<br class="hidden md:block"/> Nós fazemos isso em 10 minutos.</h1>
+<p class="text-lg md:text-2xl text-on-surface-variant mb-10 max-w-3xl font-light leading-relaxed">
+Pare de perder horas caçando contatos na mão. O Garimpo varre o mercado, filtra as empresas desqualificadas e redige o primeiro contato de vendas por você.
+<br/><br class="hidden md:block"/>
+Você foca apenas em fechar negócios. Seus concorrentes ficam para trás.
+</p>
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
 <button class="bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group">TESTAR GRÁTIS POR 7 DIAS</button>
 </div>
@@ -106,38 +110,38 @@
 <!-- 2. PAIN POINTS -->
 <section class="py-24 bg-surface-container-low border-t border-white/5 relative" id="problem">
 <div class="max-w-7xl mx-auto px-6">
-<div class="mb-16 max-w-3xl">
-<h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-4">Se você ainda prospecta assim, <span class="text-primary">está perdendo dinheiro</span></h2>
+<div class="mb-10 md:mb-16 max-w-3xl">
+<h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight">Se você ainda prospecta assim, <br class="block md:hidden"/><span class="text-primary">está perdendo dinheiro</span></h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="search">search</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Pesquisa Manual Infinita</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Você ou seu time perdem horas varrendo o Google Maps, LinkedIn e Instagram atrás de contatos, ao invés de usar esse tempo para estar em reuniões de fechamento.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">A equipe perde horas varrendo o Google e o LinkedIn atrás de contatos, ao invés de usar esse tempo para estar em reuniões de fechamento.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="table_chart">table_chart</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Cemitério de Planilhas</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Listas infinitas que já nascem desatualizadas. Sua equipe gasta semanas montando um Excel que não serve pra nada porque os números estão errados ou não são os decisores.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Listas que já nascem desatualizadas. Um Excel inútil recheado de números errados e contatos que não são os decisores reais.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="mail_lock">mail_lock</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Panfletagem Digital</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Enviar "textões" genéricos de Ctrl+C e Ctrl+V acabou. Suas mensagens são ignoradas ou bloqueadas porque a abordagem soa como spam e não se conecta com a empresa.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">A era do "Control C + Control V" acabou. Suas mensagens são ignoradas ou bloqueadas porque soam como spam e não se conectam com a empresa.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="shopping_cart_checkout">shopping_cart_checkout</span>
-<h3 class="font-headline font-bold text-lg text-on-surface">Comprar Listas Genéricas</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Pagar caríssimo por bases de dados onde 90% das empresas estão quebradas, fora do seu perfil ou com os dados de contato do contador. Isso prejudica até o seu domínio.</p>
+<h3 class="font-headline font-bold text-lg text-on-surface">Listas Genéricas</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Pagar por listas onde 90% das empresas estão quebradas, fora do perfil ou só têm o telefone do contador. Prejuízo financeiro e perda de reputação.</p>
 </div>
 </div>
 </div>
 </section>
 <!-- 3. SHIFT -->
-<section class="py-32 relative overflow-hidden">
-<div class="absolute inset-0 bg-primary/5 mix-blend-screen blur-3xl rounded-full w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<section class="py-16 md:py-32 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 mix-blend-screen blur-3xl rounded-[100%] w-[150%] md:w-[800px] h-[300px] md:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-<h2 class="font-headline text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-on-surface">
+<h2 class="font-headline text-3xl md:text-6xl font-bold tracking-tighter leading-tight text-on-surface">
     E se você pudesse gastar 20 minutos e sair com leads priorizados e mensagens que parecem escritas por um SDR sênior?
 </h2>
 </div>
