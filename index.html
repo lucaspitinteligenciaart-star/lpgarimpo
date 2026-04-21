@@ -118,7 +118,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
   </div>
   
   <div class="relative w-full max-w-[320px] md:max-w-[340px] aspect-[9/16] bg-surface-container-highest rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-surface shadow-[0_30px_60px_rgba(217,119,6,0.15)] overflow-hidden ring-1 ring-white/10 group cursor-pointer" id="video-container">
-     <iframe id="demo-video-iframe" src="https://www.youtube.com/embed/GnqHjj04qzw?controls=0&modestbranding=1&rel=0&playsinline=1" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <iframe id="demo-video-iframe" src="https://www.youtube.com/embed/GnqHjj04qzw?enablejsapi=1&controls=0&modestbranding=1&rel=0&playsinline=1" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      <div id="video-overlay" class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center transition-opacity duration-300 z-10">
          <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(217,119,6,0.6)] group-hover:scale-110 transition-transform duration-300">
@@ -355,7 +355,15 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2024 Garimpo. Engineered for Lead Precision.</span>
 </div>
 </footer>
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+    let ytPlayer;
+    function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player('demo-video-iframe', {
+            events: {}
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('video-container');
         const overlay = document.getElementById('video-overlay');
@@ -373,8 +381,14 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
                     overlay.style.display = 'none';
                 }, 300);
                 
-                const currentSrc = iframe.src;
-                iframe.src = currentSrc + '&autoplay=1';
+                // Dispara o play do Youtube nativamente para ignorar barreiras de mobile
+                if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                    ytPlayer.playVideo();
+                } else {
+                    const currentSrc = iframe.src;
+                    iframe.src = currentSrc + '&autoplay=1';
+                }
+                
                 iframe.classList.remove('pointer-events-none');
                 
                 // cubic-bezier sutil: avança rápido no início (ilusão de pouco tempo gasto) de forma natural
