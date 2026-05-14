@@ -68,9 +68,9 @@
 <a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#solutions">Soluções</a>
 <a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#pricing">Planos</a>
 </nav>
-<div class="hidden md:flex gap-4 items-center">
-<button class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200">Login</button>
-<button class="bg-primary text-on-primary font-headline font-bold py-2 px-6 hover:bg-primary-dim transition-colors active:scale-95 shadow-[0_0_20px_rgba(217,119,6,0.3)]">Testar 7 Dias por R$ 9,90</button>
+	<div class="hidden md:flex gap-4 items-center">
+	<a href="https://www.garimpoleads.com.br/login" class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200">Login</a>
+	<a href="https://www.garimpoleads.com.br/signup" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold py-2 px-6 hover:bg-primary-dim transition-colors active:scale-95 shadow-[0_0_20px_rgba(217,119,6,0.3)] inline-block">Testar 7 Dias por R$ 9,90</a>
 </div>
 <button class="md:hidden text-on-surface-variant">
 <span class="material-symbols-outlined" data-icon="menu">menu</span>
@@ -336,9 +336,9 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
 <h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-8 text-on-surface">Seus concorrentes não vão esperar você decidir.</h2>
 <p class="text-lg text-on-surface-variant mb-12">Comece agora. Cancele quando quiser.</p>
-<button class="bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group">
-    TESTAR POR APENAS R$ 9,90 · 7 DIAS
-</button>
+	<a href="https://www.garimpoleads.com.br/signup" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group inline-block">
+	    TESTAR POR APENAS R$ 9,90 · 7 DIAS
+	</a>
 </div>
 </section>
 </main>
@@ -367,8 +367,27 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const container = document.getElementById('video-container');
+	    function preserveTrackingParamsOnAppLinks() {
+	        const params = new URLSearchParams(window.location.search);
+	        if (!Array.from(params).length) return;
+
+	        document.querySelectorAll('a[href^="https://www.garimpoleads.com.br/"]').forEach((link) => {
+	            try {
+	                const url = new URL(link.href);
+	                params.forEach((value, key) => {
+	                    if (value) url.searchParams.set(key, value);
+	                });
+	                link.href = url.toString();
+	            } catch (error) {
+	                console.warn('Não foi possível preservar os parâmetros do anúncio no link:', error);
+	            }
+	        });
+	    }
+
+	    document.addEventListener('DOMContentLoaded', () => {
+	        preserveTrackingParamsOnAppLinks();
+
+	        const container = document.getElementById('video-container');
         const overlay = document.getElementById('video-overlay');
         const iframe = document.getElementById('demo-video-iframe');
         const progress = document.getElementById('fake-progress');
