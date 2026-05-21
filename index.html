@@ -4,7 +4,24 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Garimpo - Prospecção B2B com IA</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '930780446497215');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="stylesheet" href="./assets/tailwind.css">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
@@ -26,33 +43,6 @@
     }
     .data-pulse { animation: pulse-ring 2s infinite; }
 </style>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-                  "primary": "#D97706",
-                  "primary-dim": "#B45309",
-                  "on-primary": "#000000",
-                  "surface": "#0e0e0e",
-                  "on-surface": "#F5F0E8",
-                  "surface-container": "#151515",
-                  "surface-container-low": "#111111",
-                  "surface-container-high": "#1a1a1a",
-                  "surface-container-highest": "#222222",
-                  "on-surface-variant": "#a3a3a3",
-                  "outline-variant": "#333333",
-                  "error-dim": "#D97706",
-                  "tertiary": "#D97706",
-                  "tertiary-fixed-dim": "#F59E0B"
-          },
-          "borderRadius": { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
-          "fontFamily": { "headline": ["Space Grotesk"], "body": ["Inter"], "label": ["Inter"] }
-        },
-      },
-    }
-</script>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
 <!-- TopAppBar -->
@@ -118,7 +108,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
   </div>
   
   <div class="relative w-full max-w-[320px] md:max-w-[340px] aspect-[9/16] bg-surface-container-highest rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-surface shadow-[0_30px_60px_rgba(217,119,6,0.15)] overflow-hidden ring-1 ring-white/10 group cursor-pointer" id="video-container">
-     <iframe id="demo-video-iframe" src="https://www.youtube.com/embed/u_98SSQuUJ4?enablejsapi=1&controls=0&modestbranding=1&rel=0&playsinline=1" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <iframe id="demo-video-iframe" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      <div id="video-overlay" class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center transition-opacity duration-300 z-10">
          <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(217,119,6,0.6)] group-hover:scale-110 transition-transform duration-300">
@@ -367,7 +357,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2024 Garimpo. Engineered for Lead Precision.</span>
 </div>
 </footer>
-<script src="https://www.youtube.com/iframe_api"></script>
+<script src="https://www.youtube.com/iframe_api" defer></script>
 <script>
     let ytPlayer;
     function onYouTubeIframeAPIReady() {
@@ -412,14 +402,8 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
                     overlay.style.display = 'none';
                 }, 300);
                 
-                // Dispara o play do Youtube nativamente para ignorar barreiras de mobile
-                if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-                    ytPlayer.playVideo();
-                } else {
-                    const currentSrc = iframe.src;
-                    iframe.src = currentSrc + '&autoplay=1';
-                }
-                
+                // Injeta a URL do YouTube com autoplay no momento da interação do usuário (gesto físico de clique)
+                iframe.src = "https://www.youtube.com/embed/u_98SSQuUJ4?autoplay=1&enablejsapi=1&controls=0&modestbranding=1&rel=0&playsinline=1";
                 iframe.classList.remove('pointer-events-none');
                 
                 // cubic-bezier sutil: avança rápido no início (ilusão de pouco tempo gasto) de forma natural
@@ -449,23 +433,6 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
     </a>
 </div>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '930780446497215');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <!-- Microsoft Clarity Code -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
