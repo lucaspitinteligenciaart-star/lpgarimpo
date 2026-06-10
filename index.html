@@ -6,19 +6,7 @@
 <title>Garimpo - Prospecção B2B com IA</title>
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 <link rel="dns-prefetch" href="https://connect.facebook.net">
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '930780446497215');
-fbq('track', 'PageView');
-</script>
+<!-- Meta Pixel Code (Carregamento postergado para otimização) -->
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
 /></noscript>
@@ -90,7 +78,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
 <a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">QUERO USAR O GARIMPO</a>
 </div>
-<div class="flex flex-col items-center gap-4 opacity-60">
+<div class="flex flex-col items-center gap-4">
 <span class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Alimentado por dados reais de</span>
 <div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70">
 <span class="font-headline font-bold text-xl">Google Maps</span>
@@ -110,7 +98,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
   </div>
   
   <div class="relative w-full max-w-[320px] md:max-w-[340px] aspect-[9/16] bg-surface-container-highest rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-surface shadow-[0_30px_60px_rgba(217,119,6,0.15)] overflow-hidden ring-1 ring-white/10 group cursor-pointer" id="video-container">
-     <iframe id="demo-video-iframe" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+     <iframe id="demo-video-iframe" title="Vídeo demonstrativo do Garimpo Leads" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      <div id="video-overlay" class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center transition-opacity duration-300 z-10">
          <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(217,119,6,0.6)] group-hover:scale-110 transition-transform duration-300">
@@ -201,7 +189,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="max-w-7xl mx-auto px-6">
 <h2 class="font-headline text-3xl font-bold tracking-tight mb-16 text-center">Não é uma lista fria...</h2>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-<div class="bg-surface-container/30 border border-white/5 p-8 opacity-70">
+<div class="bg-surface-container/10 border border-white/5 p-8">
 <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
 <span class="material-symbols-outlined text-on-surface-variant" data-icon="block">block</span>
 <h3 class="font-headline font-bold text-xl text-on-surface-variant">O Jeito Antigo</h3>
@@ -262,7 +250,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <span class="text-on-surface-variant text-xl line-through opacity-50 font-medium">Plano Starter R$ 67/mês</span>
 <span class="font-headline text-5xl font-bold text-[#22c55e]">7 Dias por R$ 9,90</span>
 </div>
-<p class="text-xs text-on-surface-variant mt-4 uppercase tracking-widest font-semibold opacity-70">O que você recebe liberado agora:</p>
+<p class="text-xs text-on-surface-variant mt-4 uppercase tracking-widest font-semibold">O que você recebe liberado agora:</p>
 </div>
 <ul class="space-y-4 mb-10 text-sm text-on-surface-variant">
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>50 leads qualificados / mês</li>
@@ -281,7 +269,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
    <div class="flex items-center gap-1 text-xs text-[#22c55e] font-bold">
       <span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span> ACESSO COMPLETO
    </div>
-   <p class="text-center text-xs text-on-surface-variant opacity-80 leading-relaxed px-2">
+   <p class="text-center text-xs text-on-surface-variant leading-relaxed px-2">
        Apenas <strong>R$ 9,90 hoje</strong>. 7 dias de acesso completo com 50 créditos para fazer suas primeiras buscas. Depois disso, a assinatura de <strong>R$ 67/mês</strong> é ativada. Cancele com 1 clique antes do prazo.
    </p>
 </div>
@@ -358,15 +346,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2026 Garimpo. Engineered for Lead Precision.</span>
 </div>
 </footer>
-<script src="https://www.youtube.com/iframe_api" defer></script>
 <script>
-    let ytPlayer;
-    function onYouTubeIframeAPIReady() {
-        ytPlayer = new YT.Player('demo-video-iframe', {
-            events: {}
-        });
-    }
-
 	    function preserveTrackingParamsOnAppLinks() {
 	        const params = new URLSearchParams(window.location.search);
 	        if (!Array.from(params).length) return;
@@ -427,21 +407,37 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
             }
         }
     });
+
+    // Carregamento postergado e assíncrono de scripts de terceiros (Facebook Pixel & Microsoft Clarity)
+    window.addEventListener('load', () => {
+        // Facebook Pixel (delay de 1s pós-onload)
+        setTimeout(() => {
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '930780446497215');
+            fbq('track', 'PageView');
+        }, 1000);
+
+        // Microsoft Clarity (delay de 1.5s pós-onload)
+        setTimeout(() => {
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "wfaaklwsrl");
+        }, 1500);
+    });
 </script>
 <div id="sticky-cta-mobile" style="position: fixed; bottom: 0; left: 0; right: 0; padding: 12px; background: rgba(14, 14, 14, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(217, 119, 6, 0.4); z-index: 100; transform: translateY(100%); transition: transform 0.3s ease-out; display: flex; justify-content: center; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.5);">
     <a href="https://www.garimpoleads.com.br/api/stripe/checkout-public" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
         TESTAR 7 DIAS POR R$ 9,90
     </a>
 </div>
-
-<!-- Microsoft Clarity Code -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wfaaklwsrl");
-</script>
-<!-- End Microsoft Clarity Code -->
 </body>
 </html>
