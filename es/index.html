@@ -32,6 +32,110 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
         100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
     }
     .data-pulse { animation: pulse-ring 2s infinite; }
+
+    /* ===== Entrada do hero ===== */
+    @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .hero-enter > * { opacity: 0; animation: rise-in .7s cubic-bezier(.2,.7,.3,1) forwards; }
+    .hero-enter > *:nth-child(1) { animation-delay: .05s; }
+    .hero-enter > *:nth-child(2) { animation-delay: .18s; }
+    .hero-enter > *:nth-child(3) { animation-delay: .32s; }
+    .hero-enter > *:nth-child(4) { animation-delay: .46s; }
+    .hero-enter > *:nth-child(5) { animation-delay: .6s; }
+
+    /* ===== Reveal ao rolar ===== */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .stagger > * { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+    .stagger.is-visible > * { opacity: 1; transform: none; }
+    .stagger.is-visible > *:nth-child(2) { transition-delay: .1s; }
+    .stagger.is-visible > *:nth-child(3) { transition-delay: .2s; }
+    .stagger.is-visible > *:nth-child(4) { transition-delay: .3s; }
+
+    /* ===== Brilho nos CTAs ===== */
+    .cta-shine { position: relative; overflow: hidden; }
+    .cta-shine::after { content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(105deg, transparent, rgba(255,255,255,.3), transparent); transform: skewX(-20deg); pointer-events: none; }
+    @keyframes shine-loop { 0% { left: -75%; } 14% { left: 125%; } 100% { left: 125%; } }
+    .cta-shine::after { animation: shine-loop 5.5s ease 1.5s infinite; }
+
+    /* ===== Destaque com brilho no headline ===== */
+    .headline-shine {
+        background: linear-gradient(110deg, #d97706 35%, #ffd9a0 50%, #d97706 65%);
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #d97706;
+        animation: text-shine 5.5s ease 1.5s infinite;
+    }
+    @keyframes text-shine { 0% { background-position: 120% 0; } 30% { background-position: -80% 0; } 100% { background-position: -80% 0; } }
+
+    /* ===== Chips de fontes de dados ===== */
+    .src-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: #f5f0e8; }
+    .src-chip .material-symbols-outlined { font-size: 18px; color: #d97706; }
+
+    /* ===== Demo viva ===== */
+    .demo-shell { width: 100%; max-width: 440px; background: #151515; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; box-shadow: 0 30px 60px rgba(217,119,6,.12), 0 10px 30px rgba(0,0,0,.5); overflow: hidden; }
+    .demo-chrome { display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: #0e0e0e; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .demo-dot { width: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,.12); }
+    .demo-url { margin-left: 10px; font-size: 11px; color: #a3a3a3; font-family: 'Inter', sans-serif; letter-spacing: .02em; }
+    .demo-body { padding: 20px; }
+    .demo-search { display: flex; align-items: center; gap: 10px; background: #0e0e0e; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 12px 14px; font-size: 14px; color: #f5f0e8; min-height: 46px; }
+    .demo-search .material-symbols-outlined { font-size: 20px; color: #d97706; }
+    .demo-caret { display: inline-block; width: 2px; height: 1.1em; background: #d97706; vertical-align: text-bottom; animation: caret-blink 1s steps(1) infinite; }
+    @keyframes caret-blink { 50% { opacity: 0; } }
+    .demo-status { font-size: 12px; color: #a3a3a3; margin: 12px 2px 0; min-height: 18px; display: flex; align-items: center; gap: 8px; }
+    .demo-status.working::before { content: ''; width: 8px; height: 8px; border-radius: 999px; background: #d97706; animation: pulse-ring 1.4s infinite; flex-shrink: 0; }
+    .demo-lead { margin-top: 14px; background: #1a1a1a; border: 1px solid rgba(217,119,6,.25); border-radius: 12px; padding: 16px; opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .demo-lead.show { opacity: 1; transform: none; }
+    .demo-lead-head { display: flex; align-items: center; gap: 12px; }
+    .demo-avatar { width: 42px; height: 42px; border-radius: 10px; background: rgba(217,119,6,.15); color: #d97706; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+    .demo-lead-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: #f5f0e8; }
+    .demo-lead-sub { font-size: 12px; color: #a3a3a3; margin-top: 2px; }
+    .demo-score { position: relative; width: 48px; height: 48px; margin-left: auto; flex-shrink: 0; }
+    .demo-score svg { width: 48px; height: 48px; transform: rotate(-90deg); }
+    .demo-score circle { fill: none; stroke-width: 4; }
+    .demo-score .ring-track { stroke: rgba(255,255,255,.08); }
+    .demo-score .ring-fill { stroke: #22c55e; stroke-linecap: round; stroke-dasharray: 113.1; stroke-dashoffset: 113.1; }
+    .demo-score span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #22c55e; }
+    .demo-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .demo-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: #a3a3a3; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; padding: 4px 10px; }
+    .demo-chip .material-symbols-outlined { font-size: 13px; color: #d97706; }
+    .demo-context { margin-top: 14px; background: rgba(217,119,6,.05); border: 1px solid rgba(217,119,6,.15); border-radius: 10px; padding: 10px 12px; opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+    .demo-context.show { opacity: 1; transform: none; }
+    .demo-context ul { margin: 6px 0 0; padding: 0; list-style: none; }
+    .demo-context li { font-size: 12px; color: #a3a3a3; line-height: 1.5; display: flex; gap: 6px; }
+    .demo-context li::before { content: '•'; color: #d97706; }
+    .demo-msg-label { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #d97706; text-transform: uppercase; letter-spacing: .08em; margin-top: 16px; }
+    .demo-msg-label .material-symbols-outlined { font-size: 15px; }
+    .demo-context .demo-msg-label { margin-top: 0; }
+    .demo-queue { margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.1); font-size: 11px; color: #a3a3a3; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; opacity: 0; transition: opacity .5s ease; }
+    .demo-queue.show { opacity: 1; }
+    .demo-queue .material-symbols-outlined { font-size: 14px; color: #d97706; }
+    .demo-queue b { color: #22c55e; font-weight: 700; }
+    .demo-msg { margin-top: 8px; background: #0e0e0e; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.6; color: #f5f0e8; min-height: 110px; }
+    .demo-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+    .demo-copy { display: inline-flex; align-items: center; gap: 6px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: #000; background: #d97706; border-radius: 6px; padding: 8px 14px; }
+    .demo-copy .material-symbols-outlined { font-size: 15px; }
+
+    /* ===== Strip de números reais ===== */
+    .stat-card { background: #111; border: 1px solid rgba(255,255,255,.05); padding: 28px 20px; text-align: center; display: flex; flex-direction: column; gap: 8px; }
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -.02em; color: #d97706; }
+    .stat-label { font-size: 13px; color: #a3a3a3; }
+
+    /* ===== Timeline do trial ===== */
+    .tl-item { position: relative; padding-left: 28px; padding-bottom: 18px; font-size: 13px; color: #a3a3a3; line-height: 1.55; text-align: left; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before { content: ''; position: absolute; left: 7px; top: 18px; bottom: 0; width: 2px; background: rgba(255,255,255,.08); }
+    .tl-item:last-child::before { display: none; }
+    .tl-dot { position: absolute; left: 0; top: 3px; width: 16px; height: 16px; border-radius: 999px; border: 2px solid rgba(255,255,255,.2); background: #1a1a1a; }
+    .tl-dot-active { border-color: #d97706; background: #d97706; box-shadow: 0 0 12px rgba(217,119,6,.6); }
+    .tl-item strong { color: #f5f0e8; }
+
+    /* ===== Acessibilidade: reduz movimento ===== */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-enter > *, .reveal, .stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+        .cta-shine::after, .demo-caret, .data-pulse, .demo-status.working::before, .headline-shine { animation: none !important; }
+    }
 </style>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
@@ -62,68 +166,92 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
 <!-- 1. HERO -->
 <section class="relative pt-8 pb-10 md:pt-32 md:pb-24 overflow-hidden flex flex-col items-center justify-center min-h-[70vh] md:min-h-[85vh]">
 <div class="absolute inset-0 z-0 opacity-20" style="background-image: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.15) 0%, transparent 50%), linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 100% 100%, 40px 40px, 40px 40px;"></div>
-<div class="relative z-10 w-full max-w-5xl mx-auto px-2 sm:px-6 text-center flex flex-col items-center">
+<div class="relative z-10 w-full max-w-5xl mx-auto px-2 sm:px-6 text-center flex flex-col items-center hero-enter">
 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-6 md:mb-8 mt-4 md:mt-0">
 <div class="w-2 h-2 rounded-full bg-primary data-pulse"></div>
-<span class="text-xs md:text-sm font-medium text-primary">Prospección B2B automatizada con Inteligencia Artificial</span>
+<span class="text-xs md:text-sm font-medium text-primary">La IA que caza leads y escribe los mensajes por ti</span>
 </div>
 <h1 class="font-headline text-[9.2vw] min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.15] mb-6 w-full max-w-full md:max-w-4xl text-on-surface">
 Deja de cazar clientes.<br class="hidden md:block"/>
 Permite que la IA haga<br class="block md:hidden"/>
-el trabajo pesado de<br class="block md:hidden"/>
+el <span class="headline-shine">trabajo pesado</span> de<br class="block md:hidden"/>
 tu prospección B2B.
 </h1>
 <p class="text-base sm:text-lg md:text-2xl text-on-surface-variant mb-10 max-w-3xl font-light leading-relaxed">
 Mientras tus competidores pasan horas buscando contactos en internet manualmente, Garimpo localiza empresas calificadas, redacta el primer mensaje personalizado y te ayuda a cerrar la venta cuando te responden.
 </p>
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
-<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">QUIERO PROBAR GARIMPO</a>
+<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">QUIERO MIS PRIMEROS 50 LEADS</a>
 </div>
 <div class="flex flex-col items-center gap-4">
 <span class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Impulsado por datos reales de</span>
-<div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70">
-<span class="font-headline font-bold text-xl">Google Maps</span>
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-<span class="font-headline font-bold text-xl">Registros Públicos</span>
-<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-<span class="font-headline font-bold text-xl">IA Generativa</span>
+<div class="flex flex-wrap justify-center gap-3 items-center">
+<span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">map</span>Google Maps</span>
+<span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">account_balance</span>Registros Públicos</span>
+<span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>IA Generativa</span>
 </div>
 </div>
 </div>
 </section>
 
-<!-- 1.5. DEMO VIDEO (Ocultado en Español temporalmente para evitar audio en portugués) -->
-<!--
-<section class="max-w-7xl mx-auto px-6 mb-24 relative z-20 flex flex-col items-center mt-12 md:mt-0">
+<!-- 1.5. DEMO VIVA -->
+<section class="max-w-7xl mx-auto px-6 mb-24 relative z-20 flex flex-col items-center mt-12 md:mt-0" id="demo">
   <div class="text-center mb-8">
-      <span class="font-headline text-lg md:text-xl font-bold tracking-tight text-on-surface">Cómo funciona Garimpo (1 min)</span>
+      <span class="font-headline text-lg md:text-xl font-bold tracking-tight text-on-surface">Mira a Garimpo trabajando en tiempo real</span>
       <span class="material-symbols-outlined text-primary block mt-2 animate-bounce" style="font-variation-settings: 'wght' 300;">keyboard_double_arrow_down</span>
   </div>
-  
-  <div class="relative w-full max-w-[320px] md:max-w-[340px] aspect-[9/16] bg-surface-container-highest rounded-[2rem] md:rounded-[2.5rem] border-[6px] border-surface shadow-[0_30px_60px_rgba(217,119,6,0.15)] overflow-hidden ring-1 ring-white/10 group cursor-pointer" id="video-container">
-     <iframe id="demo-video-iframe" title="Video de demostración de Garimpo Leads" class="w-full h-full object-cover scale-[1.05] pointer-events-none" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-     <div id="video-overlay" class="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex flex-col items-center justify-center transition-opacity duration-300 z-10">
-         <div class="w-20 h-20 bg-primary/90 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(217,119,6,0.6)] group-hover:scale-110 transition-transform duration-300">
-             <span class="material-symbols-outlined text-5xl text-on-primary pl-1.5" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-         </div>
-         <span class="mt-6 font-headline font-bold text-xs tracking-widest uppercase text-white bg-black/60 px-4 py-2 rounded-full border border-white/10 shadow-lg">Toca para reproducir</span>
+  <div class="demo-shell" id="demo-shell" aria-label="Demostración animada: Garimpo encuentra un lead, lo califica y redacta el mensaje">
+     <div class="demo-chrome">
+         <span class="demo-dot"></span><span class="demo-dot"></span><span class="demo-dot"></span>
+         <span class="demo-url">app.garimpoleads.com.br</span>
      </div>
-
-     <div class="absolute bottom-0 left-0 w-full h-1.5 bg-black/80 z-20 pointer-events-none">
-         <div id="fake-progress" class="h-full bg-primary w-0 shadow-[0_0_10px_rgba(217,119,6,0.8)] rounded-r-full"></div>
+     <div class="demo-body">
+         <div class="demo-search">
+             <span class="material-symbols-outlined" aria-hidden="true">search</span>
+             <span id="demo-query"></span><span class="demo-caret" id="demo-query-caret"></span>
+         </div>
+         <div class="demo-status" id="demo-status">&nbsp;</div>
+         <div class="demo-lead" id="demo-lead">
+             <div class="demo-lead-head">
+                 <div class="demo-avatar">SP</div>
+                 <div>
+                     <div class="demo-lead-name">Clínica Sonrisa Plena</div>
+                     <div class="demo-lead-sub">Guadalajara · México</div>
+                 </div>
+                 <div class="demo-score">
+                     <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="ring-track" cx="22" cy="22" r="18"></circle><circle class="ring-fill" id="demo-ring" cx="22" cy="22" r="18"></circle></svg>
+                     <span id="demo-score-num">0</span>
+                 </div>
+             </div>
+             <div class="demo-chips">
+                 <span class="demo-chip"><span class="material-symbols-outlined" aria-hidden="true">call</span>+52 33 812 ••••</span>
+                 <span class="demo-chip"><span class="material-symbols-outlined" aria-hidden="true">verified</span>Registro activo</span>
+                 <span class="demo-chip"><span class="material-symbols-outlined" aria-hidden="true">star</span>4,9 en Google</span>
+             </div>
+             <div class="demo-context" id="demo-context">
+                 <div class="demo-msg-label"><span class="material-symbols-outlined" aria-hidden="true">travel_explore</span> Contexto que la IA encontró en el sitio y en Google</div>
+                 <ul>
+                     <li>Las reseñas destacan la atención, pero el sitio no refleja ese nivel</li>
+                     <li>Las citas se agendan solo por WhatsApp</li>
+                 </ul>
+             </div>
+             <div class="demo-msg-label"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span> Mensaje escrito por la IA para este lead</div>
+             <div class="demo-msg"><span id="demo-msg-text"></span><span class="demo-caret" id="demo-msg-caret" style="display:none;"></span></div>
+             <div class="demo-actions"><span class="demo-copy"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span> Copiar y enviar</span></div>
+             <div class="demo-queue" id="demo-queue"><span class="material-symbols-outlined" aria-hidden="true">format_list_numbered</span> En la fila: Clínica Dental Río <b>89</b> · Sonríe Centro <b>87</b> · +46 leads</div>
+         </div>
      </div>
   </div>
 </section>
--->
 
 <!-- 2. PAIN POINTS -->
 <section class="py-24 bg-surface-container-low border-t border-white/5 relative" id="problem">
 <div class="max-w-7xl mx-auto px-6">
-<div class="mb-10 md:mb-16 max-w-3xl">
+<div class="mb-10 md:mb-16 max-w-3xl reveal">
 <h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight text-balance">Si sigues prospectando así, <span class="text-primary">estás perdiendo dinero</span></h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 stagger">
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="search">search</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Búsqueda Manual Infinita</h3>
@@ -150,7 +278,7 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <!-- 3. SHIFT -->
 <section class="py-16 md:py-32 relative overflow-hidden">
 <div class="absolute inset-0 bg-primary/5 mix-blend-screen blur-3xl rounded-[100%] w-[150%] md:w-[800px] h-[300px] md:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-<div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+<div class="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
 <h2 class="font-headline text-3xl md:text-6xl font-bold tracking-tighter leading-tight text-on-surface">
 ¿Y si pudieras dedicar solo 20 minutos al día para obtener prospectos calificados y mensajes listos para enviar?
 </h2>
@@ -159,8 +287,8 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <!-- 4. SOLUTIONS -->
 <section class="py-24 bg-surface-container-low" id="features">
 <div class="max-w-7xl mx-auto px-6">
-<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-16">Cómo funciona Garimpo en la práctica</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-16 reveal">Cómo funciona Garimpo en la práctica</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
 <div class="bg-surface-container-high border border-white/10 p-8 relative overflow-hidden group">
 <div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">01</div>
 <div class="relative z-10">
@@ -192,8 +320,8 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <!-- 5. COMPARISON -->
 <section class="py-24 border-y border-white/5" id="comparison">
 <div class="max-w-7xl mx-auto px-6">
-<h2 class="font-headline text-3xl font-bold tracking-tight mb-16 text-center">No es solo una lista fría de contactos...</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-16 text-center reveal">No es solo una lista fría de contactos...</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 stagger">
 <div class="bg-surface-container/10 border border-white/5 p-8">
 <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
 <span class="material-symbols-outlined text-on-surface-variant" data-icon="block">block</span>
@@ -222,29 +350,35 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 </div>
 </div>
 </div>
-<div class="mt-16 flex justify-center">
-<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">EMPEZAR A PROBAR AHORA</a>
+<div class="mt-16 flex justify-center reveal">
+<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">EMPEZAR A PROBAR AHORA</a>
 </div>
 </div>
 </section>
 <!-- 6. STATISTICS BANNER -->
 <section class="py-24">
-<div class="max-w-4xl mx-auto px-6">
-<div class="bg-surface-container-low border border-white/5 p-12 text-center relative overflow-hidden">
+<div class="max-w-5xl mx-auto px-6">
+<div class="bg-surface-container-low border border-white/5 p-12 text-center relative overflow-hidden reveal">
 <div class="absolute right-0 top-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full mix-blend-screen -translate-y-1/2 translate-x-1/2"></div>
 <div class="relative z-10">
 <span class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface">50 leads en <span class="text-primary">10 minutos</span></span>
-<p class="text-xl mt-6 text-on-surface-variant font-medium">Con una calificación promedio de <span class="font-bold text-[#22c55e]">85/100</span></p>
+<p class="text-xl mt-6 text-on-surface-variant font-medium">Con una calificación promedio de <span class="font-bold text-[#22c55e]"><span data-count="81">0</span>/100</span></p>
 </div>
+</div>
+<p class="text-center text-lg md:text-xl text-on-surface-variant font-medium mt-12 max-w-2xl mx-auto reveal">La IA ya analizó más de <span class="font-bold text-on-surface">14 mil empresas</span> y entregó solo las mejores. El resto, lo descarta sola.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 stagger">
+<div class="stat-card"><span class="stat-num">+<span data-count="14042">0</span></span><span class="stat-label">empresas analizadas por la IA</span></div>
+<div class="stat-card"><span class="stat-num"><span data-count="586">0</span></span><span class="stat-label">ciudades exploradas</span></div>
+<div class="stat-card"><span class="stat-num">+<span data-count="400">0</span></span><span class="stat-label">empresas ya usaron Garimpo</span></div>
 </div>
 </div>
 </section>
 <!-- 7. PRICING -->
 <section class="py-24 bg-surface border-t border-white/5" id="pricing">
 <div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
-<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-4 text-center text-on-surface">Prueba la herramienta en la práctica sin compromisos.</h2>
-<p class="text-xl text-center text-on-surface-variant font-medium mb-16 mx-auto max-w-2xl px-4">Te damos acceso completo a la plataforma para que experimentes la facilidad de tener una máquina que busca clientes listos para comprarte.</p>
-<div class="w-full max-w-md bg-surface-container-high border border-primary/20 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative mt-4">
+<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-4 text-center text-on-surface reveal">Prueba la herramienta en la práctica sin compromisos.</h2>
+<p class="text-xl text-center text-on-surface-variant font-medium mb-16 mx-auto max-w-2xl px-4 reveal">Te damos acceso completo a la plataforma para que experimentes la facilidad de tener una máquina que busca clientes listos para comprarte.</p>
+<div class="w-full max-w-md bg-surface-container-high border border-primary/20 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative mt-4 reveal">
 
 <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary font-bold px-4 py-1 text-sm rounded shadow-lg whitespace-nowrap flex items-center gap-1.5">
    <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">redeem</span> EL RIESGO CORRE POR NUESTRA CUENTA
@@ -259,7 +393,7 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 </div>
 <ul class="space-y-4 mb-10 text-sm text-on-surface-variant">
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>50 leads calificados al mes</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Análisis de ICP por IA</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>La IA entiende quién es tu cliente ideal</li>
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Calificación Avanzada de Prospectos</li>
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Datos completos (Contactos y Registro)</li>
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>2 mensajes personalizados por lead</li>
@@ -268,16 +402,18 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Gestión en Kanban integrado</li>
 </ul>
 <!-- NOTA: Asegúrate de apuntar al enlace de checkout correcto para cobros internacionales en USD -->
-<a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="w-full block text-center bg-primary text-on-primary font-headline font-bold py-4 hover:bg-primary-dim transition-all shadow-lg shadow-primary/20 cursor-pointer">
+<a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine w-full block text-center bg-primary text-on-primary font-headline font-bold py-4 hover:bg-primary-dim transition-all shadow-lg shadow-primary/20 cursor-pointer">
     ACTIVAR MI PRUEBA POR $2.99 USD
 </a>
-<div class="mt-6 flex flex-col items-center gap-2 border-t border-white/5 pt-4">
-   <div class="flex items-center gap-1 text-xs text-[#22c55e] font-bold">
-      <span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span> ACCESO COMPLETO
+<div class="mt-6 flex flex-col items-stretch gap-4 border-t border-white/5 pt-5">
+   <div class="flex items-center justify-center gap-1 text-xs text-[#22c55e] font-bold">
+      <span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span> SIN SORPRESAS EN TU FACTURA
    </div>
-   <p class="text-center text-xs text-on-surface-variant opacity-80 leading-relaxed px-2">
-       Solo <strong>$2.99 USD hoy</strong>. Tienes 7 días de acceso completo con 50 créditos para hacer tus primeras búsquedas. Después de eso, se activa la suscripción mensual de <strong>$19.99 USD</strong>. Puedes cancelar con 1 clic en cualquier momento antes de que termine el plazo.
-   </p>
+   <div>
+      <div class="tl-item"><span class="tl-dot tl-dot-active"></span><div><strong>Hoy</strong> — $2.99 USD: acceso completo con 50 créditos para tus primeras búsquedas</div></div>
+      <div class="tl-item"><span class="tl-dot"></span><div><strong>Días 1 a 7</strong> — úsalo sin límites. ¿No te convenció? Cancela con 1 clic, sin preguntas</div></div>
+      <div class="tl-item"><span class="tl-dot"></span><div><strong>Día 7</strong> — solo entonces se activa la suscripción de <strong>$19.99 USD/mes</strong></div></div>
+   </div>
 </div>
 </div>
 </div>
@@ -285,14 +421,21 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <!-- 8. FAQ -->
 <section class="py-24 border-t border-white/5">
 <div class="max-w-3xl mx-auto px-6">
-<h2 class="font-headline text-3xl font-bold tracking-tight mb-12 text-on-surface">Preguntas Frecuentes</h2>
-<div class="space-y-4">
+<h2 class="font-headline text-3xl font-bold tracking-tight mb-12 text-on-surface reveal">Preguntas Frecuentes</h2>
+<div class="space-y-4 stagger">
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
     No sé cómo prospectar. ¿Me servirá Garimpo?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Exactamente para eso sirve. Garimpo encuentra las empresas correctas, redacta el primer mensaje de acercamiento, te indica diariamente a quién contactar y cuenta con un copiloto de IA para ayudarte a responder cuando el cliente muestre interés. Tú solo ejecutas.</p>
+</details>
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    ¿Funciona para mi tipo de negocio?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Si le vendes a otras empresas — agencia, contabilidad, software, consultoría, servicios en general — sí. Tú describes a quién atiendes y la IA busca exactamente ese perfil de empresa en la región que elijas.</p>
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
@@ -322,16 +465,23 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 </summary>
 <p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Solo copias y pegas la respuesta que te envió el prospecto. El copiloto analiza el chat, la información comercial de la empresa y el contexto de tu oferta. Te ofrece tres opciones de respuesta (directo, firme o amigable) para que elijas, adaptes si es necesario y la envíes.</p>
 </details>
+<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
+<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
+    ¿Cómo cancelo?
+    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
+</summary>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">En la configuración de tu cuenta, con 1 clic. Sin llamadas, sin hablar con nadie, sin preguntas. Y si el plazo se pasa y se te cobra la mensualidad sin quererlo, escríbenos y te devolvemos el dinero.</p>
+</details>
 </div>
 </div>
 </section>
 <!-- 9. FINAL CTA -->
 <section class="py-32 bg-surface-container-highest border-t border-primary/20 relative overflow-hidden">
 <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(217,119,6,0.1)_0%,_transparent_60%)] pointer-events-none"></div>
-<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
 <h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-8 text-on-surface">Tus competidores no van a esperar a que te decidas.</h2>
 <p class="text-lg text-on-surface-variant mb-12">Comienza hoy. Cancela cuando quieras.</p>
-	<a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group inline-block">
+	<a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group inline-block">
 	    PROBAR POR SOLO $2.99 USD · 7 DÍAS
 	</a>
 </div>
@@ -349,7 +499,7 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 <a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="https://www.garimpoleads.com.br/termos">Términos</a>
 <a class="font-['Inter'] text-sm tracking-wide text-on-surface-variant hover:text-primary transition-colors" href="mailto:garimposaas@gmail.com">Contacto</a>
 </nav>
-<span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2026 Garimpo. Engineered for Lead Precision.</span>
+<span class="font-['Inter'] text-sm tracking-wide text-on-surface-variant">© 2026 Garimpo. Prospección B2B con IA.</span>
 </div>
 </footer>
 <script>
@@ -373,33 +523,162 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
 	    document.addEventListener('DOMContentLoaded', () => {
 	        preserveTrackingParamsOnAppLinks();
 
-	        const container = document.getElementById('video-container');
-        const overlay = document.getElementById('video-overlay');
-        const iframe = document.getElementById('demo-video-iframe');
-        const progress = document.getElementById('fake-progress');
-        let playing = false;
-        
-        if (container && overlay && iframe && progress) {
-            container.addEventListener('click', () => {
-                if (playing) return;
-                playing = true;
-                
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 300);
-                
-                // Demo video URL (YouTube) - Dejado listo por si el usuario lo traduce con IA
-                iframe.src = "https://www.youtube.com/embed/u_98SSQuUJ4?autoplay=1&enablejsapi=1&controls=0&modestbranding=1&rel=0&playsinline=1";
-                iframe.classList.remove('pointer-events-none');
-                
-                progress.style.transition = 'width 60s cubic-bezier(0.2, 0.8, 0.3, 1)';
-                setTimeout(() => {
-                    progress.style.width = '100%';
-                }, 50);
-            });
-        }
-    });
+	        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	        // ===== Reveal al hacer scroll =====
+	        const revealEls = document.querySelectorAll('.reveal, .stagger');
+	        if (reducedMotion || !('IntersectionObserver' in window)) {
+	            revealEls.forEach((el) => el.classList.add('is-visible'));
+	        } else {
+	            const revealObs = new IntersectionObserver((entries) => {
+	                entries.forEach((entry) => {
+	                    if (entry.isIntersecting) {
+	                        entry.target.classList.add('is-visible');
+	                        revealObs.unobserve(entry.target);
+	                    }
+	                });
+	            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+	            revealEls.forEach((el) => revealObs.observe(el));
+	        }
+
+	        // ===== Números que cuentan =====
+	        const formatNum = (n) => n.toLocaleString('es');
+	        const animateCount = (el) => {
+	            const target = parseInt(el.dataset.count, 10);
+	            const dur = 1600;
+	            const t0 = performance.now();
+	            const frame = (t) => {
+	                const p = Math.min((t - t0) / dur, 1);
+	                const eased = 1 - Math.pow(1 - p, 3);
+	                el.textContent = formatNum(Math.round(eased * target));
+	                if (p < 1) requestAnimationFrame(frame);
+	            };
+	            requestAnimationFrame(frame);
+	        };
+	        const countEls = document.querySelectorAll('[data-count]');
+	        if (reducedMotion || !('IntersectionObserver' in window)) {
+	            countEls.forEach((el) => { el.textContent = formatNum(parseInt(el.dataset.count, 10)); });
+	        } else {
+	            const countObs = new IntersectionObserver((entries) => {
+	                entries.forEach((entry) => {
+	                    if (entry.isIntersecting) {
+	                        animateCount(entry.target);
+	                        countObs.unobserve(entry.target);
+	                    }
+	                });
+	            }, { threshold: 0.5 });
+	            countEls.forEach((el) => countObs.observe(el));
+	        }
+
+	        // ===== Demo viva (loop: búsqueda -> score -> mensaje) =====
+	        (() => {
+	            const shell = document.getElementById('demo-shell');
+	            if (!shell) return;
+	            const queryEl = document.getElementById('demo-query');
+	            const queryCaret = document.getElementById('demo-query-caret');
+	            const statusEl = document.getElementById('demo-status');
+	            const leadEl = document.getElementById('demo-lead');
+	            const ring = document.getElementById('demo-ring');
+	            const scoreNum = document.getElementById('demo-score-num');
+	            const msgText = document.getElementById('demo-msg-text');
+	            const msgCaret = document.getElementById('demo-msg-caret');
+	            const contextEl = document.getElementById('demo-context');
+	            const queueEl = document.getElementById('demo-queue');
+	            const RING_C = 113.1;
+	            const QUERY = 'clínicas dentales en Guadalajara';
+	            const MSG = '¡Hola! ¿Qué tal? Estuve viendo el sitio de Sonrisa Plena y vi que tienen 4,9 en Google con reseñas excelentes, pero sentí que el sitio aún no refleja ese mismo nivel. ¿Hoy se encargan ustedes mismos de esa parte o tienen a alguien que los ayude?';
+	            const SCORE = 92;
+
+	            const setFinalState = () => {
+	                queryEl.textContent = QUERY;
+	                queryCaret.style.display = 'none';
+	                statusEl.textContent = 'Lead de alta calificación encontrado:';
+	                leadEl.classList.add('show');
+	                contextEl.classList.add('show');
+	                queueEl.classList.add('show');
+	                scoreNum.textContent = SCORE;
+	                ring.style.strokeDashoffset = RING_C * (1 - SCORE / 100);
+	                msgText.textContent = MSG;
+	            };
+
+	            if (reducedMotion || !('IntersectionObserver' in window)) { setFinalState(); return; }
+
+	            let visible = false;
+	            let running = false;
+	            const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+	            const waitVisible = () => new Promise((r) => {
+	                const t = setInterval(() => { if (visible) { clearInterval(t); r(); } }, 250);
+	            });
+	            const typeInto = async (el, text, speed) => {
+	                el.textContent = '';
+	                for (const ch of text) {
+	                    el.textContent += ch;
+	                    await sleep(speed + Math.random() * 25);
+	                }
+	            };
+	            const animateScore = () => new Promise((res) => {
+	                const dur = 1400;
+	                const t0 = performance.now();
+	                const frame = (t) => {
+	                    const p = Math.min((t - t0) / dur, 1);
+	                    const eased = 1 - Math.pow(1 - p, 3);
+	                    scoreNum.textContent = Math.round(eased * SCORE);
+	                    ring.style.strokeDashoffset = RING_C * (1 - (eased * SCORE) / 100);
+	                    if (p < 1) requestAnimationFrame(frame); else res();
+	                };
+	                requestAnimationFrame(frame);
+	            });
+	            const resetScene = () => {
+	                queryEl.textContent = '';
+	                queryCaret.style.display = 'inline-block';
+	                statusEl.classList.remove('working');
+	                statusEl.innerHTML = '&nbsp;';
+	                leadEl.classList.remove('show');
+	                contextEl.classList.remove('show');
+	                queueEl.classList.remove('show');
+	                scoreNum.textContent = '0';
+	                ring.style.transition = 'none';
+	                ring.style.strokeDashoffset = RING_C;
+	                msgText.textContent = '';
+	                msgCaret.style.display = 'none';
+	            };
+	            const run = async () => {
+	                running = true;
+	                while (true) {
+	                    if (!visible) await waitVisible();
+	                    resetScene();
+	                    await sleep(700);
+	                    await typeInto(queryEl, QUERY, 42);
+	                    queryCaret.style.display = 'none';
+	                    statusEl.classList.add('working');
+	                    statusEl.textContent = 'La IA está analizando 134 empresas…';
+	                    await sleep(1500);
+	                    statusEl.textContent = 'Leyendo el sitio y Google Maps de cada una…';
+	                    await sleep(1400);
+	                    statusEl.textContent = 'Descartando las no calificadas…';
+	                    await sleep(1200);
+	                    statusEl.classList.remove('working');
+	                    statusEl.textContent = 'Lead de alta calificación encontrado:';
+	                    leadEl.classList.add('show');
+	                    await sleep(500);
+	                    await animateScore();
+	                    await sleep(500);
+	                    contextEl.classList.add('show');
+	                    await sleep(1600);
+	                    msgCaret.style.display = 'inline-block';
+	                    await typeInto(msgText, MSG, 16);
+	                    msgCaret.style.display = 'none';
+	                    await sleep(600);
+	                    queueEl.classList.add('show');
+	                    await sleep(9000);
+	                }
+	            };
+	            new IntersectionObserver((entries) => {
+	                visible = entries[0].isIntersecting;
+	                if (visible && !running) run();
+	            }, { threshold: 0.35 }).observe(shell);
+	        })();
+	    });
 
     // Sticky CTA for Mobile
     window.addEventListener('scroll', function() {
@@ -440,7 +719,7 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
     });
 </script>
 <div id="sticky-cta-mobile" style="position: fixed; bottom: 0; left: 0; right: 0; padding: 12px; background: rgba(14, 14, 14, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(217, 119, 6, 0.4); z-index: 100; transform: translateY(100%); transition: transform 0.3s ease-out; display: flex; justify-content: center; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.5);">
-    <a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
+    <a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
         PROBAR 7 DÍAS POR $2.99 USD
     </a>
 </div>
