@@ -717,6 +717,91 @@ Mientras tus competidores pasan horas buscando contactos en internet manualmente
             })(window, document, "clarity", "script", "wfaaklwsrl");
         }, 1500);
     });
+
+    // Script de Localización Dinámica de Precios (México y Colombia)
+    (function() {
+        const prices = {
+            MX: {
+                trial: "$39 MXN",
+                monthly: "$249 MXN/mes",
+                monthlyRaw: "$249 MXN"
+            },
+            CO: {
+                trial: "$9.900 COP",
+                monthly: "$59.900 COP/mes",
+                monthlyRaw: "$59.900 COP"
+            },
+            US: {
+                trial: "$2.99 USD",
+                monthly: "$19.99 USD/mes",
+                monthlyRaw: "$19.99 USD"
+            }
+        };
+
+        let country = null;
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryParam = urlParams.get('country');
+        if (countryParam) {
+            country = countryParam.toUpperCase();
+        }
+
+        if (!country && window.Intl) {
+            try {
+                const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+                if (tz.includes("Mexico")) {
+                    country = "MX";
+                } else if (tz.includes("Bogota") || tz.includes("Colombia") || tz.includes("Bogotá")) {
+                    country = "CO";
+                }
+            } catch (e) {}
+        }
+
+        if (!prices[country]) {
+            country = "US";
+        }
+
+        const activePrice = prices[country];
+
+        const updateLinks = () => {
+            const links = document.querySelectorAll('a[href*="/api/stripe/checkout-public-usd"]');
+            links.forEach(link => {
+                try {
+                    const href = new URL(link.href);
+                    href.searchParams.set('country', country);
+                    link.href = href.toString();
+                } catch(e) {}
+            });
+        };
+
+        const updateTextNodes = () => {
+            const iterator = document.createNodeIterator(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                null
+            );
+
+            let textNode;
+            while ((textNode = iterator.nextNode())) {
+                let text = textNode.nodeValue;
+                if (text.includes('$2.99 USD') || text.includes('$19.99 USD')) {
+                    text = text.replace(/\$2\.99 USD/g, activePrice.trial);
+                    text = text.replace(/\$19\.99 USD\/mes/g, activePrice.monthly);
+                    text = text.replace(/\$19\.99 USD/g, activePrice.monthlyRaw);
+                    textNode.nodeValue = text;
+                }
+            }
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                updateLinks();
+                updateTextNodes();
+            });
+        } else {
+            updateLinks();
+            updateTextNodes();
+        }
+    })();
 </script>
 <div id="sticky-cta-mobile" style="position: fixed; bottom: 0; left: 0; right: 0; padding: 12px; background: rgba(14, 14, 14, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(217, 119, 6, 0.4); z-index: 100; transform: translateY(100%); transition: transform 0.3s ease-out; display: flex; justify-content: center; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.5);">
     <a href="https://www.garimpoleads.com.br/api/stripe/checkout-public-usd" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
