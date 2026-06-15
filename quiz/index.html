@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Garimpo - Planejador de Vendas & Mapeador de Leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/tailwind.css">
+<style>
+    :root {
+        --primary: #D97706;
+        --primary-dim: #B45309;
+        --surface: #0e0e0e;
+        --surface-card: #151515;
+        --text-gold: #fbbf24;
+    }
+    body {
+        background-color: var(--surface);
+        color: #f5f0e8;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0e0e0e; }
+    ::-webkit-scrollbar-thumb { background: #252525; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    /* Custom CSS transitions & animations */
+    .fade-slide-enter {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .fade-slide-active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .cta-shine {
+        position: relative;
+        overflow: hidden;
+    }
+    .cta-shine::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+        transform: skewX(-20deg);
+        pointer-events: none;
+        animation: shine-loop 5.5s ease infinite;
+    }
+    @keyframes shine-loop {
+        0% { left: -75%; }
+        15% { left: 125%; }
+        100% { left: 125%; }
+    }
+
+    .glass-card {
+        background: rgba(21, 21, 21, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .quiz-option {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .quiz-option:hover {
+        background: rgba(217, 119, 6, 0.04);
+        border-color: rgba(217, 119, 6, 0.3);
+    }
+    .quiz-option.selected {
+        background: rgba(217, 119, 6, 0.08);
+        border-color: var(--primary);
+        box-shadow: 0 0 15px rgba(217, 119, 6, 0.15);
+    }
+
+    /* Pulse animations */
+    @keyframes pulse-dot {
+        0%, 100% { transform: scale(0.85); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 1; }
+    }
+    .loading-pulse {
+        animation: pulse-dot 1.8s infinite ease-in-out;
+    }
+</style>
+</head>
+<body class="font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+
+    <!-- Header / Top Bar -->
+    <header class="bg-surface/80 backdrop-blur-lg border-b border-white/5 sticky top-0 z-40">
+        <div class="flex justify-between items-center px-6 md:px-8 h-16 max-w-5xl mx-auto w-full">
+            <div class="flex items-center gap-3">
+                <img alt="Logo Garimpo" height="32" src="../assets/garimpo_logo.webp" class="rounded" width="32"/>
+                <span class="font-headline font-black text-xl tracking-tighter text-amber-600" style="letter-spacing: -0.05em;">GARIMPO</span>
+            </div>
+            <div class="text-xs text-neutral-400 font-medium font-headline tracking-widest uppercase flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 loading-pulse"></span>
+                Calculadora Comercial IA
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 max-w-5xl mx-auto w-full">
+
+        <!-- 1. TELA INICIAL -->
+        <div id="screen-intro" class="w-full max-w-2xl text-center py-10 md:py-16 hero-enter">
+            <div class="inline-flex items-center gap-2 px-3  py-1 rounded-full bg-amber-950/40 border border-amber-900/30 text-amber-500 text-xs md:text-sm font-semibold mb-6">
+                <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                Mapeamento Comercial Inteligente
+            </div>
+            <h1 class="font-headline text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.15]">
+                Calcule o tamanho do seu <span class="text-amber-500">mercado de clientes</span>
+            </h1>
+            <p class="text-neutral-400 text-base md:text-lg mb-10 max-w-lg mx-auto font-light leading-relaxed">
+                Descubra em 1 minuto quantas empresas ativas existem no seu nicho e gere um plano personalizado de abordagens para acelerar suas vendas com Inteligência Artificial.
+            </p>
+            <button onclick="startQuiz()" class="cta-shine w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-black font-headline font-extrabold text-lg py-4 px-12 transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] rounded cursor-pointer">
+                INICIAR MAPEAMENTO GRATUITO
+            </button>
+        </div>
+
+        <!-- 2. CARD DO QUIZ -->
+        <div id="screen-quiz" class="w-full max-w-xl glass-card rounded-2xl p-6 md:p-8 hidden">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center text-xs text-neutral-400 mb-2">
+                    <span id="quiz-step-indicator" class="font-headline font-semibold text-amber-500 uppercase tracking-widest">PERGUNTA 1 DE 9</span>
+                    <span id="quiz-percentage" class="font-mono">11%</span>
+                </div>
+                <div class="w-full bg-neutral-900 h-1.5 rounded-full overflow-hidden">
+                    <div id="quiz-progress-fill" class="bg-amber-600 h-full transition-all duration-300" style="width: 11%"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Content (Renderizado dinamicamente) -->
+            <div id="quiz-container" class="fade-slide-enter">
+                <h2 id="quiz-question" class="font-headline text-xl md:text-2xl font-bold text-white mb-6">Pergunta?</h2>
+                <div id="quiz-options" class="flex flex-col gap-3">
+                    <!-- Opções de resposta via JS -->
+                </div>
+                <!-- Feedback Box -->
+                <div id="quiz-feedback-box" class="mt-6 p-4 rounded-lg bg-amber-950/20 border border-amber-900/20 hidden">
+                    <div class="flex gap-3">
+                        <span class="material-symbols-outlined text-amber-500 flex-shrink-0">lightbulb</span>
+                        <p id="quiz-feedback-text" class="text-sm text-neutral-300 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Button -->
+            <div class="mt-8 flex justify-end">
+                <button id="btn-next" onclick="nextQuestion()" disabled class="w-full sm:w-auto bg-neutral-800 disabled:opacity-40 text-neutral-400 disabled:text-neutral-600 font-headline font-semibold py-3.5 px-8 transition-all active:scale-95 rounded flex items-center justify-center gap-2 cursor-pointer">
+                    <span>AVANÇAR</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3. TELA DE CARREGAMENTO -->
+        <div id="screen-loading" class="w-full max-w-md text-center py-12 hidden">
+            <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-4 border-amber-600/10 border-t-amber-600 animate-spin"></div>
+                <span class="material-symbols-outlined text-amber-500 text-4xl loading-pulse">auto_awesome</span>
+            </div>
+            
+            <h2 class="font-headline text-xl font-bold text-white mb-3" id="loading-status">Cruzando dados de mercado...</h2>
+            <div class="w-48 bg-neutral-900 h-1 rounded-full mx-auto overflow-hidden mb-6">
+                <div id="loading-bar-fill" class="bg-amber-600 h-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            
+            <p id="loading-log" class="text-xs text-neutral-500 font-mono">Buscando empresas ativas no Google...</p>
+
+            <!-- Pop-ups dinâmicos do Sim Psicológico -->
+            <div id="popup-container" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+                <div class="glass-card max-w-sm w-full p-6 rounded-2xl text-center border border-amber-600/20 shadow-[0_0_50px_rgba(217,119,6,0.15)] animate-bounce-short">
+                    <span class="material-symbols-outlined text-amber-500 text-3xl mb-4">task_alt</span>
+                    <h3 id="popup-title" class="font-headline text-lg font-bold text-white mb-4 leading-snug">Sua empresa está preparada para novas demandas?</h3>
+                    <div id="popup-actions" class="flex flex-col gap-2.5">
+                        <!-- Botões de Sim via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. LP DE RESULTADOS DINÂMICA (TELA FINAL) -->
+        <div id="screen-results" class="w-full max-w-4xl hidden fade-slide-enter">
+            <!-- Top Alert Badge -->
+            <div class="flex items-center gap-3 p-4 rounded-xl bg-emerald-950/20 border border-emerald-900/30 text-emerald-400 text-sm mb-8">
+                <span class="material-symbols-outlined text-emerald-400 flex-shrink-0">check_circle</span>
+                <div>
+                    <span class="font-bold">Mapeamento Finalizado.</span> Calculamos o potencial comercial para o seu perfil comercializado.
+                </div>
+            </div>
+
+            <!-- Header Relatório -->
+            <div class="text-center md:text-left mb-10">
+                <h1 class="font-headline text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                    Plano de Prospecção para <span class="text-amber-500" id="res-nicho">Seu Segmento</span>
+                </h1>
+                <p class="text-neutral-400 font-light max-w-2xl leading-relaxed">
+                    Com base nas suas respostas, a inteligência artificial da Garimpo mapeou e simulou o cenário comercial para o seu negócio no Brasil.
+                </p>
+            </div>
+
+            <!-- Grid de Métricas de Mercado -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+                <div class="glass-card p-6 rounded-2xl border border-white/5 flex flex-col justify-between">
+                    <span class="text-xs text-neutral-400 uppercase tracking-widest font-semibold font-headline mb-4">Volume de Oportunidades</span>
+                    <div>
+                        <div class="text-3xl md:text-4xl font-headline font-bold text-amber-500 mb-1" id="res-leads-count">2.450</div>
+                        <p class="text-xs text-neutral-400">Potenciais empresas mapeadas na internet.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-white/5 flex flex-col justify-between">
+                    <span class="text-xs text-neutral-400 uppercase tracking-widest font-semibold font-headline mb-4">Projeção Comercial Mínima</span>
+                    <div>
+                        <div class="text-3xl md:text-4xl font-headline font-bold text-white mb-1" id="res-ticket-projection">R$ 5.400</div>
+                        <p class="text-xs text-neutral-400">Faturamento extra estimado com sua meta.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-white/5 flex flex-col justify-between">
+                    <span class="text-xs text-neutral-400 uppercase tracking-widest font-semibold font-headline mb-4">Seu Custo de Inércia (Perda)</span>
+                    <div>
+                        <div class="text-3xl md:text-4xl font-headline font-bold text-rose-500 mb-1" id="res-loss-value">R$ 5.000+</div>
+                        <p class="text-xs text-neutral-400">Perdido em média mensalmente por não agir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Dor Customizado (Gargalo Comercial) -->
+            <div class="glass-card p-6 md:p-8 rounded-2xl border border-amber-600/10 mb-10 bg-amber-950/5">
+                <h3 class="font-headline text-lg font-bold text-amber-500 mb-3 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[20px]">auto_awesome_motion</span>
+                    O plano para resolver o seu principal gargalo
+                </h3>
+                <p id="res-gargalo-text" class="text-neutral-300 leading-relaxed font-light text-sm md:text-base">
+                    Nossa inteligência artificial automatiza exatamente esse gargalo comercial na sua rotina...
+                </p>
+            </div>
+
+            <!-- Bloco ROI & Projeção -->
+            <div class="glass-card p-6 md:p-8 rounded-2xl border border-white/5 mb-16">
+                <h3 class="font-headline text-lg font-bold text-white mb-4">A Matemática Simples do seu Crescimento</h3>
+                <p class="text-neutral-400 font-light leading-relaxed mb-6 text-sm md:text-base">
+                    Para alcançar sua meta de <strong class="text-white" id="res-meta-sales">3 novos clientes</strong>, você não precisa de listas gigantescas com milhares de dados desatualizados da internet. Você precisa de consistência comercial: falar com apenas alguns contatos válidos por dia.
+                </p>
+                <div class="p-4 rounded-xl bg-neutral-900 border border-white/5">
+                    <p class="text-sm text-neutral-300 leading-relaxed" id="res-roi-calculation">
+                        No plano <strong>Starter (50 leads por mês)</strong>, se você fechar <strong>apenas 1 cliente</strong> do lote comercial (taxa de conversão realista de 2%), você gera <strong>R$ 1.200</strong>. Isso paga todo o custo da sua assinatura comercial por mais de um ano.
+                    </p>
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE PREÇOS / PLANOS -->
+            <div class="text-center mb-8">
+                <h2 class="font-headline text-2xl md:text-3xl font-extrabold text-white mb-3">Escolha como liberar o seu acesso</h2>
+                <p class="text-neutral-400 text-sm max-w-md mx-auto">
+                    Selecione o plano ideal para a sua meta. A liberação de créditos e o painel comercial é imediata.
+                </p>
+            </div>
+
+            <!-- Cards de Preço -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto">
+                <!-- PLANO STARTER -->
+                <div class="glass-card rounded-2xl border border-white/5 overflow-hidden flex flex-col justify-between relative">
+                    <div class="p-6 md:p-8">
+                        <span class="text-[10px] uppercase font-bold tracking-widest bg-neutral-800 text-neutral-300 px-3 py-1 rounded-full inline-block mb-4">Ideal para Autônomos</span>
+                        <h3 class="font-headline text-xl font-bold text-white mb-1">Plano Starter</h3>
+                        <p class="text-xs text-neutral-400 mb-6">Comece a prospectar de forma profissional</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-3xl font-headline font-extrabold text-white">R$ 67</span>
+                            <span class="text-xs text-neutral-400">/mês</span>
+                        </div>
+
+                        <ul class="flex flex-col gap-3 text-sm text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-emerald-400 text-[18px]">check</span>
+                                <span><strong>50 créditos</strong>/mês</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-emerald-400 text-[18px]">check</span>
+                                <span>Acesso completo à plataforma</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-emerald-400 text-[18px]">check</span>
+                                <span>Escrita de abordagens por IA</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 md:p-8 bg-neutral-900/40 border-t border-white/5 flex flex-col gap-3">
+                        <button onclick="goToCheckout('starter', 'mensal')" class="w-full bg-amber-600 hover:bg-amber-700 text-black font-headline font-bold py-3 transition-colors rounded text-sm cursor-pointer text-center">
+                            Assinar no Cartão (R$ 67/mês)
+                        </button>
+                        <button onclick="goToCheckout('starter', 'trimestral')" class="w-full bg-neutral-800 hover:bg-neutral-700 text-white font-headline font-semibold py-3 transition-colors rounded text-sm cursor-pointer text-center">
+                            Assinar Trimestral no PIX (R$ 147 à vista)
+                            <div class="text-[9px] text-amber-500 font-light mt-0.5">Economize 27% (equivale a R$ 49/mês)</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PLANO GROWTH -->
+                <div class="glass-card rounded-2xl border border-amber-600/30 overflow-hidden flex flex-col justify-between relative shadow-[0_0_30px_rgba(217,119,6,0.05)]">
+                    <div class="absolute top-4 right-4 bg-amber-600 text-black font-headline font-bold text-[9px] uppercase tracking-widest px-3 py-1 rounded">
+                        MAIS VENDIDO
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <span class="text-[10px] uppercase font-bold tracking-widest bg-amber-950/40 border border-amber-900/30 text-amber-500 px-3 py-1 rounded-full inline-block mb-4">Acelere Suas Vendas</span>
+                        <h3 class="font-headline text-xl font-bold text-white mb-1">Plano Growth</h3>
+                        <p class="text-xs text-neutral-400 mb-6">Ideal para bater metas comerciais de crescimento</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-3xl font-headline font-extrabold text-white">R$ 147</span>
+                            <span class="text-xs text-neutral-400">/mês</span>
+                        </div>
+
+                        <ul class="flex flex-col gap-3 text-sm text-neutral-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-amber-500 text-[18px]">check</span>
+                                <span><strong>120 créditos</strong>/mês</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-amber-500 text-[18px]">check</span>
+                                <span>Acesso completo à plataforma</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <span class="material-symbols-outlined text-amber-500 text-[18px]">check</span>
+                                <span>Menor custo por lead excedente</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-6 md:p-8 bg-amber-950/5 border-t border-amber-600/10 flex flex-col gap-3">
+                        <button onclick="goToCheckout('growth', 'mensal')" class="w-full bg-amber-600 hover:bg-amber-700 text-black font-headline font-bold py-3 transition-colors rounded text-sm cursor-pointer text-center">
+                            Assinar no Cartão (R$ 147/mês)
+                        </button>
+                        <button onclick="goToCheckout('growth', 'trimestral')" class="w-full bg-neutral-800 hover:bg-neutral-700 text-white font-headline font-semibold py-3 transition-colors rounded text-sm cursor-pointer text-center">
+                            Assinar Trimestral no PIX (R$ 347 à vista)
+                            <div class="text-[9px] text-amber-500 font-light mt-0.5">Economize 22% (equivale a R$ 115/mês)</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garantia Box -->
+            <div class="text-center max-w-md mx-auto mb-16">
+                <span class="material-symbols-outlined text-amber-500 text-4xl mb-4">verified_user</span>
+                <h4 class="font-headline text-white font-bold text-base mb-2">Garantia Blindada de 7 Dias</h4>
+                <p class="text-neutral-500 text-xs leading-relaxed">
+                    Nossa prioridade é a entrega de leads reais. Se você testar e não gostar da qualidade dos contatos ou do painel nos primeiros 7 dias, devolvemos seu dinheiro na hora. Sem perguntas, sem burocracia.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/40 border-t border-white/5 py-6 mt-12 text-center text-xs text-neutral-600">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Garimpo Leads. Todos os direitos reservados.</p>
+            <div class="flex gap-4">
+                <a href="/termos" class="hover:text-neutral-400 transition-colors">Termos de Uso</a>
+                <a href="/privacidade" class="hover:text-neutral-400 transition-colors">Privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Lógica do Quiz -->
+    <script>
+        // Detecção dinâmica de URL base para API do backend
+        const getApiUrl = (path) => {
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocal ? 'http://localhost:3000' : 'https://www.garimpoleads.com.br';
+            return `${baseUrl}${path}`;
+        };
+
+        // Estrutura das 9 Perguntas
+        const quizQuestions = [
+            {
+                question: "Quem é o seu cliente ideal (ICP)?",
+                options: [
+                    { text: "Empresas Locais (Comércio, Clínicas, Estética, Academias)", value: "locais", feedback: "Excelente. Empresas locais dependem fortemente de contatos rápidos como WhatsApp público. Vamos calcular o potencial na sua região." },
+                    { text: "Negócios Digitais (Agências, Infoprodutores, E-commerce, SaaS)", value: "digitais", feedback: "Ótimo. O mercado digital é altamente escalável. O foco aqui será encontrar e-mails corporativos e contatos online ativos." },
+                    { text: "B2B Tradicional (Indústrias, Contabilidade, Logística, Serviços)", value: "b2b", feedback: "Perfeito. O mercado corporativo exige dados corporativos frios atualizados na internet. Vamos simular essa cobertura." },
+                    { text: "Profissionais Liberais / Serviços Gerais (Consultores, Advogados)", value: "servicos", feedback: "Excelente. Para prestadores de serviço, a chave é mapear contatos válidos de negócios que necessitam do seu suporte." }
+                ]
+            },
+            {
+                question: "Como a sua empresa atrai novos clientes hoje?",
+                options: [
+                    { text: "Indicações e indicações passivas de clientes (Boca a boca)", value: "indicacao", feedback: "Indicação é ótimo, mas é instável. Sem prospecção ativa de dados de mercado, seu crescimento comercial fica refém da sorte." },
+                    { text: "Pesquisando contatos manualmente no Google, Instagram ou redes", value: "manual", feedback: "Isso rouba cerca de 3 horas diárias. É um trabalho manual que a nossa inteligência de dados resolve em segundos." },
+                    { text: "Investindo em anúncios pagos nas redes sociais", value: "anuncios", feedback: "Anúncios dão escala, mas o custo por lead está cada vez mais caro. A prospecção comercial direta é o canal de melhor ROI para B2B." },
+                    { text: "Não tenho um canal estruturado de vendas hoje", value: "nenhum", feedback: "Entendo. O principal motivo de estagnação comercial de empresas é a falta de novas conversas diárias com prospects." }
+                ]
+            },
+            {
+                question: "Quem é o responsável por encontrar contatos e fazer abordagens hoje?",
+                options: [
+                    { text: "Eu mesmo faço tudo (Fundador / Dono do negócio)", value: "fundador", feedback: "O tempo do dono deveria ser investido em negociar, fechar contratos e entregar o serviço, e não em pesquisar dados manualmente na web." },
+                    { text: "Temos um time comercial focado em prospectar (Vendedores/SDRs)", value: "time", feedback: "Manter um vendedor prospectando manualmente custa caro e reduz a produtividade. Eles deveriam receber a lista pronta e focar em ligar/agendar." },
+                    { text: "Ninguém. Não fazemos prospecção de forma consistente hoje", value: "ninguem", feedback: "Não ter ninguém dedicado a prospectar ativamente é o maior gargalo para alcançar a previsibilidade comercial." }
+                ]
+            },
+            {
+                question: "Com que frequência você aborda novas empresas para vender?",
+                options: [
+                    { text: "Diariamente, com consistência", value: "diario", feedback: "Excelente! Consistência é a base de tudo. Nosso papel será acelerar seu fluxo de trabalho para que você ganhe volume." },
+                    { text: "Apenas quando o faturamento cai ou perdemos clientes", value: "crise", feedback: "Cuidado. Prospectar apenas na crise gera picos e vales no seu caixa. Você precisa de contatos diários entrando no funil." },
+                    { text: "Raramente ou nunca prospectamos ativamente", value: "nunca", feedback: "Você está deixando dinheiro na mesa. Seus concorrentes ativos estão entrando em contato com seus potenciais clientes agora." }
+                ]
+            },
+            {
+                question: "Se você pudesse resolver apenas UM gargalo comercial hoje, qual seria?",
+                options: [
+                    { text: "Encontrar dados válidos (WhatsApp/E-mail) de empresas comerciais", value: "dados", feedback: "Isso é o que a Garimpo faz de melhor: varrer a internet e entregar os dados atualizados das empresas." },
+                    { text: "Escrever a mensagem de abordagem perfeita e persuasiva", value: "mensagem", feedback: "Nossa IA analisa o contexto da empresa mapeada e escreve mensagens tão humanas e naturais que parecem feitas à mão." },
+                    { text: "Organizar o fluxo de acompanhamento comercial (follow-up)", value: "organizacao", feedback: "Com a nossa plataforma, você centraliza todos os leads e organiza o fluxo sem perder o controle comercial das conversas." }
+                ]
+            },
+            {
+                question: "Qual é o ticket médio aproximado do seu produto ou serviço?",
+                options: [
+                    { text: "Até R$ 500", value: "500", feedback: "Entendido. Vamos cruzar esse valor com suas metas para simular o ROI da automação comercial." },
+                    { text: "De R$ 500 a R$ 2.000", value: "2000", feedback: "Ótimo ticket médio. Vamos simular os ganhos comerciais projetados." },
+                    { text: "De R$ 2.000 a R$ 5.000", value: "5000", feedback: "Excelente ticket. Pouquíssimas vendas já justificam qualquer investimento comercial." },
+                    { text: "Mais de R$ 5.000 (Vendas corporativas High Ticket)", value: "highticket", feedback: "Ticket alto! Fechar apenas 1 novo cliente por trimestre já paga múltiplos anos de automação de leads." }
+                ]
+            },
+            {
+                question: "Quantos novos clientes você precisa fechar por mês para bater suas metas?",
+                options: [
+                    { text: "1 a 3 novos clientes", value: "2", feedback: "Uma meta perfeitamente viável e de baixo volume inicial de leads necessário." },
+                    { text: "4 a 10 novos clientes", value: "6", feedback: "Meta comercial de crescimento médio, exige uma lista de leads consistentes todos os meses." },
+                    { text: "Mais de 10 novos clientes por mês", value: "12", feedback: "Meta comercial acelerada, exige automação robusta para manter o volume no topo do funil." }
+                ]
+            },
+            {
+                question: "Quanto faturamento você estima que deixa de ganhar por não prospectar ativamente?",
+                options: [
+                    { text: "Até R$ 5.000 / mês", value: "5000", feedback: "Essa perda invisível corrói o caixa da sua empresa de forma silenciosa." },
+                    { text: "Entre R$ 5.000 e R$ 20.000 / mês", value: "15000", feedback: "Um valor expressivo que poderia ser recuperado rapidamente com o processo automatizado ativo." },
+                    { text: "Mais de R$ 20.000 / mês", value: "30000", feedback: "Urgência máxima. A falta de processo comercial de dados está custando caro para o seu negócio." }
+                ]
+            },
+            {
+                question: "Você está comprometido em implementar um processo inteligente comercial ainda esta semana?",
+                options: [
+                    { text: "Sim! Estou pronto para colocar a automação comercial para rodar", value: "comprometido", feedback: "Excelente atitude. Vamos calcular as métricas de mercado para o seu nicho comercial." },
+                    { text: "Prefiro ver o tamanho do meu mercado e plano de ação primeiro", value: "cauteloso", feedback: "Perfeito. Transparência comercial é a base. Vamos aos números." }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+
+        // Iniciar Quiz
+        function startQuiz() {
+            document.getElementById("screen-intro").classList.add("hidden");
+            const quizScreen = document.getElementById("screen-quiz");
+            quizScreen.classList.remove("hidden");
+            setTimeout(() => {
+                quizScreen.classList.add("fade-slide-active");
+            }, 50);
+            renderQuestion();
+        }
+
+        // Renderizar Pergunta Atual
+        function renderQuestion() {
+            const currentQuestion = quizQuestions[currentQuestionIndex];
+            
+            // Atualizar Progresso
+            const stepNum = currentQuestionIndex + 1;
+            document.getElementById("quiz-step-indicator").innerText = `PERGUNTA ${stepNum} DE 9`;
+            const pct = Math.round((stepNum / 9) * 100);
+            document.getElementById("quiz-percentage").innerText = `${pct}%`;
+            document.getElementById("quiz-progress-fill").style.width = `${pct}%`;
+
+            // Resetar container
+            const container = document.getElementById("quiz-container");
+            container.classList.remove("fade-slide-active");
+
+            setTimeout(() => {
+                // Atualizar Pergunta
+                document.getElementById("quiz-question").innerText = currentQuestion.question;
+
+                // Renderizar Opções
+                const optionsDiv = document.getElementById("quiz-options");
+                optionsDiv.innerHTML = "";
+                
+                currentQuestion.options.forEach((opt, idx) => {
+                    const button = document.createElement("button");
+                    button.className = "quiz-option w-full text-left p-4 rounded-xl font-medium text-sm md:text-base flex items-center gap-3 cursor-pointer";
+                    button.innerHTML = `
+                        <span class="material-symbols-outlined text-neutral-500 option-icon">radio_button_unchecked</span>
+                        <span class="text-neutral-200 flex-grow">${opt.text}</span>
+                    `;
+                    button.onclick = () => selectOption(idx, opt.value, opt.feedback);
+                    optionsDiv.appendChild(button);
+                });
+
+                // Ocultar feedback
+                document.getElementById("quiz-feedback-box").classList.add("hidden");
+                
+                // Desabilitar botão avançar
+                document.getElementById("btn-next").disabled = true;
+                document.getElementById("btn-next").className = "w-full sm:w-auto bg-neutral-800 text-neutral-600 font-headline font-semibold py-3.5 px-8 transition-all rounded flex items-center justify-center gap-2 cursor-not-allowed";
+
+                // Re-animar entrada
+                container.classList.add("fade-slide-active");
+            }, 150);
+        }
+
+        // Selecionar Opção
+        function selectOption(index, value, feedback) {
+            const options = document.querySelectorAll(".quiz-option");
+            options.forEach((opt, idx) => {
+                if (idx === index) {
+                    opt.classList.add("selected");
+                    opt.querySelector(".option-icon").innerText = "check_circle";
+                    opt.querySelector(".option-icon").classList.replace("text-neutral-500", "text-amber-500");
+                } else {
+                    opt.classList.remove("selected");
+                    opt.querySelector(".option-icon").innerText = "radio_button_unchecked";
+                    opt.querySelector(".option-icon").classList.replace("text-amber-500", "text-neutral-500");
+                }
+            });
+
+            // Salvar resposta
+            userAnswers[currentQuestionIndex] = value;
+
+            // Mostrar Feedback interativo
+            const feedbackText = document.getElementById("quiz-feedback-text");
+            feedbackText.innerText = feedback;
+            const feedbackBox = document.getElementById("quiz-feedback-box");
+            feedbackBox.classList.remove("hidden");
+
+            // Habilitar botão avançar
+            const btnNext = document.getElementById("btn-next");
+            btnNext.disabled = false;
+            btnNext.className = "w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-black font-headline font-semibold py-3.5 px-8 transition-all active:scale-95 rounded flex items-center justify-center gap-2 cursor-pointer";
+        }
+
+        // Avançar Pergunta
+        function nextQuestion() {
+            if (currentQuestionIndex < 8) {
+                currentQuestionIndex++;
+                renderQuestion();
+            } else {
+                startTransition();
+            }
+        }
+
+        // Fluxo de Transição / Carregamento Animado
+        function startTransition() {
+            document.getElementById("screen-quiz").classList.add("hidden");
+            const loadingScreen = document.getElementById("screen-loading");
+            loadingScreen.classList.remove("hidden");
+
+            const loadingBar = document.getElementById("loading-bar-fill");
+            const loadingStatus = document.getElementById("loading-status");
+            const loadingLog = document.getElementById("loading-log");
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 1.5;
+                if (progress > 100) progress = 100;
+                loadingBar.style.width = `${progress}%`;
+
+                // Logs de progresso
+                if (progress < 25) {
+                    loadingStatus.innerText = "Varrendo oportunidades de mercado...";
+                    loadingLog.innerText = "Acessando base de registros ativos da internet...";
+                } else if (progress >= 25 && progress < 50) {
+                    loadingStatus.innerText = "Cruzando dados comerciais...";
+                    loadingLog.innerText = "Filtrando empresas no nicho selecionado...";
+                } else if (progress >= 50 && progress < 75) {
+                    loadingStatus.innerText = "IA gerando plano comercial...";
+                    loadingLog.innerText = "Calculando projeções de ticket e ROI...";
+                } else if (progress >= 75 && progress < 100) {
+                    loadingStatus.innerText = "Montando modelo de prospecção...";
+                    loadingLog.innerText = "Ajustando canal comercial recomendado...";
+                }
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    showResults();
+                }
+            }, 120);
+
+            // Pop-up 1 (Aos 3 segundos)
+            setTimeout(() => {
+                showPopup(
+                    "Se localizarmos empresas qualificadas no seu nicho, você se compromete a iniciar as abordagens comerciais esta semana?",
+                    ["Sim, com certeza!", "Sim, vou prospectar!"],
+                    () => {
+                        hidePopup();
+                        // Pop-up 2 (Aos 6.5 segundos)
+                        setTimeout(() => {
+                            showPopup(
+                                "Você concorda que ter contatos diretos validados de empresas economizaria horas da sua semana comercial?",
+                                ["Sim, concordo totalmente", "Sim, economizaria muito tempo"],
+                                () => hidePopup()
+                            );
+                        }, 1500);
+                    }
+                );
+            }, 3000);
+        }
+
+        // Funções de Pop-up do Sim Comercial
+        let currentPopupCallback = null;
+        function showPopup(title, options, callback) {
+            document.getElementById("popup-title").innerText = title;
+            const actionsDiv = document.getElementById("popup-actions");
+            actionsDiv.innerHTML = "";
+            
+            options.forEach(optText => {
+                const btn = document.createElement("button");
+                btn.className = "w-full bg-amber-600 hover:bg-amber-700 text-black font-headline font-bold py-3 px-4 rounded transition-all active:scale-95 text-sm cursor-pointer";
+                btn.innerText = optText;
+                btn.onclick = () => {
+                    if (callback) callback();
+                };
+                actionsDiv.appendChild(btn);
+            });
+
+            document.getElementById("popup-container").classList.remove("hidden");
+        }
+
+        function hidePopup() {
+            document.getElementById("popup-container").classList.add("hidden");
+        }
+
+        // Exibir Página de Resultados Dinâmica
+        function showResults() {
+            document.getElementById("screen-loading").classList.add("hidden");
+            const resultsScreen = document.getElementById("screen-results");
+            resultsScreen.classList.remove("hidden");
+            setTimeout(() => {
+                resultsScreen.classList.add("fade-slide-active");
+            }, 50);
+
+            // 1. Nicho formatado
+            const nichoRaw = userAnswers[0];
+            let nichoLabel = "Seu Segmento";
+            let defaultMercadoCount = 1840;
+            if (nichoRaw === "locais") { nichoLabel = "Empresas Locais"; defaultMercadoCount = 3850; }
+            else if (nichoRaw === "digitais") { nichoLabel = "Negócios Digitais"; defaultMercadoCount = 2120; }
+            else if (nichoRaw === "b2b") { nichoLabel = "Segmentos B2B"; defaultMercadoCount = 1540; }
+            else if (nichoRaw === "servicos") { nichoLabel = "Serviços & Profissionais"; defaultMercadoCount = 2450; }
+            document.getElementById("res-nicho").innerText = nichoLabel;
+
+            // Mapeia volume realista de leads baseado no nicho
+            document.getElementById("res-leads-count").innerText = defaultMercadoCount.toLocaleString("pt-BR");
+
+            // 2. Ticket e metas de faturamento
+            const ticketRaw = userAnswers[5];
+            let ticketVal = 1200; // default
+            if (ticketRaw === "500") ticketVal = 350;
+            else if (ticketRaw === "2000") ticketVal = 1200;
+            else if (ticketRaw === "5000") ticketVal = 3500;
+            else if (ticketRaw === "highticket") ticketVal = 7500;
+
+            const metaRaw = userAnswers[6];
+            let metaVal = 6; // default
+            if (metaRaw === "2") metaVal = 2;
+            else if (metaRaw === "6") metaVal = 6;
+            else if (metaRaw === "12") metaVal = 12;
+
+            const faturamentoProjetado = ticketVal * metaVal;
+            document.getElementById("res-ticket-projection").innerText = `R$ ${faturamentoProjetado.toLocaleString("pt-BR")}`;
+            document.getElementById("res-meta-sales").innerText = `${metaVal} novo${metaVal > 1 ? 's' : ''} cliente${metaVal > 1 ? 's' : ''}`;
+
+            // 3. Perda de faturamento estimativa
+            const perdaRaw = userAnswers[7];
+            let perdaVal = "R$ 5.000+";
+            if (perdaRaw === "5000") perdaVal = "R$ 5.000";
+            else if (perdaRaw === "15000") perdaVal = "R$ 15.000";
+            else if (perdaRaw === "30000") perdaVal = "R$ 20.000+";
+            document.getElementById("res-loss-value").innerText = perdaVal;
+
+            // 4. Gargalo Copy
+            const gargaloRaw = userAnswers[4];
+            let gargaloText = "";
+            if (gargaloRaw === "dados") {
+                gargaloText = "<strong>A busca automática de contatos é o coração da prospecção comercial.</strong> O Garimpo assume exatamente a varredura comercial manual de internet por você, capturando telefones, WhatsApps públicos e e-mails de negócios no seu nicho, poupando as 3 horas diárias que você passaria no Google.";
+            } else if (gargaloRaw === "mensagem") {
+                gargaloText = "<strong>Mensagens que vendem sem parecer spam.</strong> Nossa inteligência lê os contextos digitais de cada empresa localizada para modelar abordagens comerciais de WhatsApp e E-mail de forma ultra-personalizada e persuasiva, aumentando suas taxas comerciais de respostas em até 3x.";
+            } else if (gargaloRaw === "organizacao") {
+                gargaloText = "<strong>Centralize o controle e nunca perca um follow-up.</strong> A plataforma organiza seus leads minerados em um fluxo de vendas visual integrado, lembrando exatamente quando enviar a próxima mensagem para quem demonstrou interesse, aumentando seu fechamento.";
+            } else {
+                gargaloText = "<strong>Aumento de volume com previsibilidade comercial.</strong> Nossa ferramenta atua no gargalo comercial mais comum, fornecendo leads validados e abordagens diárias constantes para alimentar o topo do seu funil e garantir conversas de vendas recorrentes todos os dias.";
+            }
+            document.getElementById("res-gargalo-text").innerHTML = gargaloText;
+
+            // 5. Bloco de ROI
+            const roiText = `No plano <strong>Starter (50 leads por mês)</strong>, se você fechar <strong>apenas 1 cliente</strong> do lote comercial (uma taxa de conversão realista de apenas 2%), você gera <strong>R$ ${ticketVal.toLocaleString("pt-BR")}</strong> de faturamento. Isso é suficiente para pagar o custo total da sua assinatura comercial por mais de um ano, provando o retorno prático imediato da ferramenta.`;
+            document.getElementById("res-roi-calculation").innerHTML = roiText;
+        }
+
+        // Redirecionamento de Checkout
+        function goToCheckout(plan, type) {
+            let path = "";
+            if (type === "mensal") {
+                // Rota existente de checkout de assinatura
+                path = `/api/stripe/checkout-public?plan=${plan}`;
+            } else if (type === "trimestral") {
+                // Nova rota de checkout de pagamento único
+                path = `/api/stripe/checkout-public-one-time?plan=${plan}&period=trimestral`;
+            }
+            
+            // Redireciona dinamicamente
+            window.location.href = getApiUrl(path);
+        }
+    </script>
+</body>
+</html>
