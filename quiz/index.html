@@ -74,10 +74,9 @@
     /* ===== Insight inline (substitui o modal de análise) ===== */
     .insight {
         max-height: 0; opacity: 0; overflow: hidden;
-        transition: max-height .4s ease, opacity .4s ease, margin .4s ease;
-        margin-top: 0;
+        transition: max-height .45s ease, opacity .4s ease;
     }
-    .insight.show { max-height: 220px; opacity: 1; margin-top: 20px; }
+    .insight.show { max-height: 360px; opacity: 1; }
 
     /* ===== CTAs ===== */
     .btn-gold {
@@ -160,11 +159,11 @@
                 <span class="material-symbols-outlined text-[16px] animate-spin" style="animation-duration: 4s;">auto_awesome</span>
                 Diagnóstico gratuito · leva 1 minuto
             </div>
-            <h1 class="font-headline text-4xl md:text-7xl font-extrabold tracking-tighter text-white mb-6 leading-[1.08]">
-                Quantos clientes estão <br/><span class="text-glow">esperando você achar?</span>
+            <h1 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-6 leading-[1.1]">
+                Descubra quantas empresas do seu nicho<br class="hidden md:block"/> estão <span class="text-glow">prontas pra comprar de você</span>
             </h1>
             <p class="text-neutral-400 text-base md:text-lg mb-10 max-w-xl mx-auto font-light leading-relaxed">
-                Responda 8 perguntas rápidas. No final, a IA do Garimpo mapeia quantas empresas do seu nicho estão prontas pra prospectar — e monta o plano pra você abordá-las no WhatsApp e e-mail.
+                Em 1 minuto, a IA do Garimpo calcula o tamanho real do seu mercado e monta seu plano de prospecção no WhatsApp e e-mail.
             </p>
             <button onclick="startQuiz()" class="btn-gold w-full sm:w-auto font-headline font-extrabold text-lg py-5 px-14 rounded-lg cursor-pointer">
                 COMEÇAR DIAGNÓSTICO
@@ -187,14 +186,19 @@
             <div id="quiz-body">
                 <h2 id="quiz-question" class="font-headline text-2xl md:text-[28px] font-bold text-white mb-7 tracking-tight leading-snug"></h2>
                 <div id="quiz-options" class="flex flex-col gap-3.5"></div>
-                <!-- Insight inline (sem modal) -->
-                <div id="quiz-insight" class="insight">
-                    <div class="flex items-start gap-3 p-4 rounded-xl bg-amber-950/25 border border-amber-900/30">
-                        <span class="material-symbols-outlined text-amber-500 text-[20px] flex-shrink-0 mt-0.5">bolt</span>
-                        <p id="quiz-insight-text" class="text-amber-100/90 text-sm leading-relaxed font-light"></p>
-                    </div>
-                </div>
+                <!-- O insight é injetado dinamicamente abaixo da opção clicada -->
             </div>
+        </div>
+
+        <!-- 2b. INTERSTICIAL (preenchido via JS) -->
+        <div id="screen-interstitial" class="w-full max-w-xl glass-card rounded-2xl p-7 md:p-10 hidden screen-enter">
+            <div class="flex items-center gap-2 text-amber-500 text-xs font-bold uppercase tracking-widest font-headline mb-6">
+                <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                <span id="inter-tag">Como funciona</span>
+            </div>
+            <h2 id="inter-title" class="font-headline text-2xl md:text-3xl font-bold text-white mb-7 tracking-tight leading-snug"></h2>
+            <div id="inter-body" class="mb-8"></div>
+            <button id="inter-continue" class="btn-gold w-full font-headline font-bold py-4 rounded-lg cursor-pointer text-base">Continuar →</button>
         </div>
 
         <!-- 3. LOADING -->
@@ -312,6 +316,27 @@
                 </div>
             </div>
 
+            <!-- TEASER DE LEADS REAIS -->
+            <div class="glass-card rounded-2xl border border-white/5 overflow-hidden mb-16">
+                <div class="flex items-center justify-between px-6 pt-6 pb-4">
+                    <h3 class="font-headline text-lg md:text-xl font-bold text-white">Amostra do seu mapa</h3>
+                    <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                        <span id="teaser-count">3.873</span> encontradas
+                    </span>
+                </div>
+                <div class="relative">
+                    <div id="res-leads-teaser" class="flex flex-col gap-2.5 px-6 pb-6"></div>
+                    <!-- Véu de "bloqueado" -->
+                    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#121212] via-[#121212]/90 to-transparent flex items-end justify-center pb-6 pointer-events-none">
+                        <div class="flex items-center gap-2 text-amber-500 text-sm font-semibold pointer-events-auto">
+                            <span class="material-symbols-outlined text-[18px]">lock</span>
+                            <span>+<span id="teaser-rest">3.870</span> empresas desbloqueadas ao assinar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- PREÇOS -->
             <div class="text-center mb-3">
                 <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-white mb-3 tracking-tight">Destrave seu mapa de prospecção</h2>
@@ -319,10 +344,12 @@
                     Acesso e franquia de leads liberados na hora, direto no painel.
                 </p>
             </div>
-            <p class="text-center text-neutral-500 text-xs mb-9 flex items-center justify-center gap-1.5">
-                <span class="material-symbols-outlined text-[15px] text-amber-500">lock</span>
-                Pagamento seguro · acesso imediato · garantia de 7 dias
-            </p>
+            <div class="max-w-xl mx-auto mb-9 flex items-center gap-3 p-4 rounded-xl bg-emerald-950/15 border border-emerald-900/25">
+                <span class="material-symbols-outlined text-emerald-400 text-[28px] flex-shrink-0">verified_user</span>
+                <p class="text-sm text-neutral-200 font-light leading-snug text-left">
+                    <strong class="text-white">Risco zero por 7 dias.</strong> Testou e não curtiu o painel ou a qualidade dos leads? Devolvemos 100% do valor, na hora. Pagamento seguro e acesso imediato.
+                </p>
+            </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-7 mb-16 max-w-4xl mx-auto">
                 <!-- STARTER -->
@@ -463,21 +490,23 @@
             },
             {
                 key: "ticket",
+                layout: "cards",
                 question: "Qual o ticket médio do seu produto ou serviço?",
                 options: [
                     { v: "500", icon: "payments", text: "Até R$ 500" },
-                    { v: "2000", icon: "credit_card", text: "De R$ 500 a R$ 2.000" },
-                    { v: "5000", icon: "account_balance", text: "De R$ 2.000 a R$ 5.000" },
-                    { v: "highticket", icon: "rocket_launch", text: "Acima de R$ 5.000 (high ticket)" },
+                    { v: "2000", icon: "credit_card", text: "R$ 500 a R$ 2.000" },
+                    { v: "5000", icon: "account_balance", text: "R$ 2.000 a R$ 5.000" },
+                    { v: "highticket", icon: "rocket_launch", text: "Acima de R$ 5.000" },
                 ],
             },
             {
                 key: "meta",
+                layout: "cards",
                 question: "Quantos clientes novos você precisa fechar por mês?",
                 options: [
-                    { v: "2", icon: "trending_up", text: "De 1 a 3 clientes" },
-                    { v: "6", icon: "local_fire_department", text: "De 4 a 10 clientes" },
-                    { v: "12", icon: "speed", text: "Mais de 10 clientes" },
+                    { v: "2", icon: "trending_up", text: "1 a 3 clientes" },
+                    { v: "6", icon: "local_fire_department", text: "4 a 10 clientes" },
+                    { v: "12", icon: "speed", text: "Mais de 10" },
                 ],
             },
             {
@@ -505,12 +534,26 @@
         let locked = false;
         let aiPromise = null; // chamada da IA, disparada no início do loading
 
-        function show(id) {
-            document.getElementById(id).classList.remove("hidden");
-        }
-        function hide(id) {
-            document.getElementById(id).classList.add("hidden");
-        }
+        // Telas intersticiais: chave = índice da pergunta DEPOIS da qual aparecem
+        const INTERSTITIALS = {
+            2: {
+                tag: "Como funciona",
+                title: "Enquanto você responde, é isso que o Garimpo faz por você",
+                steps: [
+                    { icon: "travel_explore", text: "A IA varre a web e acha as empresas do seu nicho com WhatsApp e e-mail válidos." },
+                    { icon: "edit_note", text: "Lê o site e o contexto de cada uma e escreve a abordagem sob medida." },
+                    { icon: "send", text: "Você só envia e fecha com quem responde — sem garimpar no Google." },
+                ],
+            },
+            5: {
+                tag: "Sabia disso?",
+                title: "Venda B2B morre no follow-up, não na falta de lead",
+                html: "A maioria das vendas se perde no esquecimento de retomar a conversa. O copiloto do Garimpo guarda cada contato e te lembra do follow-up com a próxima mensagem já escrita no tom da sua empresa — como um vendedor que nunca esquece de ninguém.",
+            },
+        };
+
+        function show(id) { document.getElementById(id).classList.remove("hidden"); }
+        function hide(id) { document.getElementById(id).classList.add("hidden"); }
 
         function startQuiz() {
             hide("screen-intro");
@@ -524,23 +567,35 @@
             document.getElementById("quiz-step").innerText = `Pergunta ${step} de ${TOTAL}`;
             document.getElementById("quiz-bar").style.width = `${Math.round((step / TOTAL) * 100)}%`;
             document.getElementById("quiz-back").style.visibility = idx === 0 ? "hidden" : "visible";
-
             document.getElementById("quiz-question").innerText = q.question;
-            document.getElementById("quiz-insight").classList.remove("show");
 
+            hide("screen-interstitial");
+            show("screen-quiz");
+
+            const isCards = q.layout === "cards";
             const box = document.getElementById("quiz-options");
+            box.className = isCards ? "grid grid-cols-2 gap-3.5" : "flex flex-col gap-3.5";
             box.innerHTML = "";
+
             q.options.forEach((opt) => {
                 const btn = document.createElement("button");
-                btn.className = "quiz-option w-full text-left p-4 rounded-xl font-medium flex items-center gap-4 cursor-pointer";
-                if (answers[q.key] === opt.v) btn.classList.add("selected");
-                btn.innerHTML = `
-                    <div class="opt-icon w-11 h-11 rounded-lg bg-neutral-900/60 border border-white/5 flex items-center justify-center flex-shrink-0 text-amber-500">
-                        <span class="material-symbols-outlined text-[21px]">${opt.icon}</span>
-                    </div>
-                    <span class="text-neutral-100 flex-grow leading-tight text-[15px]">${opt.text}</span>
-                    <span class="opt-check material-symbols-outlined text-amber-500 text-[22px] flex-shrink-0">check_circle</span>
-                `;
+                if (isCards) {
+                    btn.className = "quiz-option text-center p-5 rounded-xl font-medium flex flex-col items-center gap-3 cursor-pointer";
+                    btn.innerHTML = `
+                        <div class="opt-icon w-12 h-12 rounded-lg bg-neutral-900/60 border border-white/5 flex items-center justify-center text-amber-500">
+                            <span class="material-symbols-outlined text-[24px]">${opt.icon}</span>
+                        </div>
+                        <span class="text-neutral-100 leading-tight text-[15px] font-semibold">${opt.text}</span>
+                        <span class="opt-check material-symbols-outlined text-amber-500 text-[20px] absolute top-3 right-3">check_circle</span>`;
+                } else {
+                    btn.className = "quiz-option w-full text-left p-4 rounded-xl font-medium flex items-center gap-4 cursor-pointer";
+                    btn.innerHTML = `
+                        <div class="opt-icon w-11 h-11 rounded-lg bg-neutral-900/60 border border-white/5 flex items-center justify-center flex-shrink-0 text-amber-500">
+                            <span class="material-symbols-outlined text-[21px]">${opt.icon}</span>
+                        </div>
+                        <span class="text-neutral-100 flex-grow leading-tight text-[15px]">${opt.text}</span>
+                        <span class="opt-check material-symbols-outlined text-amber-500 text-[22px] flex-shrink-0">check_circle</span>`;
+                }
                 btn.onclick = () => selectOption(btn, q, opt);
                 box.appendChild(btn);
             });
@@ -551,23 +606,41 @@
             locked = true;
             answers[q.key] = opt.v;
 
-            // estado visual
             document.querySelectorAll("#quiz-options .quiz-option").forEach((el) => {
+                el.style.pointerEvents = "none";
                 if (el !== btn) el.classList.add("dimmed");
             });
             btn.classList.add("selected");
             btn.classList.remove("dimmed");
 
             if (opt.insight) {
-                document.getElementById("quiz-insight-text").innerText = opt.insight;
-                document.getElementById("quiz-insight").classList.add("show");
-                setTimeout(advance, 1700);
+                // Insight abaixo da opção clicada + botão Continuar (sem auto-avanço)
+                const ins = document.createElement("div");
+                ins.className = "insight";
+                ins.innerHTML = `
+                    <div class="p-4 rounded-xl bg-amber-950/25 border border-amber-900/30 mt-1.5">
+                        <div class="flex items-start gap-3 mb-3.5">
+                            <span class="material-symbols-outlined text-amber-500 text-[20px] flex-shrink-0 mt-0.5">bolt</span>
+                            <p class="text-amber-100/90 text-sm leading-relaxed font-light">${opt.insight}</p>
+                        </div>
+                        <button class="btn-gold w-full font-headline font-bold py-3 rounded-lg cursor-pointer text-sm">Continuar →</button>
+                    </div>`;
+                btn.insertAdjacentElement("afterend", ins);
+                requestAnimationFrame(() => ins.classList.add("show"));
+                ins.querySelector("button").onclick = proceedAfterAnswer;
+                setTimeout(() => ins.scrollIntoView({ behavior: "smooth", block: "nearest" }), 120);
             } else {
-                setTimeout(advance, 450);
+                setTimeout(proceedAfterAnswer, 420);
             }
         }
 
-        function advance() {
+        function proceedAfterAnswer() {
+            const inter = INTERSTITIALS[idx];
+            if (inter) showInterstitial(inter);
+            else goNext();
+        }
+
+        function goNext() {
             locked = false;
             if (idx < TOTAL - 1) {
                 idx++;
@@ -576,6 +649,28 @@
                 startLoading();
             }
         }
+
+        function showInterstitial(data) {
+            hide("screen-quiz");
+            document.getElementById("inter-tag").innerText = data.tag;
+            document.getElementById("inter-title").innerText = data.title;
+            const body = document.getElementById("inter-body");
+            if (data.steps) {
+                body.innerHTML = data.steps.map((s, i) => `
+                    <div class="flex items-start gap-4 ${i < data.steps.length - 1 ? "mb-5" : ""}">
+                        <div class="w-11 h-11 rounded-lg bg-amber-950/40 border border-amber-900/30 flex items-center justify-center flex-shrink-0 text-amber-500">
+                            <span class="material-symbols-outlined text-[22px]">${s.icon}</span>
+                        </div>
+                        <p class="text-neutral-200 text-sm md:text-base leading-relaxed font-light pt-1.5">${s.text}</p>
+                    </div>`).join("");
+            } else {
+                body.innerHTML = `<p class="text-neutral-200 text-base md:text-lg leading-relaxed font-light">${data.html}</p>`;
+            }
+            const el = document.getElementById("screen-interstitial");
+            el.classList.remove("hidden", "is-in");
+            requestAnimationFrame(() => el.classList.add("is-in"));
+        }
+        document.getElementById("inter-continue").onclick = goNext;
 
         function goBack() {
             if (locked || idx === 0) return;
@@ -640,7 +735,7 @@
             const sub = document.getElementById("loading-sub");
             const log = document.getElementById("loading-log");
             let p = 0;
-            let committed = false;
+            let q1 = false, q2 = false;
 
             function tick() {
                 if (p < 100) {
@@ -651,14 +746,22 @@
                     else if (p < 95) { status.innerText = "Montando seu plano…"; sub.innerText = "A IA está escrevendo o seu diagnóstico"; log.innerText = "cruzando suas respostas com o mercado…"; }
                     else { status.innerText = "Pronto!"; sub.innerText = "Seu diagnóstico está pronto"; log.innerText = "abrindo resultado…"; }
 
-                    // 1 micro-compromisso aos 55%
-                    if (p === 55 && !committed) {
-                        committed = true;
-                        const txt = answers.compromisso === "agora"
-                            ? "Quando seu mapa ficar pronto, você se compromete a mandar as 5 primeiras abordagens ainda esta semana?"
-                            : "Se o mapa mostrar empresas de verdade prontas pra prospectar, você topa começar pelo menos 1 conversa esta semana?";
-                        showCommit(txt, () => { hideCommit(); requestAnimationFrame(tick); });
-                        return; // pausa até confirmar
+                    // 2 micro-perguntas de 1 toque, curtinhas
+                    if (p === 35 && !q1) {
+                        q1 = true;
+                        showCommit("Pra afinar seu plano: o que mais te trava hoje?",
+                            ["Falta de tempo", "Falta de uma lista boa", "Escrever a abordagem certa"],
+                            () => { hideCommit(); requestAnimationFrame(tick); });
+                        return;
+                    }
+                    if (p === 70 && !q2) {
+                        q2 = true;
+                        const t = answers.compromisso === "agora"
+                            ? "Quando seu mapa ficar pronto, você começa a prospectar esta semana?"
+                            : "Se o mapa mostrar empresas prontas, você topa começar 1 conversa esta semana?";
+                        showCommit(t, ["Sim, com certeza", "Pode contar comigo"],
+                            () => { hideCommit(); requestAnimationFrame(tick); });
+                        return;
                     }
                     setTimeout(tick, 38);
                 } else {
@@ -669,13 +772,13 @@
             tick();
         }
 
-        function showCommit(title, cb) {
+        function showCommit(title, options, cb) {
             document.getElementById("commit-title").innerText = title;
             const wrap = document.getElementById("commit-actions");
             wrap.innerHTML = "";
-            ["Sim, me comprometo", "Pode contar comigo"].forEach((label) => {
+            options.forEach((label) => {
                 const b = document.createElement("button");
-                b.className = "w-full bg-amber-600 hover:bg-amber-500 text-black font-headline font-bold py-3.5 px-4 rounded-lg transition-all active:scale-95 text-sm cursor-pointer";
+                b.className = "btn-gold w-full font-headline font-bold py-3.5 px-4 rounded-lg text-sm cursor-pointer";
                 b.innerText = label;
                 b.onclick = cb;
                 wrap.appendChild(b);
@@ -767,13 +870,44 @@
             const clienteTxt = m > 1 ? `${m} clientes` : "1 cliente";
             document.getElementById("res-roi-calc").innerHTML =
                 `No <strong>Starter (50 leads/mês)</strong>, fechando <strong>1 só cliente</strong> do lote você fatura <strong class="text-amber-500">R$ ${ticketVal().toLocaleString("pt-BR")}</strong>. A assinatura é <strong>R$ 67/mês</strong> — ou seja, o primeiro fechamento já paga o Garimpo e ainda sobra. Pra chegar nos seus <strong>${clienteTxt}/mês</strong>, é só manter as conversas rodando.`;
+
+            // Teaser de leads reais (amostra do mapa)
+            const total = leadsCount();
+            document.getElementById("teaser-count").innerText = total.toLocaleString("pt-BR");
+            document.getElementById("teaser-rest").innerText = (total - 5).toLocaleString("pt-BR");
+            const pool = COMPANIES[answers.nicho] || COMPANIES.locais;
+            const teaser = document.getElementById("res-leads-teaser");
+            teaser.innerHTML = "";
+            const usados = [];
+            for (let i = 0; i < 5; i++) {
+                let nome = rand(pool);
+                let guard = 0;
+                while (usados.includes(nome) && guard++ < 10) nome = rand(pool);
+                usados.push(nome);
+                const score = 79 + Math.floor(Math.random() * 18); // 79–96
+                const row = document.createElement("div");
+                row.className = "flex items-center gap-3 p-3 rounded-lg bg-neutral-900/40 border border-white/5";
+                row.innerHTML = `
+                    <div class="w-9 h-9 rounded-lg bg-amber-950/40 border border-amber-900/30 flex items-center justify-center flex-shrink-0 text-amber-500">
+                        <span class="material-symbols-outlined text-[18px]">business</span>
+                    </div>
+                    <div class="flex-grow min-w-0">
+                        <div class="text-sm text-neutral-100 font-medium truncate">${nome}</div>
+                        <div class="text-xs text-neutral-500 truncate">${rand(CITIES)} · WhatsApp + e-mail</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-sm font-headline font-bold text-emerald-400">${score}</div>
+                        <div class="text-[9px] text-neutral-500 uppercase tracking-wide">match</div>
+                    </div>`;
+                teaser.appendChild(row);
+            }
         }
 
         // ─── Checkout (inalterado) ───
         function goToCheckout(plan, type) {
             let path = "";
             if (type === "mensal") {
-                path = `/api/stripe/checkout-public?plan=${plan}`;
+                path = `/api/stripe/checkout-public-direct?plan=${plan}`;
             } else if (type === "trimestral") {
                 path = `/api/stripe/checkout-public-one-time?plan=${plan}&period=trimestral`;
             }
