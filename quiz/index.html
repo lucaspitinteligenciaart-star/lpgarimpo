@@ -232,6 +232,23 @@
             </div>
         </div>
 
+        <!-- 3b. CAPTURA DE CONTATO (antes do resultado) -->
+        <div id="screen-capture" class="w-full max-w-md text-center py-12 hidden screen-enter">
+            <div class="w-16 h-16 rounded-full bg-emerald-950/40 border border-emerald-900/40 flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-emerald-400 text-3xl">task_alt</span>
+            </div>
+            <h2 class="font-headline text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">Seu diagnóstico está pronto</h2>
+            <p class="text-neutral-400 text-sm md:text-base mb-8 font-light leading-relaxed">
+                Encontramos <strong class="text-amber-500" id="capture-count">milhares de</strong> empresas no seu mercado.
+                Deixa seu e-mail pra receber uma cópia do diagnóstico — e libera o resultado na tela.
+            </p>
+            <input id="capture-email" type="email" placeholder="seu@email.com" autocomplete="email"
+                class="w-full bg-neutral-900/60 border border-white/10 focus:border-amber-600 outline-none rounded-xl p-4 text-neutral-100 text-base placeholder:text-neutral-600 transition-colors mb-3 text-center" />
+            <p id="capture-error" class="text-rose-400 text-xs mb-3 hidden">Confere o e-mail — parece incompleto.</p>
+            <button id="capture-go" class="btn-gold w-full font-headline font-bold py-4 rounded-lg cursor-pointer text-base">Ver meu diagnóstico →</button>
+            <p class="text-neutral-600 text-xs mt-4">Sem spam. Só o diagnóstico e o plano de ação.</p>
+        </div>
+
         <!-- 4. RESULTADO -->
         <div id="screen-results" class="w-full max-w-4xl hidden screen-enter">
 
@@ -319,7 +336,7 @@
             <!-- TEASER DE LEADS REAIS -->
             <div class="glass-card rounded-2xl border border-white/5 overflow-hidden mb-16">
                 <div class="flex items-center justify-between px-6 pt-6 pb-4">
-                    <h3 class="font-headline text-lg md:text-xl font-bold text-white">Amostra do seu mapa</h3>
+                    <h3 id="teaser-title" class="font-headline text-lg md:text-xl font-bold text-white">Amostra do seu mapa</h3>
                     <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-[15px]">check_circle</span>
                         <span id="teaser-count">3.873</span> encontradas
@@ -358,10 +375,12 @@
                         <span class="text-[9px] uppercase font-bold tracking-widest bg-neutral-800 text-neutral-300 px-3.5 py-1.5 rounded-full inline-block mb-4 font-headline">Pra começar</span>
                         <h3 class="font-headline text-2xl font-bold text-white mb-1">Starter</h3>
                         <p class="text-xs text-neutral-400 mb-6 font-light">Pra montar sua estrutura de vendas</p>
-                        <div class="mb-6 flex items-baseline gap-1.5">
-                            <span class="text-4xl font-headline font-extrabold text-white">R$ 67</span>
-                            <span class="text-xs text-neutral-400">/mês</span>
+                        <div class="mb-1.5 flex items-baseline gap-2">
+                            <span class="text-sm text-neutral-500 line-through">R$ 67</span>
+                            <span class="text-4xl font-headline font-extrabold text-white">R$ 27</span>
+                            <span class="text-xs text-amber-500 font-semibold">no 1º mês</span>
                         </div>
+                        <p class="text-xs text-neutral-400 mb-6">depois R$ 67/mês · cancele quando quiser</p>
                         <ul class="flex flex-col gap-4 text-sm text-neutral-300 mb-8 border-t border-white/5 pt-6 font-light">
                             <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-emerald-400 text-[18px]">check</span><span><strong>50 leads</strong> por mês</span></li>
                             <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-emerald-400 text-[18px]">check</span><span>Copiloto de IA pra escrever as abordagens</span></li>
@@ -369,7 +388,7 @@
                         </ul>
                     </div>
                     <div class="p-6 md:p-8 bg-neutral-900/40 border-t border-white/5 flex flex-col gap-4">
-                        <button onclick="goToCheckout('starter', 'mensal')" class="btn-gold w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center">Assinar no cartão · R$ 67/mês</button>
+                        <button onclick="goToCheckout('starter', 'mensal')" class="btn-gold w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center">Começar por R$ 27</button>
                         <button onclick="goToCheckout('starter', 'trimestral')" class="btn-outline w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center flex flex-col items-center">
                             <span>PIX trimestral · R$ 147 à vista</span>
                             <span class="text-[9px] text-amber-500 font-light mt-0.5">Sem recorrência · equivale a R$ 49/mês (-27%)</span>
@@ -383,10 +402,12 @@
                         <span class="text-[9px] uppercase font-bold tracking-widest bg-amber-950/40 border border-amber-900/30 text-amber-500 px-3.5 py-1.5 rounded-full inline-block mb-4 font-headline">Pra acelerar</span>
                         <h3 class="font-headline text-2xl font-bold text-white mb-1">Growth</h3>
                         <p class="text-xs text-neutral-400 mb-6 font-light">Pra bater metas de crescimento</p>
-                        <div class="mb-6 flex items-baseline gap-1.5">
-                            <span class="text-4xl font-headline font-extrabold text-white">R$ 147</span>
-                            <span class="text-xs text-neutral-400">/mês</span>
+                        <div class="mb-1.5 flex items-baseline gap-2">
+                            <span class="text-sm text-neutral-500 line-through">R$ 147</span>
+                            <span class="text-4xl font-headline font-extrabold text-white">R$ 57</span>
+                            <span class="text-xs text-amber-500 font-semibold">no 1º mês</span>
                         </div>
+                        <p class="text-xs text-neutral-400 mb-6">depois R$ 147/mês · cancele quando quiser</p>
                         <ul class="flex flex-col gap-4 text-sm text-neutral-300 mb-8 border-t border-white/5 pt-6 font-light">
                             <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-amber-500 text-[18px]">check</span><span><strong>120 leads</strong> por mês</span></li>
                             <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-amber-500 text-[18px]">check</span><span>Copiloto de IA pra escrever as abordagens</span></li>
@@ -394,7 +415,7 @@
                         </ul>
                     </div>
                     <div class="p-6 md:p-8 bg-amber-950/5 border-t border-amber-600/15 flex flex-col gap-4">
-                        <button onclick="goToCheckout('growth', 'mensal')" class="btn-gold w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center">Assinar no cartão · R$ 147/mês</button>
+                        <button onclick="goToCheckout('growth', 'mensal')" class="btn-gold w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center">Começar por R$ 57</button>
                         <button onclick="goToCheckout('growth', 'trimestral')" class="btn-outline w-full font-headline font-bold py-3.5 rounded-lg text-sm cursor-pointer text-center flex flex-col items-center">
                             <span>PIX trimestral · R$ 347 à vista</span>
                             <span class="text-[9px] text-amber-500 font-light mt-0.5">Sem recorrência · equivale a R$ 115/mês (-22%)</span>
@@ -459,6 +480,13 @@
                     { v: "b2b", icon: "business", text: "B2B tradicional (indústria, contabilidade, logística, serviços)", insight: "No corporativo, dado atualizado vale ouro. Dá pra cobrir um volume grande de empresas com contato válido." },
                     { v: "servicos", icon: "badge", text: "Profissional liberal / prestador de serviço", insight: "Pra prestador, o jogo é mapear os negócios que precisam do seu trabalho — e falar com eles antes do concorrente." },
                 ],
+            },
+            {
+                key: "cidade",
+                layout: "input",
+                question: "Em qual cidade você quer encontrar clientes?",
+                placeholder: "Ex: Curitiba",
+                hint: "A IA vai varrer empresas reais dessa região pro seu mapa.",
             },
             {
                 key: "atracao",
@@ -533,10 +561,12 @@
         let answers = {};
         let locked = false;
         let aiPromise = null; // chamada da IA, disparada no início do loading
+        let samplePromise = null; // busca real de empresas (Serper), em paralelo
+        let capturedEmail = ""; // e-mail capturado antes do resultado
 
         // Telas intersticiais: chave = índice da pergunta DEPOIS da qual aparecem
         const INTERSTITIALS = {
-            2: {
+            3: {
                 tag: "Como funciona",
                 title: "Enquanto você responde, é isso que o Garimpo faz por você",
                 steps: [
@@ -545,7 +575,7 @@
                     { icon: "send", text: "Você só envia e fecha com quem responde — sem garimpar no Google." },
                 ],
             },
-            5: {
+            6: {
                 tag: "Sabia disso?",
                 title: "Venda B2B morre no follow-up, não na falta de lead",
                 html: "A maioria das vendas se perde no esquecimento de retomar a conversa. O copiloto do Garimpo guarda cada contato e te lembra do follow-up com a próxima mensagem já escrita no tom da sua empresa — como um vendedor que nunca esquece de ninguém.",
@@ -572,10 +602,39 @@
             hide("screen-interstitial");
             show("screen-quiz");
 
-            const isCards = q.layout === "cards";
             const box = document.getElementById("quiz-options");
-            box.className = isCards ? "grid grid-cols-2 gap-3.5" : "flex flex-col gap-3.5";
             box.innerHTML = "";
+
+            // Formato input (cidade): campo de texto + botão
+            if (q.layout === "input") {
+                box.className = "flex flex-col gap-3.5";
+                const wrap = document.createElement("div");
+                wrap.innerHTML = `
+                    <input id="quiz-text-input" type="text" placeholder="${q.placeholder || ""}" autocomplete="address-level2"
+                        class="w-full bg-neutral-900/60 border border-white/10 focus:border-amber-600 outline-none rounded-xl p-4 text-neutral-100 text-base placeholder:text-neutral-600 transition-colors" />
+                    <p class="text-neutral-500 text-xs mt-2.5 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[14px] text-amber-500">travel_explore</span>${q.hint || ""}
+                    </p>
+                    <button id="quiz-input-go" class="btn-gold w-full font-headline font-bold py-4 rounded-lg cursor-pointer text-base mt-4">Buscar empresas →</button>`;
+                box.appendChild(wrap);
+                const input = wrap.querySelector("#quiz-text-input");
+                const go = wrap.querySelector("#quiz-input-go");
+                if (answers[q.key]) input.value = answers[q.key];
+                const submit = () => {
+                    const val = input.value.trim();
+                    if (val.length < 3) { input.focus(); input.classList.add("border-rose-500"); return; }
+                    answers[q.key] = val;
+                    locked = true;
+                    proceedAfterAnswer();
+                };
+                go.onclick = submit;
+                input.onkeydown = (e) => { if (e.key === "Enter") submit(); };
+                setTimeout(() => input.focus(), 150);
+                return;
+            }
+
+            const isCards = q.layout === "cards";
+            box.className = isCards ? "grid grid-cols-2 gap-3.5" : "flex flex-col gap-3.5";
 
             q.options.forEach((opt) => {
                 const btn = document.createElement("button");
@@ -693,8 +752,9 @@
             hide("screen-quiz");
             show("screen-loading");
 
-            // dispara a análise da IA já (roda em paralelo com a animação)
+            // dispara a análise da IA e a busca REAL de empresas em paralelo
             aiPromise = fetchAnalysis();
+            samplePromise = fetchSampleLeads();
 
             const pool = COMPANIES[answers.nicho] || COMPANIES.locais;
             const target = leadsCount();
@@ -787,15 +847,67 @@
         }
         function hideCommit() { hide("commit-popup"); }
 
-        async function finish() {
-            let ai = null;
-            try { ai = await aiPromise; } catch (_) { ai = null; }
-            renderResults(ai);
+        function finish() {
+            // Antes do resultado: captura de e-mail
             hide("screen-loading");
+            document.getElementById("capture-count").innerText = leadsCount().toLocaleString("pt-BR");
+            const el = document.getElementById("screen-capture");
+            el.classList.remove("hidden");
+            requestAnimationFrame(() => el.classList.add("is-in"));
+            window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+        }
+
+        document.getElementById("capture-go").onclick = submitCapture;
+        document.getElementById("capture-email").onkeydown = (e) => { if (e.key === "Enter") submitCapture(); };
+
+        async function submitCapture() {
+            const input = document.getElementById("capture-email");
+            const email = input.value.trim().toLowerCase();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+                document.getElementById("capture-error").classList.remove("hidden");
+                input.classList.add("border-rose-500");
+                input.focus();
+                return;
+            }
+            capturedEmail = email;
+            const btn = document.getElementById("capture-go");
+            btn.disabled = true;
+            btn.innerText = "Liberando…";
+
+            // registra o lead (não bloqueia o resultado se falhar)
+            try {
+                await fetch(getApiUrl("/api/quiz/lead"), {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, cidade: answers.cidade || null, answers }),
+                });
+            } catch (_) { /* segue o jogo */ }
+
+            let ai = null, sample = null;
+            try { ai = await aiPromise; } catch (_) { ai = null; }
+            try { sample = await samplePromise; } catch (_) { sample = null; }
+            renderResults(ai, sample);
+            hide("screen-capture");
             const el = document.getElementById("screen-results");
             el.classList.remove("hidden");
             requestAnimationFrame(() => el.classList.add("is-in"));
             window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+        }
+
+        // Busca real de empresas na cidade da pessoa (cache no servidor)
+        async function fetchSampleLeads() {
+            try {
+                const res = await fetch(getApiUrl("/api/quiz/sample-leads"), {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nicho: answers.nicho, cidade: answers.cidade || "" }),
+                });
+                if (!res.ok) return null;
+                const data = await res.json();
+                return Array.isArray(data.places) && data.places.length >= 3 ? data.places : null;
+            } catch (_) {
+                return null;
+            }
         }
 
         // ─── Chamada da IA ───
@@ -827,7 +939,13 @@
             return parseInt(answers.meta || "6", 10);
         }
         function lossVal() {
-            return { "5000": "R$ 4.800", "15000": "R$ 14.500", "30000": "R$ 23.000" }[answers.perda] || "R$ 5.000";
+            // Perda coerente com o próprio ticket×meta da pessoa: nunca menor que
+            // o valor da meta parada, nem mais de 4x (senão os números do resultado
+            // se contradizem e derrubam a credibilidade do diagnóstico).
+            const metaValue = ticketVal() * metaVal();
+            const self = { "5000": 4800, "15000": 14500, "30000": 23000 }[answers.perda] || 5000;
+            const loss = Math.max(metaValue, Math.min(self, metaValue * 4));
+            return `R$ ${(Math.round(loss / 100) * 100).toLocaleString("pt-BR")}`;
         }
 
         // Fallback de copy no cliente, caso a IA e o endpoint falhem de vez
@@ -846,7 +964,7 @@
             };
         }
 
-        function renderResults(ai) {
+        function renderResults(ai, sample) {
             const r = ai || clientFallback();
 
             // Números
@@ -869,22 +987,36 @@
             const m = metaVal();
             const clienteTxt = m > 1 ? `${m} clientes` : "1 cliente";
             document.getElementById("res-roi-calc").innerHTML =
-                `No <strong>Starter (50 leads/mês)</strong>, fechando <strong>1 só cliente</strong> do lote você fatura <strong class="text-amber-500">R$ ${ticketVal().toLocaleString("pt-BR")}</strong>. A assinatura é <strong>R$ 67/mês</strong> — ou seja, o primeiro fechamento já paga o Garimpo e ainda sobra. Pra chegar nos seus <strong>${clienteTxt}/mês</strong>, é só manter as conversas rodando.`;
+                `No <strong>Starter (50 leads/mês)</strong>, fechando <strong>1 só cliente</strong> do lote você fatura <strong class="text-amber-500">R$ ${ticketVal().toLocaleString("pt-BR")}</strong>. Seu primeiro mês custa <strong>R$ 27</strong> (depois R$ 67/mês) — ou seja, o primeiro fechamento paga o Garimpo por meses. Pra chegar nos seus <strong>${clienteTxt}/mês</strong>, é só manter as conversas rodando.`;
 
-            // Teaser de leads reais (amostra do mapa)
+            // Teaser do mapa: EMPRESAS REAIS (busca ao vivo) ou exemplos ilustrativos
             const total = leadsCount();
             document.getElementById("teaser-count").innerText = total.toLocaleString("pt-BR");
             document.getElementById("teaser-rest").innerText = (total - 5).toLocaleString("pt-BR");
-            const pool = COMPANIES[answers.nicho] || COMPANIES.locais;
             const teaser = document.getElementById("res-leads-teaser");
             teaser.innerHTML = "";
-            const usados = [];
-            for (let i = 0; i < 5; i++) {
-                let nome = rand(pool);
-                let guard = 0;
-                while (usados.includes(nome) && guard++ < 10) nome = rand(pool);
-                usados.push(nome);
-                const score = 79 + Math.floor(Math.random() * 18); // 79–96
+
+            const isReal = Array.isArray(sample) && sample.length >= 3;
+            const titleEl = document.getElementById("teaser-title");
+            if (titleEl) titleEl.innerText = isReal
+                ? `Empresas reais encontradas em ${answers.cidade || "sua região"}`
+                : "Amostra do seu mapa";
+
+            const rows = isReal
+                ? sample.slice(0, 5).map((p) => ({ nome: p.name, sub: `${p.area}${p.category ? " · " + p.category : ""}` }))
+                : (() => {
+                    const pool = COMPANIES[answers.nicho] || COMPANIES.locais;
+                    const usados = [];
+                    return Array.from({ length: 5 }, () => {
+                        let nome = rand(pool);
+                        let guard = 0;
+                        while (usados.includes(nome) && guard++ < 10) nome = rand(pool);
+                        usados.push(nome);
+                        return { nome: `${nome} (exemplo)`, sub: rand(CITIES) };
+                    });
+                })();
+
+            rows.forEach(({ nome, sub }) => {
                 const row = document.createElement("div");
                 row.className = "flex items-center gap-3 p-3 rounded-lg bg-neutral-900/40 border border-white/5";
                 row.innerHTML = `
@@ -892,18 +1024,24 @@
                         <span class="material-symbols-outlined text-[18px]">business</span>
                     </div>
                     <div class="flex-grow min-w-0">
-                        <div class="text-sm text-neutral-100 font-medium truncate">${nome}</div>
-                        <div class="text-xs text-neutral-500 truncate">${rand(CITIES)} · WhatsApp + e-mail</div>
+                        <div class="text-sm text-neutral-100 font-medium truncate">${escapeHtml(nome)}</div>
+                        <div class="text-xs text-neutral-500 truncate">${escapeHtml(sub)}</div>
                     </div>
-                    <div class="text-right flex-shrink-0">
-                        <div class="text-sm font-headline font-bold text-emerald-400">${score}</div>
-                        <div class="text-[9px] text-neutral-500 uppercase tracking-wide">match</div>
+                    <div class="flex items-center gap-1.5 flex-shrink-0 text-neutral-500">
+                        <span class="material-symbols-outlined text-[16px] text-amber-600">lock</span>
+                        <span class="text-[10px] uppercase tracking-wide">contato</span>
                     </div>`;
                 teaser.appendChild(row);
-            }
+            });
         }
 
-        // ─── Checkout (inalterado) ───
+        function escapeHtml(s) {
+            const d = document.createElement("div");
+            d.innerText = String(s ?? "");
+            return d.innerHTML;
+        }
+
+        // ─── Checkout ───
         function goToCheckout(plan, type) {
             let path = "";
             if (type === "mensal") {
@@ -911,6 +1049,7 @@
             } else if (type === "trimestral") {
                 path = `/api/stripe/checkout-public-one-time?plan=${plan}&period=trimestral`;
             }
+            if (capturedEmail) path += `&email=${encodeURIComponent(capturedEmail)}`;
             window.location.href = getApiUrl(path);
         }
     </script>
