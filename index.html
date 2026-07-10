@@ -131,6 +131,17 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     .tl-dot-active { border-color: #d97706; background: #d97706; box-shadow: 0 0 12px rgba(217,119,6,.6); }
     .tl-item strong { color: #f5f0e8; }
 
+    /* ===== Depoimentos ===== */
+    .depo-card { background: #111; border: 1px solid rgba(255,255,255,.05); padding: 24px; display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .depo-stars { display: flex; gap: 3px; }
+    .depo-stars svg { width: 15px; height: 15px; fill: #d97706; }
+    .depo-quote { font-size: 14px; color: #d4d4d4; line-height: 1.65; flex-grow: 1; font-weight: 300; }
+    .depo-quote strong { color: #f5f0e8; font-weight: 600; }
+    .depo-autor { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255,255,255,.06); padding-top: 16px; }
+    .depo-autor img { width: 42px; height: 42px; border-radius: 999px; object-fit: cover; border: 1px solid rgba(255,255,255,.12); }
+    .depo-nome { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #f5f0e8; }
+    .depo-empresa { font-size: 12px; color: #a3a3a3; margin-top: 1px; }
+
     /* ===== Acessibilidade: reduz movimento ===== */
     @media (prefers-reduced-motion: reduce) {
         .hero-enter > *, .reveal, .stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
@@ -367,6 +378,38 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="stat-card"><span class="stat-num">+<span data-count="14042">0</span></span><span class="stat-label">empresas analisadas pela IA</span></div>
 <div class="stat-card"><span class="stat-num"><span data-count="586">0</span></span><span class="stat-label">cidades garimpadas no Brasil</span></div>
 <div class="stat-card"><span class="stat-num">+<span data-count="400">0</span></span><span class="stat-label">empresas já usaram o Garimpo</span></div>
+</div>
+</div>
+</section>
+<!-- 6b. DEPOIMENTOS -->
+<section class="py-24 bg-surface border-t border-white/5">
+<div class="max-w-5xl mx-auto px-6">
+<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-12 text-center text-on-surface reveal">Quem já garimpa, recomenda</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
+<figure class="depo-card">
+<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
+<blockquote class="depo-quote">“Chegaram leads muito bons no nosso funil. Foi uma assinatura que <strong>se pagou por meses em menos de 1 semana</strong> — e é super fácil de usar.”</blockquote>
+<figcaption class="depo-autor">
+<img src="./assets/depoimentos/anna.jpg" alt="Anna Zanelli" loading="lazy" width="42" height="42"/>
+<div><div class="depo-nome">Anna Zanelli</div><div class="depo-empresa">Fly Consultoria</div></div>
+</figcaption>
+</figure>
+<figure class="depo-card">
+<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
+<blockquote class="depo-quote">“Um dos investimentos com <strong>maior retorno</strong> que fizemos aqui na Luna. Leads frescos todo mês, e a prospecção vira um processo infinitamente mais simples e organizado.”</blockquote>
+<figcaption class="depo-autor">
+<img src="./assets/depoimentos/tahir.jpg" alt="Tahir Gollo" loading="lazy" width="42" height="42"/>
+<div><div class="depo-nome">Tahir Gollo</div><div class="depo-empresa">Agência Luna</div></div>
+</figcaption>
+</figure>
+<figure class="depo-card">
+<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
+<blockquote class="depo-quote">“Facilitou demais nossa vida. <strong>Era tudo que eu procurava</strong> desde que comecei na minha jornada de vendedor.”</blockquote>
+<figcaption class="depo-autor">
+<img src="./assets/depoimentos/joao.jpg" alt="João Cherigate" loading="lazy" width="42" height="42"/>
+<div><div class="depo-nome">João Cherigate</div><div class="depo-empresa">Majori Energia Solar</div></div>
+</figcaption>
+</figure>
 </div>
 </div>
 </section>
