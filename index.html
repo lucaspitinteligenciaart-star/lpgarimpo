@@ -143,16 +143,20 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     .tl-dot-active { border-color: #d97706; background: #d97706; box-shadow: 0 0 12px rgba(217,119,6,.6); }
     .tl-item strong { color: #f5f0e8; }
 
-    /* ===== Depoimentos ===== */
-    .depo-card { background: #111; border: 1px solid rgba(255,255,255,.05); padding: 24px; display: flex; flex-direction: column; gap: 16px; text-align: left; }
-    .depo-stars { display: flex; gap: 3px; }
-    .depo-stars svg { width: 15px; height: 15px; fill: #d97706; }
-    .depo-quote { font-size: 14px; color: #d4d4d4; line-height: 1.65; flex-grow: 1; font-weight: 300; }
-    .depo-quote strong { color: #f5f0e8; font-weight: 600; }
-    .depo-autor { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255,255,255,.06); padding-top: 16px; }
-    .depo-autor img { width: 42px; height: 42px; border-radius: 999px; object-fit: cover; border: 1px solid rgba(255,255,255,.12); }
-    .depo-nome { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: #f5f0e8; }
-    .depo-empresa { font-size: 12px; color: #a3a3a3; margin-top: 1px; }
+    /* ===== Depoimentos (prints do direct em carrossel) ===== */
+    .print-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 24px 14px; margin: 0 -24px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .print-track::-webkit-scrollbar { display: none; }
+    .print-slide { scroll-snap-align: center; flex-shrink: 0; width: 78%; max-width: 300px; }
+    .print-frame { border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 16px 40px rgba(0,0,0,.45); aspect-ratio: 480 / 680; }
+    .print-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .print-caption { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #a3a3a3; margin-top: 10px; }
+    .print-caption svg { width: 14px; height: 14px; fill: none; stroke: #22c55e; stroke-width: 2; flex-shrink: 0; }
+    .print-hint { font-size: 13px; color: #737373; text-align: center; margin: 0 0 20px; }
+    @media (min-width: 768px) {
+        .print-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; overflow: visible; margin: 0; padding: 0; }
+        .print-slide { width: auto; max-width: none; }
+        .print-hint span { display: none; }
+    }
 
     /* ===== Acessibilidade: reduz movimento ===== */
     @media (prefers-reduced-motion: reduce) {
@@ -396,31 +400,20 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <!-- 6b. DEPOIMENTOS -->
 <section class="py-24 bg-surface border-t border-white/5">
 <div class="max-w-5xl mx-auto px-6">
-<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-12 text-center text-on-surface reveal">Quem já garimpa, recomenda</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger">
-<figure class="depo-card">
-<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
-<blockquote class="depo-quote">“Chegaram leads muito bons no nosso funil. Foi uma assinatura que <strong>se pagou por meses em menos de 1 semana</strong> — e é super fácil de usar.”</blockquote>
-<figcaption class="depo-autor">
-<img src="./assets/depoimentos/anna.jpg" alt="Anna Zanelli" loading="lazy" width="42" height="42"/>
-<div><div class="depo-nome">Anna Zanelli</div><div class="depo-empresa">Fly Consultoria</div></div>
-</figcaption>
+<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-3 text-center text-on-surface reveal">Quem já garimpa, recomenda</h2>
+<p class="print-hint reveal">direto do nosso direct <span>· desliza pra ver →</span></p>
+<div class="print-track stagger">
+<figure class="print-slide">
+<div class="print-frame"><img src="./assets/depoimentos/prints/anna.jpg" alt="Print do direct: depoimento de Anna Zanelli (Fly Consultoria)" loading="lazy" width="480" height="1038"/></div>
+<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Anna Zanelli · Fly Consultoria</figcaption>
 </figure>
-<figure class="depo-card">
-<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
-<blockquote class="depo-quote">“Um dos investimentos com <strong>maior retorno</strong> que fizemos aqui na Luna. Leads frescos todo mês, e a prospecção vira um processo infinitamente mais simples e organizado.”</blockquote>
-<figcaption class="depo-autor">
-<img src="./assets/depoimentos/tahir.jpg" alt="Tahir Gollo" loading="lazy" width="42" height="42"/>
-<div><div class="depo-nome">Tahir Gollo</div><div class="depo-empresa">Agência Luna</div></div>
-</figcaption>
+<figure class="print-slide">
+<div class="print-frame"><img src="./assets/depoimentos/prints/tahir.jpg" alt="Print do direct: depoimento de Tahir Gollo (Agência Luna)" loading="lazy" width="480" height="1038"/></div>
+<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Tahir Gollo · Agência Luna</figcaption>
 </figure>
-<figure class="depo-card">
-<div class="depo-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg></div>
-<blockquote class="depo-quote">“Facilitou demais nossa vida. <strong>Era tudo que eu procurava</strong> desde que comecei na minha jornada de vendedor.”</blockquote>
-<figcaption class="depo-autor">
-<img src="./assets/depoimentos/joao.jpg" alt="João Cherigate" loading="lazy" width="42" height="42"/>
-<div><div class="depo-nome">João Cherigate</div><div class="depo-empresa">Majori Energia Solar</div></div>
-</figcaption>
+<figure class="print-slide">
+<div class="print-frame"><img src="./assets/depoimentos/prints/joao.jpg" alt="Print do direct: depoimento de João Cherigate (Majori Energia Solar)" loading="lazy" width="480" height="1038"/></div>
+<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>João Cherigate · Majori Energia Solar</figcaption>
 </figure>
 </div>
 </div>
