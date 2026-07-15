@@ -69,20 +69,17 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     /* ===== Brilho nos CTAs ===== */
     .cta-shine { position: relative; overflow: hidden; }
     .cta-shine::after { content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(105deg, transparent, rgba(255,255,255,.3), transparent); transform: skewX(-20deg); pointer-events: none; }
-    @keyframes shine-loop { 0% { left: -75%; } 14% { left: 125%; } 100% { left: 125%; } }
+    @keyframes shine-loop { 0% { transform: translateX(0) skewX(-20deg); } 14% { transform: translateX(400%) skewX(-20deg); } 100% { transform: translateX(400%) skewX(-20deg); } }
     .cta-shine::after { animation: shine-loop 5.5s ease 1.5s infinite; }
 
     /* ===== Destaque com brilho no headline ===== */
     .headline-shine {
-        background: linear-gradient(110deg, #d97706 35%, #ffd9a0 50%, #d97706 65%);
-        background-size: 200% 100%;
+        background: linear-gradient(110deg, #d97706 20%, #f0b357 55%, #d97706 90%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         color: #d97706;
-        animation: text-shine 5.5s ease 1.5s infinite;
     }
-    @keyframes text-shine { 0% { background-position: 120% 0; } 30% { background-position: -80% 0; } 100% { background-position: -80% 0; } }
 
     /* ===== Chips de fontes de dados ===== */
     .src-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: #f5f0e8; }
