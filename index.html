@@ -556,14 +556,18 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <script>
 	    function preserveTrackingParamsOnAppLinks() {
 	        const params = new URLSearchParams(window.location.search);
-	        if (!Array.from(params).length) return;
 
 	        document.querySelectorAll('a[href^="https://www.garimpoleads.com.br/"]').forEach((link) => {
 	            try {
 	                const url = new URL(link.href);
 	                params.forEach((value, key) => {
-	                    if (value) url.searchParams.set(key, value);
+	                    if (value && key !== 'canceled') url.searchParams.set(key, value);
 	                });
+	                if (url.pathname.startsWith('/api/stripe/')) {
+	                    const here = new URL(window.location.href);
+	                    here.searchParams.delete('canceled');
+	                    url.searchParams.set('return_to', here.toString());
+	                }
 	                link.href = url.toString();
 	            } catch (error) {
 	                console.warn('Não foi possível preservar os parâmetros do anúncio no link:', error);
