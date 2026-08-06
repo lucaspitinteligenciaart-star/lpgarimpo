@@ -115,21 +115,6 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     .tl-dot-active { border-color: #d97706; background: #d97706; box-shadow: 0 0 12px rgba(217,119,6,.6); }
     .tl-item strong { color: #f5f0e8; }
 
-    /* ===== Depoimentos (prints do direct em carrossel) ===== */
-    .print-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 24px 14px; margin: 0 -24px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    .print-track::-webkit-scrollbar { display: none; }
-    .print-slide { scroll-snap-align: center; flex-shrink: 0; width: 78%; max-width: 300px; }
-    .print-frame { border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); box-shadow: 0 16px 40px rgba(0,0,0,.45); aspect-ratio: 480 / 760; }
-    .print-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .print-caption { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #a3a3a3; margin-top: 10px; }
-    .print-caption svg { width: 14px; height: 14px; fill: none; stroke: #22c55e; stroke-width: 2; flex-shrink: 0; }
-    .print-hint { font-size: 13px; color: #737373; text-align: center; margin: 0 0 20px; }
-    @media (min-width: 768px) {
-        .print-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; overflow: visible; margin: 0; padding: 0; }
-        .print-slide { width: auto; max-width: none; }
-        .print-hint span { display: none; }
-    }
-
     /* ===== Acessibilidade: reduz movimento ===== */
     @media (prefers-reduced-motion: reduce) {
         .hero-enter > *, .reveal, .stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
@@ -343,27 +328,6 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="stat-card"><span class="stat-num">+<span data-count="14042">0</span></span><span class="stat-label">empresas analisadas pela IA</span></div>
 <div class="stat-card"><span class="stat-num"><span data-count="586">0</span></span><span class="stat-label">cidades garimpadas no Brasil</span></div>
 <div class="stat-card"><span class="stat-num">+<span data-count="400">0</span></span><span class="stat-label">empresas já usaram o Garimpo</span></div>
-</div>
-</div>
-</section>
-<!-- 6b. DEPOIMENTOS -->
-<section class="py-24 bg-surface border-t border-white/5">
-<div class="max-w-5xl mx-auto px-6">
-<h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-3 text-center text-on-surface reveal">Quem já garimpa, recomenda</h2>
-<p class="print-hint reveal">direto do nosso direct <span>· desliza pra ver →</span></p>
-<div class="print-track stagger">
-<figure class="print-slide">
-<div class="print-frame"><img src="./assets/depoimentos/prints/anna.jpg" alt="Print do direct: depoimento de Anna Zanelli (Fly Consultoria)" loading="lazy" width="800" height="1730"/></div>
-<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Anna Zanelli · Fly Consultoria</figcaption>
-</figure>
-<figure class="print-slide">
-<div class="print-frame"><img src="./assets/depoimentos/prints/tahir.jpg" alt="Print do direct: depoimento de Tahir Gollo (Agência Luna)" loading="lazy" width="800" height="1730"/></div>
-<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>Tahir Gollo · Agência Luna</figcaption>
-</figure>
-<figure class="print-slide">
-<div class="print-frame"><img src="./assets/depoimentos/prints/joao.jpg" alt="Print do direct: depoimento de João Cherigate (Majori Energia Solar)" loading="lazy" width="800" height="1730"/></div>
-<figcaption class="print-caption"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>João Cherigate · Majori Energia Solar</figcaption>
-</figure>
 </div>
 </div>
 </section>
