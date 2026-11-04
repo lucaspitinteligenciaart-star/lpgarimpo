@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Garimpo - Prospecção B2B com IA</title>
+<title>Garimpo | Prospecção com IA para Serviços Digitais</title>
 <!-- OpenAI Ads Pixel -->
 <script>
 !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
@@ -58,10 +58,10 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
     .hero-enter > * { opacity: 0; animation: rise-in .45s cubic-bezier(.2,.7,.3,1) forwards; }
     .hero-enter > *:nth-child(1) { animation-delay: 0s; }
-    .hero-enter > *:nth-child(2) { animation-delay: .08s; }
-    .hero-enter > *:nth-child(3) { animation-delay: .16s; }
-    .hero-enter > *:nth-child(4) { animation-delay: .24s; }
-    .hero-enter > *:nth-child(5) { animation-delay: .32s; }
+    .hero-enter > *:nth-child(2) { animation-delay: 0.08s; }
+    .hero-enter > *:nth-child(3) { animation-delay: 0.16s; }
+    .hero-enter > *:nth-child(4) { animation-delay: 0.24s; }
+    .hero-enter > *:nth-child(5) { animation-delay: 0.32s; }
 
     /* ===== Reveal ao rolar ===== */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
@@ -78,7 +78,7 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     @keyframes shine-loop { 0% { transform: translateX(0) skewX(-20deg); } 14% { transform: translateX(400%) skewX(-20deg); } 100% { transform: translateX(400%) skewX(-20deg); } }
     .cta-shine::after { animation: shine-loop 5.5s ease 1.5s infinite; }
 
-    /* ===== Destaque dourado no headline (estático: animar aqui repinta o elemento LCP) ===== */
+    /* ===== Destaque dourado no headline ===== */
     .headline-shine {
         background: linear-gradient(110deg, #d97706 20%, #f0b357 55%, #d97706 90%);
         -webkit-background-clip: text;
@@ -91,7 +91,7 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     .src-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); border-radius: 999px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: #f5f0e8; }
     .src-chip .material-symbols-outlined { font-size: 18px; color: #d97706; }
 
-    /* ===== Demo em vídeo (moldura + barra + pausa) ===== */
+    /* ===== Demo em vídeo ===== */
     .demo-frame { width: 100%; max-width: 300px; margin: 0 auto; }
     .demo-phone { position: relative; background: #0c0c0c; border: 1px solid rgba(217,119,6,.22); border-radius: 38px; padding: 9px; box-shadow: 0 30px 70px rgba(217,119,6,.16), 0 12px 34px rgba(0,0,0,.6); }
     .demo-screen { position: relative; aspect-ratio: 988 / 1920; border-radius: 30px; overflow: hidden; background: #000; cursor: pointer; }
@@ -112,14 +112,27 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
     .stat-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -.02em; color: #d97706; }
     .stat-label { font-size: 13px; color: #a3a3a3; }
 
-    /* ===== Timeline do trial ===== */
-    .tl-item { position: relative; padding-left: 28px; padding-bottom: 18px; font-size: 13px; color: #a3a3a3; line-height: 1.55; text-align: left; }
-    .tl-item:last-child { padding-bottom: 0; }
-    .tl-item::before { content: ''; position: absolute; left: 7px; top: 18px; bottom: 0; width: 2px; background: rgba(255,255,255,.08); }
-    .tl-item:last-child::before { display: none; }
-    .tl-dot { position: absolute; left: 0; top: 3px; width: 16px; height: 16px; border-radius: 999px; border: 2px solid rgba(255,255,255,.2); background: #1a1a1a; }
-    .tl-dot-active { border-color: #d97706; background: #d97706; box-shadow: 0 0 12px rgba(217,119,6,.6); }
-    .tl-item strong { color: #f5f0e8; }
+    /* ===== Cards enxutos dos 4 Serviços ===== */
+    .playbooks-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 768px) { .playbooks-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+    .playbook-card { background: #141412; border: 1px solid rgba(255,255,255,.07); padding: 28px; display: flex; flex-direction: column; gap: 14px; transition: border-color .25s ease; }
+    .playbook-card:hover { border-color: rgba(217,119,6,.45); }
+    .playbook-badge { display: inline-flex; align-items: center; gap: 8px; color: #d97706; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+    .playbook-result { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.06); font-size: 13px; font-weight: 600; color: #f5f0e8; }
+
+    /* ===== Grid de Planos ===== */
+    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 24px; width: 100%; align-items: stretch; }
+    @media (min-width: 960px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+    .plan-card { background: #141412; border: 1px solid rgba(255,255,255,.08); padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .plan-card-featured { background: #191712; border: 2px solid #d97706; box-shadow: 0 24px 60px rgba(217,119,6,.16); }
+    .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #d97706; color: #0c0c0c; font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 5px 14px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+    .plan-price-old { font-size: 14px; color: #8c887e; text-decoration: line-through; }
+    .plan-price-now { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 44px; line-height: 1.05; color: #f5f0e8; letter-spacing: -.03em; }
+    .plan-price-now small { font-size: 15px; font-weight: 600; color: #d97706; letter-spacing: 0; }
+    .plan-price-sub { font-size: 12.5px; color: #a3a3a3; margin-top: 6px; }
+    .plan-credits-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3); color: #4ade80; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; padding: 6px 12px; margin-top: 14px; width: fit-content; }
+    .plan-btn-outline { display: block; width: 100%; text-align: center; padding: 15px 20px; border: 1px solid rgba(217,119,6,.55); color: #f5f0e8; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; transition: background .2s ease, color .2s ease; text-decoration: none; }
+    .plan-btn-outline:hover { background: rgba(217,119,6,.15); border-color: #d97706; }
 
     /* ===== Acessibilidade: reduz movimento ===== */
     @media (prefers-reduced-motion: reduce) {
@@ -137,16 +150,16 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
 <span class="font-headline font-black text-2xl tracking-tighter" style="color: #D97706; letter-spacing: -0.05em;">GARIMPO</span>
 </div>
 <nav class="hidden md:flex gap-8">
-<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#features">Funcionalidades</a>
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#playbooks">Para Quem É</a>
+<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#features">Como Funciona</a>
 <a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#comparison">Comparação</a>
-<a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#solutions">Soluções</a>
 <a class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200" href="#pricing">Planos</a>
 </nav>
-	<div class="hidden md:flex gap-4 items-center">
-	<a href="https://www.garimpoleads.com.br/login" class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200">Login</a>
-	<a href="https://www.garimpoleads.com.br/checkout" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="bg-primary text-on-primary font-headline font-bold py-2 px-6 hover:bg-primary-dim transition-colors active:scale-95 shadow-[0_0_20px_rgba(217,119,6,0.3)] inline-block">Testar 7 Dias por R$ 9,90</a>
+<div class="hidden md:flex gap-4 items-center">
+<a href="https://www.garimpoleads.com.br/login" class="font-headline tracking-tight text-lg text-on-surface-variant hover:text-primary transition-colors duration-200">Login</a>
+<a href="https://www.garimpoleads.com.br/campanha" onclick="if(typeof fbq === 'function') fbq('track', 'Lead');" class="bg-primary text-on-primary font-headline font-bold py-2 px-6 hover:bg-primary-dim transition-colors active:scale-95 shadow-[0_0_20px_rgba(217,119,6,0.3)] inline-block">Testar Grátis Agora</a>
 </div>
-<button class="md:hidden text-on-surface-variant">
+<button class="md:hidden text-on-surface-variant" onclick="document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'})">
 <span class="material-symbols-outlined" data-icon="menu">menu</span>
 </button>
 </div>
@@ -158,30 +171,31 @@ src="https://www.facebook.com/tr?id=930780446497215&ev=PageView&noscript=1"
 <div class="relative z-10 w-full max-w-5xl mx-auto px-2 sm:px-6 text-center flex flex-col items-center hero-enter">
 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-6 md:mb-8 mt-4 md:mt-0">
 <div class="w-2 h-2 rounded-full bg-primary data-pulse"></div>
-<span class="text-xs md:text-sm font-medium text-primary">A IA que caça leads e escreve as abordagens por você</span>
+<span class="text-xs md:text-sm font-medium text-primary">Para quem vende Tráfego Pago, Sites, Social Media ou Google Meu Negócio</span>
 </div>
 <h1 class="font-headline text-[9.2vw] min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[1.15] mb-6 w-full max-w-full md:max-w-4xl text-on-surface">
 Pare de caçar clientes.<br class="hidden md:block"/>
-Deixe a IA assumir <br class="block md:hidden"/>
-o <span class="headline-shine">trabalho pesado</span> da <br class="block md:hidden"/>
-sua prospecção.
+Fale só com empresas que <br class="block md:hidden"/>
+<span class="headline-shine">precisam do seu serviço</span> hoje.
 </h1>
 <p class="text-base sm:text-lg md:text-2xl text-on-surface-variant mb-10 max-w-3xl font-light leading-relaxed">
-Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, o Garimpo localiza empresas qualificadas, escreve a primeira mensagem, e ainda te ajuda a vender quando o lead responde.
+Você escolhe o que vende e a cidade. O Garimpo encontra as empresas que ainda não têm o que você oferece, escreve a primeira mensagem e te ajuda a fechar quando o cliente responde.
 </p>
 <div class="flex flex-col sm:flex-row gap-4 mb-16">
-<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">QUERO MEUS PRIMEIROS 50 LEADS</a>
+<a href="https://www.garimpoleads.com.br/campanha" onclick="if(typeof fbq === 'function') fbq('track', 'Lead');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">TESTAR GRÁTIS NA MINHA CIDADE</a>
 </div>
 <div class="flex flex-col items-center gap-4">
 <span class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">Alimentado por dados reais de</span>
 <div class="flex flex-wrap justify-center gap-3 items-center">
 <span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">map</span>Google Maps</span>
+<span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">search_insights</span>Meta Ads</span>
 <span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">account_balance</span>Receita Federal</span>
 <span class="src-chip"><span class="material-symbols-outlined" aria-hidden="true">auto_awesome</span>IA Generativa</span>
 </div>
 </div>
 </div>
 </section>
+
 <!-- 1.5. DEMO VIVA -->
 <section class="max-w-7xl mx-auto px-6 mb-24 relative z-20 flex flex-col items-center mt-12 md:mt-0" id="demo">
   <div class="text-center mb-8">
@@ -209,6 +223,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
      </div>
   </div>
 </section>
+
 <!-- 2. PAIN POINTS -->
 <section class="py-24 bg-surface-container-low border-t border-white/5 relative" id="problem">
 <div class="max-w-7xl mx-auto px-6">
@@ -219,36 +234,114 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="search">search</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Pesquisa Manual Infinita</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">A equipe perde horas varrendo o Google e o LinkedIn atrás de contatos, ao invés de usar esse tempo para estar em reuniões de fechamento.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Você perde horas abrindo Google Maps, Instagram e sites um por um, só para descobrir que a empresa já tem agência.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="table_chart">table_chart</span>
-<h3 class="font-headline font-bold text-lg text-on-surface">Cemitério de Planilhas</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Listas que já nascem desatualizadas. Um Excel inútil recheado de números errados e contatos que não são os decisores reais.</p>
+<h3 class="font-headline font-bold text-lg text-on-surface">Falar com a Recepção</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sem saber o nome do sócio da empresa, sua mensagem para no atendimento e nunca chega em quem realmente fecha o contrato.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="mail_lock">mail_lock</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Panfletagem Digital</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">A era do "Control C + Control V" acabou. Suas mensagens são ignoradas ou bloqueadas porque soam como spam e não se conectam com a empresa.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">A era do "Control C + Control V" acabou. Suas mensagens são ignoradas porque soam como spam e não mostram o problema real do cliente.</p>
 </div>
 <div class="bg-surface-container-high border border-white/5 p-6 flex flex-col gap-4 group hover:border-primary/50 transition-colors">
 <span class="material-symbols-outlined text-primary text-3xl" data-icon="shopping_cart_checkout">shopping_cart_checkout</span>
 <h3 class="font-headline font-bold text-lg text-on-surface">Listas Genéricas</h3>
-<p class="text-sm text-on-surface-variant leading-relaxed">Pagar por listas onde 90% das empresas estão quebradas, fora do perfil ou só têm o telefone do contador. Prejuízo financeiro e perda de reputação.</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Pagar por planilhas frias onde 90% das empresas estão quebradas, fora do perfil ou só têm o telefone do contador.</p>
 </div>
 </div>
 </div>
 </section>
-<!-- 3. SHIFT -->
-<section class="py-16 md:py-32 relative overflow-hidden">
+
+<!-- 3. OS 4 PLAYBOOKS (DIRETO E ESCANEÁVEL) -->
+<section class="py-24 bg-surface border-t border-white/5 relative" id="playbooks">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-14 max-w-3xl reveal">
+<h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-tight text-balance">A IA investiga cada empresa <span class="text-primary">antes de você chamar</span></h2>
+<p class="text-base md:text-lg text-on-surface-variant leading-relaxed">Escolha o serviço que você vende. O Garimpo descarta quem já está bem atendido e separa apenas quem precisa de você agora.</p>
+</div>
+
+<div class="playbooks-grid stagger">
+<!-- 1. Tráfego Pago -->
+<div class="playbook-card">
+<div class="playbook-badge">
+<span class="material-symbols-outlined text-xl" data-icon="search_insights">search_insights</span>
+Tráfego Pago
+</div>
+<h3 class="font-headline font-bold text-2xl text-on-surface">Encontra empresas sem anúncios ou sem Pixel</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+A IA olha a Biblioteca de Anúncios da Meta e o código do site da empresa. Você recebe negócios com estrutura pronta, mas que ainda não fazem tráfego pago.
+</p>
+<div class="playbook-result">
+<span class="material-symbols-outlined text-primary text-base" data-icon="check">check</span>
+Você já aborda mostrando o que falta no site ou nos anúncios
+</div>
+</div>
+
+<!-- 2. Criação de Sites -->
+<div class="playbook-card">
+<div class="playbook-badge">
+<span class="material-symbols-outlined text-xl" data-icon="travel_explore">travel_explore</span>
+Sites e Landing Pages
+</div>
+<h3 class="font-headline font-bold text-2xl text-on-surface">Encontra boas empresas que não têm site</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+Filtra clínicas, escritórios e empresas muito bem avaliadas no Google, mas que ainda dependem só de Instagram, Linktree ou WhatsApp direto.
+</p>
+<div class="playbook-result">
+<span class="material-symbols-outlined text-primary text-base" data-icon="check">check</span>
+Clientes com dinheiro em caixa e precisando de estrutura
+</div>
+</div>
+
+<!-- 3. Social Media -->
+<div class="playbook-card">
+<div class="playbook-badge">
+<span class="material-symbols-outlined text-xl" data-icon="auto_awesome">auto_awesome</span>
+Social Media
+</div>
+<h3 class="font-headline font-bold text-2xl text-on-surface">Analisa o Instagram e o visual dos posts</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+Nossa IA entra no perfil, olha as últimas fotos publicadas e separa empresas com feed amador, bio sem link ou semanas sem postar.
+</p>
+<div class="playbook-result">
+<span class="material-symbols-outlined text-primary text-base" data-icon="check">check</span>
+Diagnóstico visual pronto para convencer o dono
+</div>
+</div>
+
+<!-- 4. Google Meu Negócio -->
+<div class="playbook-card">
+<div class="playbook-badge">
+<span class="material-symbols-outlined text-xl" data-icon="map">map</span>
+Google Meu Negócio
+</div>
+<h3 class="font-headline font-bold text-2xl text-on-surface">Encontra fichas mal configuradas no Maps</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+Aponta o que está errado na ficha da empresa (nome sem palavra-chave, 1 categoria só, falta de site ou poucas avaliações) e mostra a posição que ela está perdendo.
+</p>
+<div class="playbook-result">
+<span class="material-symbols-outlined text-primary text-base" data-icon="check">check</span>
+Erros técnicos da ficha prontos para você cobrar pela correção
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. SHIFT -->
+<section class="py-16 md:py-32 relative overflow-hidden border-t border-white/5">
 <div class="absolute inset-0 bg-primary/5 mix-blend-screen blur-3xl rounded-[100%] w-[150%] md:w-[800px] h-[300px] md:h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 <div class="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
 <h2 class="font-headline text-3xl md:text-6xl font-bold tracking-tighter leading-tight text-on-surface">
-    E se você pudesse gastar 20 minutos e sair com leads priorizados e mensagens que parecem escritas por um vendedor sênior que pesquisou cada empresa?
+    E se você pudesse gastar 5 minutos e sair com leads filtrados e mensagens que parecem escritas por um vendedor sênior que analisou cada empresa?
 </h2>
 </div>
 </section>
-<!-- 4. SOLUTIONS -->
+
+<!-- 5. SOLUTIONS -->
 <section class="py-24 bg-surface-container-low" id="features">
 <div class="max-w-7xl mx-auto px-6">
 <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight mb-16 reveal">Como o Garimpo funciona na prática</h2>
@@ -257,16 +350,16 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">01</div>
 <div class="relative z-10">
 <span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="psychology">psychology</span>
-<h3 class="font-headline font-bold text-xl mb-4">Encontre Seu Cliente Ideal</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Diga quem você quer atender. A Inteligência Artificial varre o mapa e seleciona apenas as empresas com o faturamento e o momento perfeito para comprar de você.</p>
+<h3 class="font-headline font-bold text-xl mb-4">Escolha o Serviço e a Cidade</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Diga qual serviço você vende e qual nicho quer atacar. A Inteligência Artificial varre a região e analisa empresa por empresa.</p>
 </div>
 </div>
 <div class="bg-surface-container-high border border-white/10 p-8 relative overflow-hidden group">
 <div class="absolute top-0 right-0 p-6 text-6xl font-headline font-bold text-white/5 group-hover:text-primary/10 transition-colors">02</div>
 <div class="relative z-10">
 <span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="search_insights">search_insights</span>
-<h3 class="font-headline font-bold text-xl mb-4">Filtro Automático de Qualidade</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Analisamos dezenas de dados públicos e damos uma nota para cada empresa. Nós descartamos automaticamente os desqualificados. Foque apenas no Top 20%.</p>
+<h3 class="font-headline font-bold text-xl mb-4">Filtro Automático + Nome do Dono</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Descartamos quem não precisa de você. Entregamos apenas as melhores oportunidades com nota de qualidade e o nome dos sócios no CNPJ.</p>
 </div>
 </div>
 <div class="bg-surface-container-highest border border-primary/30 p-8 relative overflow-hidden shadow-[0_20px_40px_rgba(217,119,6,0.05)] ring-1 ring-primary/20">
@@ -275,13 +368,14 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <div class="relative z-10">
 <span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="task_alt" style="font-variation-settings: 'FILL' 1;">task_alt</span>
 <h3 class="font-headline font-bold text-xl mb-4 text-primary">Abordagens Que Geram Respostas</h3>
-<p class="text-on-surface-variant text-sm leading-relaxed">Receba os contatos com mensagens de abordagem e de follow-up perfeitamente escritas pela IA para a realidade de cada cliente, aumentando sua taxa de resposta. É só copiar e colar.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Receba os contatos com mensagens prontas falando da realidade daquela empresa. Quando o lead responder, o Copiloto IA te diz exatamente o que responder.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- 5. COMPARISON -->
+
+<!-- 6. COMPARISON -->
 <section class="py-24 border-y border-white/5" id="comparison">
 <div class="max-w-7xl mx-auto px-6">
 <h2 class="font-headline text-3xl font-bold tracking-tight mb-16 text-center reveal">Não é uma lista fria...</h2>
@@ -293,9 +387,9 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 </div>
 <ul class="space-y-4 text-on-surface-variant text-sm">
 <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Lista fria e desatualizada</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Sem contexto do negócio do lead</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Você tem que olhar site e Instagram um por um</li>
 <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Mensagens genéricas que parecem spam</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Você tem que pesquisar empresa por empresa</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="close">close</span>Sem saber quem é o dono real da empresa</li>
 </ul>
 </div>
 <div class="bg-surface-container-highest border border-primary/20 p-8 relative shadow-[0_20px_40px_rgba(217,119,6,0.1)]">
@@ -306,26 +400,27 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 <h3 class="font-headline font-bold text-xl text-on-surface">O Padrão Garimpo</h3>
 </div>
 <ul class="space-y-4 text-on-surface text-sm font-medium">
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Dados enriquecidos e validados (CNPJ, Maps)</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Score de qualidade gerado por IA (Foco no top 20%)</li>
-<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>2 Mensagens redigidas sob medida para cada lead</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Empresas verificadas que realmente precisam do seu serviço</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>CNPJ e nome dos sócios decisores na Receita Federal</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>2 mensagens escritas sob medida para cada lead</li>
 <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span>Copiloto de IA que te ajuda a fechar quando o lead responde</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="mt-16 flex justify-center reveal">
-<a href="#pricing" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">COMEÇAR A TESTAR AGORA</a>
+<a href="https://www.garimpoleads.com.br/campanha" onclick="if(typeof fbq === 'function') fbq('track', 'Lead');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-lg py-4 px-10 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.2)] hover:shadow-[0_0_50px_rgba(217,119,6,0.4)] relative overflow-hidden group inline-block text-center cursor-pointer">TESTAR GRÁTIS AGORA</a>
 </div>
 </div>
 </section>
-<!-- 6. STATISTICS BANNER -->
+
+<!-- 7. STATISTICS BANNER -->
 <section class="py-24">
 <div class="max-w-5xl mx-auto px-6">
 <div class="bg-surface-container-low border border-white/5 p-12 text-center relative overflow-hidden reveal">
 <div class="absolute right-0 top-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full mix-blend-screen -translate-y-1/2 translate-x-1/2"></div>
 <div class="relative z-10">
-<span class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface">50 leads em <span class="text-primary">10 minutos</span></span>
+<span class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface">Leads prontos em <span class="text-primary">minutos</span></span>
 <p class="text-xl mt-6 text-on-surface-variant font-medium">Com score médio de <span class="font-bold text-[#22c55e]"><span data-count="81">0</span>/100</span></p>
 </div>
 </div>
@@ -337,51 +432,125 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 </div>
 </div>
 </section>
-<!-- 7. PRICING -->
+
+<!-- 8. PRICING -->
 <section class="py-24 bg-surface border-t border-white/5" id="pricing">
-<div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
-<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-4 text-center text-on-surface reveal">Não tome nenhuma decisão hoje. Teste na prática.</h2>
-<p class="text-xl text-center text-on-surface-variant font-medium mb-16 mx-auto max-w-2xl px-4 reveal">Liberamos o acesso à plataforma para você sentir na pele o que é ter uma máquina de encontrar clientes qualificados e prontos para comprar de você.</p>
-<div class="w-full max-w-md bg-surface-container-high border border-primary/20 p-8 shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative mt-4 reveal">
+<div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">
+<h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-4 text-center text-on-surface reveal">Escolha o plano para o seu momento</h2>
+<p class="text-xl text-center text-on-surface-variant font-medium mb-16 mx-auto max-w-2xl px-4 reveal">Aproveite o desconto especial no primeiro mês. Sem fidelidade e com 7 dias de garantia.</p>
 
-<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary font-bold px-4 py-1 text-sm rounded shadow-lg whitespace-nowrap flex items-center gap-1.5">
-   <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">redeem</span> O RISCO É TODO NOSSO
+<div class="pricing-grid stagger">
+<!-- STARTER -->
+<div class="plan-card">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline font-bold text-2xl text-on-surface">Starter</h3>
+<span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Para começar</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-6">Para quem quer validar e fechar os primeiros contratos.</p>
+
+<div class="mb-6 pb-6 border-b border-white/5">
+<div class="plan-price-old">De R$ 97/mês por</div>
+<div class="plan-price-now">R$ 47 <small>no 1º mês</small></div>
+<div class="plan-price-sub">Depois R$ 97/mês</div>
+<div class="plan-credits-pill">
+<span class="material-symbols-outlined text-base" data-icon="bolt">bolt</span>
+80 leads qualificados / mês
+</div>
 </div>
 
-<div class="mb-8 border-b border-white/5 pb-8 text-center mt-4 pt-2">
-<div class="flex flex-col justify-center items-center gap-2">
-<span class="text-on-surface-variant text-xl line-through opacity-50 font-medium">Plano Starter R$ 67/mês</span>
-<span class="font-headline text-5xl font-bold text-[#22c55e]">7 Dias por R$ 9,90</span>
-</div>
-<p class="text-xs text-on-surface-variant mt-4 uppercase tracking-widest font-semibold">O que você recebe liberado agora:</p>
-</div>
-<ul class="space-y-4 mb-10 text-sm text-on-surface-variant">
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>50 leads qualificados / mês</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>A IA entende quem é seu cliente ideal</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Scoring de Leads Avançado</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Dados completos (CNPJ, Contatos)</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>2 mensagens personalizadas / lead</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Copiloto de IA: te ajuda a fechar quando o lead responde</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Fila do dia: te mostra com quem falar</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" data-icon="check">check</span>Gestão em Kanban integrado</li>
+<ul class="space-y-3.5 mb-8 text-sm text-on-surface-variant">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span>80 leads qualificados por mês</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span>Os 4 Playbooks de busca liberados</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span>2 mensagens personalizadas por lead</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span>Gestão em Kanban integrado</span></li>
 </ul>
-<a href="https://www.garimpoleads.com.br/checkout" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine w-full block text-center bg-primary text-on-primary font-headline font-bold py-4 hover:bg-primary-dim transition-all shadow-lg shadow-primary/20 cursor-pointer">
-    ATIVAR MEU TESTE POR R$ 9,90
+</div>
+
+<div>
+<a href="https://www.garimpoleads.com.br/checkout?plan=starter" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="plan-btn-outline">
+COMEÇAR POR R$ 47
 </a>
-<div class="mt-6 flex flex-col items-stretch gap-4 border-t border-white/5 pt-5">
-   <div class="flex items-center justify-center gap-1 text-xs text-[#22c55e] font-bold">
-      <span class="material-symbols-outlined text-sm" data-icon="lock_open">lock_open</span> SEM SURPRESA NA FATURA
-   </div>
-   <div>
-      <div class="tl-item"><span class="tl-dot tl-dot-active"></span><div><strong>Hoje</strong> — R$ 9,90: acesso completo liberado com 50 créditos para suas primeiras buscas</div></div>
-      <div class="tl-item"><span class="tl-dot"></span><div><strong>Dias 1 a 7</strong> — usa à vontade. Não fez sentido? Cancela com 1 clique, sem perguntas</div></div>
-      <div class="tl-item"><span class="tl-dot"></span><div><strong>Dia 7</strong> — só então a assinatura de <strong>R$ 67/mês</strong> é ativada</div></div>
-   </div>
+</div>
+</div>
+
+<!-- GROWTH -->
+<div class="plan-card plan-card-featured">
+<div class="plan-badge">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+MAIS ESCOLHIDO
+</div>
+<div>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline font-bold text-2xl text-primary">Growth</h3>
+<span class="text-xs uppercase tracking-wider text-primary font-bold">Completo</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-6">Para falar direto com o dono e fechar clientes toda semana.</p>
+
+<div class="mb-6 pb-6 border-b border-white/10">
+<div class="plan-price-old">De R$ 147/mês por</div>
+<div class="plan-price-now" style="color: #22c55e;">R$ 77 <small>no 1º mês</small></div>
+<div class="plan-price-sub">Depois R$ 147/mês</div>
+<div class="plan-credits-pill">
+<span class="material-symbols-outlined text-base" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+250 leads qualificados / mês
+</div>
+</div>
+
+<ul class="space-y-3.5 mb-8 text-sm text-on-surface">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong>Tudo do Starter</strong> + 250 leads/mês</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong class="text-primary">Nome dos Sócios e CNPJ</strong> na Receita Federal</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong class="text-primary">Copiloto de IA:</strong> te ajuda a fechar quando o lead responde</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong>Fila do dia:</strong> Modo Disparo Rápido</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong>Até 3 Automações Diárias</strong> buscando sozinhas</span></li>
+</ul>
+</div>
+
+<div>
+<a href="https://www.garimpoleads.com.br/checkout?plan=growth" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine w-full block text-center bg-primary text-on-primary font-headline font-bold py-4 hover:bg-primary-dim transition-all shadow-lg shadow-primary/20 cursor-pointer">
+COMEÇAR NO GROWTH POR R$ 77
+</a>
+</div>
+</div>
+
+<!-- PRO -->
+<div class="plan-card">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline font-bold text-2xl text-on-surface">Pro</h3>
+<span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Escala</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-6">Para agências e equipes que precisam de alto volume.</p>
+
+<div class="mb-6 pb-6 border-b border-white/5">
+<div class="plan-price-old">De R$ 297/mês por</div>
+<div class="plan-price-now">R$ 147 <small>no 1º mês</small></div>
+<div class="plan-price-sub">Depois R$ 297/mês</div>
+<div class="plan-credits-pill">
+<span class="material-symbols-outlined text-base" data-icon="bolt">bolt</span>
+700 leads qualificados / mês
+</div>
+</div>
+
+<ul class="space-y-3.5 mb-8 text-sm text-on-surface-variant">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong class="text-on-surface">Tudo do Growth</strong> + 700 leads/mês</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong class="text-on-surface">Exportação em CSV</strong> para usar onde quiser</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span><strong class="text-on-surface">Até 5 Automações Diárias</strong> simultâneas</span></li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5" data-icon="check">check</span><span>Nome dos Sócios + Copiloto IA liberados</span></li>
+</ul>
+</div>
+
+<div>
+<a href="https://www.garimpoleads.com.br/checkout?plan=pro" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="plan-btn-outline">
+COMEÇAR NO PRO POR R$ 147
+</a>
+</div>
 </div>
 </div>
 </div>
 </section>
-<!-- 8. FAQ -->
+
+<!-- 9. FAQ -->
 <section class="py-24 border-t border-white/5">
 <div class="max-w-3xl mx-auto px-6">
 <h2 class="font-headline text-3xl font-bold tracking-tight mb-12 text-on-surface reveal">Perguntas Frequentes</h2>
@@ -395,58 +564,52 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
-    Funciona pro meu tipo de negócio?
+    Funciona para o serviço que eu vendo?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Se você vende para outras empresas — agência, contabilidade, software, consultoria, serviços em geral — sim. Você descreve quem atende e a IA busca exatamente esse perfil de empresa na região que você escolher.</p>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Sim. Temos 4 modos prontos para quem vende Tráfego Pago, Sites, Social Media e Google Meu Negócio. E se você vende qualquer outro serviço para empresas (como automação, consultoria ou assessoria), basta digitar o que você vende que a IA adapta a busca para você.</p>
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
-    Como encontram os leads?
+    Como a IA sabe quem precisa do meu serviço?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Cruzamos dados públicos do Google Maps e Receita Federal com nossa IA para identificar empresas reais, ativas e que têm fit com o que você vende.</p>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Ela checa os dados reais de cada empresa antes de te entregar: olha se o site tem Pixel instalado, se há anúncios ativos na Meta, se a empresa tem site próprio, como estão os posts do Instagram e em qual posição ela aparece no Google Maps.</p>
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
     As mensagens não são genéricas?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Não. A inteligência artificial analisa o modelo de negócios de cada lead e os desafios do setor. Com base nesses dados, a IA constrói uma abordagem de vendas B2B altamente qualificada, como se um vendedor sênior tivesse pesquisado a empresa antes de enviá-la. Nenhuma mensagem é igual a outra.</p>
-</details>
-<details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
-<summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
-    E se os leads não forem bons?
-    <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
-</summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">É por isso que temos o sistema de Scoring. O Garimpo vai te mostrar logo de cara quais são os leads nota 90+ e alertar sobre os leads com nota baixa para você não perder tempo.</p>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Não. A IA usa o que encontrou na empresa para escrever uma mensagem única, como se você tivesse pesquisado o negócio do cliente antes de chamar. Nenhuma mensagem é igual a outra.</p>
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
     Como funciona o copiloto?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Você cola a mensagem que o lead te mandou. O copiloto lê a conversa, a bio do lead e o contexto da sua campanha (quem você atende, o que você vende, o tom). Te devolve três jeitos de continuar — um direto, um firme, um leve. Você escolhe, ajusta se quiser, e manda.</p>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Você cola a mensagem que o lead te mandou. O copiloto lê a conversa e o contexto daquela empresa e te devolve três opções de resposta prontas para você conduzir até a reunião.</p>
 </details>
 <details class="group bg-surface-container-low border border-white/5 p-6 cursor-pointer marker:content-['']">
 <summary class="flex justify-between items-center font-headline font-bold text-lg select-none text-on-surface">
     Como eu cancelo?
     <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform" data-icon="expand_more">expand_more</span>
 </summary>
-<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Nas configurações da sua conta, com 1 clique. Sem ligação, sem falar com ninguém, sem perguntas. E se o prazo passar e a mensalidade for cobrada sem você querer, fala com a gente que devolvemos o valor.</p>
+<p class="mt-4 text-on-surface-variant text-sm leading-relaxed">Nas configurações da sua conta, com 1 clique. Sem ligação, sem falar com ninguém, sem perguntas. E você ainda conta com 7 dias de garantia incondicional.</p>
 </details>
 </div>
 </div>
 </section>
-<!-- 9. FINAL CTA -->
+
+<!-- 10. FINAL CTA -->
 <section class="py-32 bg-surface-container-highest border-t border-primary/20 relative overflow-hidden">
 <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(217,119,6,0.1)_0%,_transparent_60%)] pointer-events-none"></div>
 <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
 <h2 class="font-headline text-4xl md:text-5xl font-bold tracking-tight mb-8 text-on-surface">Seus concorrentes não vão esperar você decidir.</h2>
-<p class="text-lg text-on-surface-variant mb-12">Comece agora. Cancele quando quiser.</p>
-	<a href="https://www.garimpoleads.com.br/checkout" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group inline-block">
-	    TESTAR POR APENAS R$ 9,90 · 7 DIAS
-	</a>
+<p class="text-lg text-on-surface-variant mb-12">Teste grátis na sua cidade agora mesmo.</p>
+<a href="https://www.garimpoleads.com.br/campanha" onclick="if(typeof fbq === 'function') fbq('track', 'Lead');" class="cta-shine bg-primary text-on-primary font-headline font-bold text-xl py-5 px-12 hover:bg-primary-dim transition-all active:scale-95 shadow-[0_0_40px_rgba(217,119,6,0.25)] group inline-block">
+    TESTAR GRÁTIS NA MINHA CIDADE
+</a>
 </div>
 </section>
 </main>
@@ -537,7 +700,7 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
 	            countEls.forEach((el) => countObs.observe(el));
 	        }
 
-	        // ===== Demo em vídeo (autoplay + clique pra pausar + incentivo pra voltar) =====
+	        // ===== Demo em vídeo =====
         (() => {
             const wrap = document.getElementById('demo-phone');
             if (!wrap) return;
@@ -594,9 +757,8 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
         }
     });
 
-    // Carregamento postergado do Microsoft Clarity (Pixel agora dispara direto no <head>)
+    // Carregamento postergado do Microsoft Clarity
     window.addEventListener('load', () => {
-        // Microsoft Clarity (delay de 1.5s pós-onload)
         setTimeout(() => {
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -607,8 +769,8 @@ Enquanto seus concorrentes passam horas varrendo a internet atrás de contatos, 
     });
 </script>
 <div id="sticky-cta-mobile" style="position: fixed; bottom: 0; left: 0; right: 0; padding: 12px; background: rgba(14, 14, 14, 0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(217, 119, 6, 0.4); z-index: 100; transform: translateY(100%); transition: transform 0.3s ease-out; display: flex; justify-content: center; align-items: center; box-shadow: 0 -4px 20px rgba(0,0,0,0.5);">
-    <a href="https://www.garimpoleads.com.br/checkout" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" class="cta-shine" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
-        TESTAR 7 DIAS POR R$ 9,90
+    <a href="https://www.garimpoleads.com.br/campanha" onclick="if(typeof fbq === 'function') fbq('track', 'Lead');" class="cta-shine" style="background-color: #D97706; color: #000; font-weight: 800; padding: 14px; width: 100%; text-align: center; font-family: 'Space Grotesk', sans-serif; text-decoration: none; font-size: 16px; border-radius: 4px;">
+        TESTAR GRÁTIS NA MINHA CIDADE
     </a>
 </div>
 </body>
