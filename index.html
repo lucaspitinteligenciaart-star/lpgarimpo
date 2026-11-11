@@ -84,6 +84,7 @@ section{padding:72px 0}
 .top-actions .login{color:var(--mute)}
 .top-actions .login:hover{color:var(--ink)}
 .top-cta{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;background:var(--gold);color:#120c02;font-family:var(--display);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.03em;border-radius:3px}
+@media(max-width:767px){.top-cta{background:none;color:var(--gold);box-shadow:inset 0 0 0 1px rgba(255,138,0,.5)}}
 @media(min-width:900px){.top .wrap{height:68px}.top nav{display:flex}}
 
 /* ---------- Hero ---------- */
@@ -95,7 +96,10 @@ section{padding:72px 0}
 .hero-grid,.sieve-grid,.how-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
 .hero-grid>*,.sieve-grid>*,.how-grid>*,.faq-grid>*{min-width:0}
 .hero-grid{display:grid;gap:30px}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;color:var(--mute);margin-bottom:16px;line-height:1.5;font-size:10px}
+.hero-svc{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px}
+.hero-svc a{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 12px;border:1px solid var(--line-2);border-radius:3px;background:var(--panel);color:var(--mute);font-size:12.5px;font-weight:500;white-space:nowrap;transition:color .2s,border-color .2s}
+.hero-svc a:hover{color:var(--ink);border-color:rgba(255,138,0,.5)}
+@media(min-width:480px){.hero-svc{display:flex;flex-wrap:wrap}}
 .pulse{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(255,138,0,.7);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,138,0,0)}100%{box-shadow:0 0 0 0 rgba(255,138,0,0)}}
 .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.55rem,10.6vw,4.5rem);line-height:.98;letter-spacing:-.014em;text-wrap:balance}
@@ -103,16 +107,14 @@ section{padding:72px 0}
 .hero-sub{margin-top:18px;color:var(--mute);font-size:clamp(1rem,2vw,1.2rem);line-height:1.55;max-width:50ch}
 .hero-cta{margin-top:22px;display:flex;flex-direction:column;gap:14px;align-items:stretch}
 .hero-cta .btn{width:100%}
-.hero-note{display:flex;flex-wrap:wrap;gap:6px 16px;color:var(--mute);font-size:13px}
-.hero-note span{display:inline-flex;align-items:center;gap:6px}
-.hero-note svg{width:14px;height:14px;color:var(--gold)}
+.hero-note{color:var(--mute);font-size:13px;text-align:center}
 .sources{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:none;flex-wrap:wrap;gap:8px 18px;align-items:center;color:var(--dim)}
 .sources b{color:var(--mute);font-weight:500}
-@media(min-width:560px){.hero-cta{align-items:flex-start}.hero-cta .btn{width:auto}}
+@media(min-width:560px){.hero-cta{align-items:flex-start}.hero-cta .btn{width:auto}.hero-note{text-align:left}}
 @media(min-width:1000px){
   .hero{padding:72px 0 110px}
   .hero-grid{gap:56px}
-  .hero-eyebrow{font-size:11px;margin-bottom:20px}
+  .hero-svc{margin-bottom:22px}
   .sources{display:flex}
   .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:56px;align-items:center}
 }
@@ -146,7 +148,7 @@ section{padding:72px 0}
 .score b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:18px}
 .ficha-sec{border-top:1px solid var(--line);padding:13px 16px 14px}
 .ficha-sec>.mono{color:var(--dim);display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}
-.signals li{display:grid;grid-template-columns:92px 1fr 18px;gap:10px;align-items:center;min-height:34px;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.3;padding:5px 0}
+.signals li{display:grid;grid-template-columns:84px 1fr 18px;gap:10px;align-items:center;min-height:34px;border-bottom:1px dashed var(--line);font-size:14px;line-height:1.3;padding:5px 0}
 .signals li:last-child{border-bottom:0}
 .signals .src{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
 .signals .txt{transition:opacity .3s}
@@ -156,16 +158,16 @@ section{padding:72px 0}
 .signals li.gap .st{background:var(--gold);color:#120c02}
 .signals li.ok .txt{color:var(--mute)}
 .signals li.ok .st{background:var(--line-2);color:var(--ink)}
+.signals li.who .txt{color:var(--ink);font-weight:600}
+.signals li.who .st{color:var(--gold)}
+.signals li.who .st svg{width:16px;height:16px}
 .signals li.pending .txt{color:transparent;border-radius:3px;background:linear-gradient(90deg,var(--line) 0,var(--line-2) 50%,var(--line) 100%);background-size:200% 100%;animation:shimmer 1s linear infinite;max-width:78%;height:12px;line-height:12px;overflow:hidden;white-space:nowrap}
 .signals li.pending .st{background:none;border:1.5px solid var(--line-2);border-top-color:var(--gold);animation:spin .7s linear infinite}
 .signals li.pending .st svg{display:none}
 @keyframes shimmer{to{background-position:-200% 0}}
 @keyframes spin{to{transform:rotate(360deg)}}
-.owner{display:flex;align-items:center;gap:10px;font-size:14px}
-.owner svg{width:16px;height:16px;color:var(--gold);flex:none}
-.owner b{font-weight:600}
-.owner span{color:var(--mute)}
 .msg-bubble{position:relative;background:#103229;border:1px solid rgba(37,211,102,.22);border-radius:10px 10px 10px 2px;padding:11px 13px 20px;font-size:14.5px;line-height:1.5;color:#e9f5ee}
+.msg-bubble .typed,.msg-bubble .rest{white-space:pre-wrap}
 .msg-bubble .rest{visibility:hidden}
 .msg-bubble .caret{display:inline-block;width:2px;height:1em;margin:0 0 -2px 1px;background:var(--wa);animation:blink .8s steps(2) infinite}
 .msg-bubble.done .caret{display:none}
@@ -413,22 +415,18 @@ footer nav a:hover{color:var(--gold)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="mono hero-eyebrow"><i class="pulse"></i>Para quem vende tráfego pago, sites, social media ou Google Meu Negócio</p>
+      <nav class="hero-svc" aria-label="Para quem vende"><a data-app="/campanha?playbook=paid_traffic" data-ev="Lead">Tráfego pago</a><a data-app="/campanha?playbook=website_creation" data-ev="Lead">Sites</a><a data-app="/campanha?playbook=social_media_management" data-ev="Lead">Social media</a><a data-app="/campanha?playbook=local_seo" data-ev="Lead">Google Meu Negócio</a></nav>
       <h1>Pare de caçar clientes. Fale só com empresas que <em>precisam do seu serviço</em> hoje.</h1>
-      <p class="hero-sub">Você escolhe o que vende e a cidade. O Garimpo encontra as empresas que ainda não têm o que você oferece, escreve a primeira mensagem e te ajuda a fechar quando o cliente responde.</p>
+      <p class="hero-sub">Você escolhe o serviço e a cidade. O Garimpo acha as empresas, escreve a primeira mensagem e te ajuda a fechar.</p>
       <div class="hero-cta">
         <a class="btn" data-app="/campanha" data-funnel data-ev="Lead">Testar grátis na minha cidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <p class="hero-note">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 empresas reais da sua cidade</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Menos de 1 minuto</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Não pede cartão</span>
-        </p>
+        <p class="hero-note">5 empresas reais · menos de 1 minuto · sem cartão</p>
       </div>
       <p class="mono sources"><b>Dados reais de</b><span>Google Maps</span><span>Meta Ads</span><span>Instagram</span><span>Receita Federal</span></p>
     </div>
 
     <div class="demo" id="demo-ficha">
-      <p class="mono demo-label"><span>O que você vende?</span><small>Exemplo ilustrativo</small></p>
+      <p class="mono demo-label"><span>O que você vende?</span></p>
       <div class="tabs auto" role="tablist" aria-label="Serviço que você vende" id="ficha-tabs">
         <button role="tab" aria-selected="true" data-pb="paid_traffic">Tráfego<br>Pago</button>
         <button role="tab" aria-selected="false" data-pb="website_creation">Sites e<br>Páginas</button>
@@ -446,11 +444,7 @@ footer nav a:hover{color:var(--gold)}
           <ul class="signals" id="f-signals"></ul>
         </div>
         <div class="ficha-sec">
-          <p class="mono"><span>Quem decide</span><span>Receita Federal</span></p>
-          <p class="owner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.500 8 6.500"/></svg><span><b id="f-owner"></b> · <span id="f-cnpj"></span></span></p>
-        </div>
-        <div class="ficha-sec">
-          <p class="mono"><span>Primeira mensagem pronta</span><span>WhatsApp</span></p>
+          <p class="mono"><span>Primeira mensagem pronta</span></p>
           <div class="msg-bubble" id="f-msg"><span class="typed"></span><i class="caret"></i><span class="rest"></span><time>agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12.5l4 4L15 7.500M10 15.500l1 1L20 7.500"/></svg></time></div>
         </div>
         <div class="ficha-foot">
@@ -795,24 +789,21 @@ footer nav a:hover{color:var(--gold)}
   /* ===== Ficha viva ===== */
   var FICHAS = {
     paid_traffic: { av:'VA', name:'Odontologia Vila Aurora', meta:'Clínica odontológica · Campinas, SP · <b>★ 4,9</b> (318)', score:88,
-      owner:'Dra. Camila R.', cnpj:'CNPJ ativo desde 2016',
-      signals:[['Meta Ads','0 anúncios ativos na Biblioteca','gap'],['Site','Sem Meta Pixel instalado','gap'],['Google Maps','318 avaliações, nota 4,9','ok'],['Contato','WhatsApp validado','ok']],
-      msg:'Oi, Camila. Passei pelo site da Vila Aurora e vi que a página de implantes ainda não tem o Pixel da Meta para reimpactar quem visita. Trabalho com anúncios que levam agendamento direto pro WhatsApp. Qual tratamento vocês mais querem movimentar hoje?' },
+      signals:[['Meta Ads','0 anúncios ativos','gap'],['Site','Sem Meta Pixel instalado','gap'],['Contato','WhatsApp validado','ok'],['Quem decide','Dra. Camila R., sócia','who']],
+      msg:'Oi, Camila. Trabalho com anúncios para clínicas. Os pacientes elogiam muito o implante de vocês, e quem procura isso em Campinas hoje não chega a ver.\n\nPosso te mandar uma ideia?' },
     website_creation: { av:'TB', name:'Teles & Barreto Advocacia', meta:'Escritório de advocacia · Curitiba, PR · <b>★ 4,9</b> (146)', score:84,
-      owner:'Dr. Henrique T.', cnpj:'CNPJ ativo desde 2019',
-      signals:[['Google Maps','Ficha sem site cadastrado','gap'],['Busca web','Nenhum domínio próprio encontrado','gap'],['Instagram','Bio aponta só para um Linktree','gap'],['Google Maps','146 avaliações, nota 4,9','ok']],
-      msg:'Oi, Dr. Henrique. Procurei o escritório no Google e encontrei só o Instagram e um Linktree, sem site próprio. Com 146 avaliações e nota 4,9, vocês já têm a reputação que uma página de previdenciário precisa. Posso te mostrar um esboço?' },
+      signals:[['Google Maps','Ficha sem site cadastrado','gap'],['Busca web','Nenhum domínio próprio','gap'],['Instagram','Bio só com Linktree','gap'],['Quem decide','Dr. Henrique T., sócio','who']],
+      msg:'Oi, Dr. Henrique. Faço sites para escritórios de advocacia. Quem procura previdenciário no Google hoje só encontra o Instagram de vocês.\n\nPosso te mandar uma ideia de página?' },
     social_media_management: { av:'SI', name:'Studio Íris Estética', meta:'Clínica de estética · Belo Horizonte, MG · <b>★ 4,7</b> (93)', score:81,
-      owner:'Juliana M.', cnpj:'CNPJ ativo desde 2021',
-      signals:[['Instagram','Último post há 47 dias','gap'],['Instagram','2.140 seguidores, 0 Reels recentes','gap'],['Visão de IA','Feed sem padrão visual, fotos escuras','gap'],['Bio','Sem link de agendamento','gap']],
-      msg:'Oi, Juliana. Vi o perfil do Studio Íris e o último post é de quase dois meses atrás, mesmo com 93 avaliações ótimas no Google. Cuido de conteúdo para clínicas de estética. Quem está tocando o Instagram de vocês hoje?' },
+      signals:[['Instagram','Último post há 47 dias','gap'],['Visão de IA','Fotos escuras, sem padrão','gap'],['Bio','Sem link de agendamento','gap'],['Quem decide','Juliana M., sócia','who']],
+      msg:'Oi, Juliana. Cuido de Instagram para clínicas de estética. As clientes elogiam muito o Studio Íris, e o perfil deu uma pausa nos últimos meses.\n\nPosso te mandar uma ideia de conteúdo?' },
     local_seo: { av:'MT', name:'Mecânica Trevo Sul', meta:'Oficina mecânica · Goiânia, GO · <b>★ 4,6</b> (31)', score:86,
-      owner:'Anderson P.', cnpj:'CNPJ ativo desde 2014',
-      signals:[['Posição','#9 na busca "oficina mecânica"','gap'],['Categorias','Apenas 1 categoria cadastrada','gap'],['Avaliações','31 contra média de 240 dos líderes','gap'],['Respostas','7 de 10 avaliações sem resposta','gap']],
-      msg:'Oi, Anderson. Pesquisei "oficina mecânica" na região e a Trevo Sul aparece em 9º no Maps. A ficha está com uma categoria só e 7 das últimas 10 avaliações estão sem resposta. Dá para subir isso com alguns ajustes. Quer que eu te mostre quais?' }
+      signals:[['Posição','9º no Maps da região','gap'],['Categorias','Só 1 categoria cadastrada','gap'],['Respostas','7 de 10 sem resposta','gap'],['Quem decide','Anderson P., sócio','who']],
+      msg:'Oi, Anderson. Cuido do perfil de empresas no Google, o que aparece no mapa quando buscam "oficina mecânica". A Trevo Sul tem espaço para aparecer mais acima.\n\nQuer que eu te mostre como?' }
   };
   var ORDER = ['paid_traffic','website_creation','social_media_management','local_seo'];
   var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.500"/></svg>';
+  var WHO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>';
   var BANG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"><path d="M12 5v9M12 19v.01"/></svg>';
   var $ = function(id){ return document.getElementById(id); };
   var tabs = $('ficha-tabs'), msgEl = $('f-msg');
@@ -827,12 +818,11 @@ footer nav a:hover{color:var(--gold)}
     var d = FICHAS[pb];
     tabs.querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.pb === pb)); });
     $('f-av').textContent = d.av; $('f-name').textContent = d.name; $('f-meta').innerHTML = d.meta;
-    $('f-owner').textContent = d.owner; $('f-cnpj').textContent = d.cnpj;
     var ul = $('f-signals'); ul.innerHTML = '';
     d.signals.forEach(function(s){
       var li = document.createElement('li');
       li.className = instant ? s[2] : 'pending';
-      li.innerHTML = '<span class="src"></span><span class="txt"></span><span class="st">' + (s[2] === 'gap' ? BANG : CHECK) + '</span>';
+      li.innerHTML = '<span class="src"></span><span class="txt"></span><span class="st">' + (s[2] === 'gap' ? BANG : s[2] === 'who' ? WHO : CHECK) + '</span>';
       li.children[0].textContent = s[0]; li.children[1].textContent = s[1];
       ul.appendChild(li);
     });
