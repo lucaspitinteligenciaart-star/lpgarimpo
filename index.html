@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <title>Garimpo | Prospecção com IA para Serviços Digitais</title>
 <meta name="description" content="Escolha o serviço que você vende e a cidade. O Garimpo encontra as empresas que ainda não têm o que você oferece, escreve a primeira mensagem e te ajuda a fechar."/>
 <meta name="theme-color" content="#0c0b09"/>
@@ -52,7 +52,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 img,video,svg{display:block;max-width:100%}
 ::selection{background:var(--gold);color:#0c0b09}
 :focus-visible{outline:2px solid var(--gold-2);outline-offset:3px}
-.wrap{width:100%;max-width:calc(var(--wrap) + var(--gut)*2);margin:0 auto;padding:0 var(--gut)}
+.wrap{width:100%;max-width:calc(var(--wrap) + var(--gut)*2);margin:0 auto;padding:0 max(var(--gut),env(safe-area-inset-right)) 0 max(var(--gut),env(safe-area-inset-left))}
 .mono{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
 .gold{color:var(--gold)}
 .h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,6.6vw,3.5rem);line-height:1.02;letter-spacing:-.012em;text-wrap:balance}
@@ -96,10 +96,16 @@ section{padding:72px 0}
 .hero-grid,.sieve-grid,.how-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
 .hero-grid>*,.sieve-grid>*,.how-grid>*,.faq-grid>*{min-width:0}
 .hero-grid{display:grid;gap:30px}
-.hero-svc{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px}
-.hero-svc a{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 12px;border:1px solid var(--line-2);border-radius:3px;background:var(--panel);color:var(--mute);font-size:12.5px;font-weight:500;white-space:nowrap;transition:color .2s,border-color .2s}
-.hero-svc a:hover{color:var(--ink);border-color:rgba(255,138,0,.5)}
-@media(min-width:480px){.hero-svc{display:flex;flex-wrap:wrap}}
+.hero-svc{margin-bottom:22px}
+.hero-svc .kicker{margin-bottom:12px}
+.hero-svc nav{display:flex;flex-wrap:wrap;gap:8px}
+.hero-svc .br{flex-basis:100%;height:0}
+.hero-svc a{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px 0 12px;border:1px solid var(--line-2);border-radius:999px;background:rgba(22,20,15,.72);color:var(--ink);font-size:13px;font-weight:500;white-space:nowrap;transition:border-color .2s,background .2s}
+.hero-svc a svg{width:15px;height:15px;flex:none;color:var(--gold-2)}
+.hero-svc a .dn{display:none;width:13px;height:13px;margin-left:1px;color:var(--dim);transition:transform .2s,color .2s}
+.hero-svc a:hover{border-color:rgba(255,138,0,.55);background:var(--gold-wash)}
+.hero-svc a:hover .dn{color:var(--gold);transform:translateY(2px)}
+@media(min-width:400px){.hero-svc a .dn{display:block}}
 .pulse{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(255,138,0,.7);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,138,0,0)}100%{box-shadow:0 0 0 0 rgba(255,138,0,0)}}
 .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.55rem,10.6vw,4.5rem);line-height:.98;letter-spacing:-.014em;text-wrap:balance}
@@ -372,7 +378,8 @@ footer nav a:hover{color:var(--gold)}
 @media(min-width:768px){footer{padding-bottom:34px}footer .wrap{flex-direction:row;justify-content:space-between}}
 
 /* ---------- CTA fixo no celular ---------- */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(12,11,9,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid rgba(255,138,0,.35);transform:translateY(110%);transition:transform .3s var(--ease)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));background:rgba(12,11,9,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid rgba(255,138,0,.35);transform:translateY(110%);transition:transform .3s var(--ease)}
+.sticky::after{content:"";position:absolute;left:0;right:0;top:100%;height:120px;background:inherit}
 .sticky.on{transform:none}
 .sticky .btn{width:100%;min-height:50px;font-size:15.5px}
 @media(min-width:768px){.sticky{display:none}}
@@ -404,7 +411,7 @@ footer nav a:hover{color:var(--gold)}
     </nav>
     <div class="top-actions">
       <a class="login" data-app="/login">Login</a>
-      <a class="top-cta" data-app="/campanha" data-funnel data-ev="Lead">Testar grátis</a>
+      <a class="top-cta" data-app="/campanha" data-ev="Lead">Testar grátis</a>
     </div>
   </div>
 </header>
@@ -415,11 +422,11 @@ footer nav a:hover{color:var(--gold)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <nav class="hero-svc" aria-label="Para quem vende"><a href="#svc-trafego">Tráfego pago</a><a href="#svc-sites">Sites</a><a href="#svc-social">Social media</a><a href="#svc-google">Google Meu Negócio</a></nav>
-      <h1>Pare de caçar clientes. Fale só com empresas que <em>precisam do seu serviço</em> hoje.</h1>
-      <p class="hero-sub">Você escolhe o serviço e a cidade. O Garimpo acha as empresas, escreve a primeira mensagem e te ajuda a fechar.</p>
+      <div class="hero-svc"><p class="mono kicker">Você vende…</p><nav aria-label="Ver como funciona para o seu serviço"><a href="#svc-trafego"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Tráfego pago<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a href="#svc-sites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sites<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><i class="br" aria-hidden="true"></i><a href="#svc-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Social media<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a href="#svc-google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Google Meu Negócio<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a></nav></div>
+      <h1>Converse com leads que <em>comprovadamente</em> precisam do seu serviço.</h1>
+      <p class="hero-sub">Você escolhe o que vende e a cidade. O Garimpo descobre as empresas, investiga cada uma pela internet, mostra o que falta nelas e escreve a primeira mensagem a partir disso.</p>
       <div class="hero-cta">
-        <a class="btn" data-app="/campanha" data-funnel data-ev="Lead">Testar grátis na minha cidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" data-app="/campanha" data-ev="Lead">Testar grátis na minha cidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <p class="hero-note">5 empresas reais · menos de 1 minuto · sem cartão</p>
       </div>
       <p class="mono sources"><b>Dados reais de</b><span>Google Maps</span><span>Meta Ads</span><span>Instagram</span><span>Receita Federal</span></p>
@@ -449,7 +456,7 @@ footer nav a:hover{color:var(--gold)}
         </div>
         <div class="ficha-foot">
           <span class="mono">Dados fictícios</span>
-          <a data-app="/campanha" data-funnel data-ev="Lead">Quero as da minha cidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a data-app="/campanha" data-ev="Lead">Quero as da minha cidade <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </article>
     </div>
@@ -599,7 +606,7 @@ footer nav a:hover{color:var(--gold)}
         <li><h3>Filtro automático + nome do dono</h3><p>Descartamos quem não precisa de você. Entregamos apenas as melhores oportunidades com nota de qualidade e o nome dos sócios no CNPJ.</p></li>
         <li><h3>Abordagens que geram respostas</h3><p>Receba os contatos com mensagens prontas falando da realidade daquela empresa. Quando o lead responder, o Copiloto IA te diz exatamente o que responder.</p></li>
       </ol>
-      <a class="btn" style="margin-top:34px" data-app="/campanha" data-funnel data-ev="Lead">Testar grátis agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" style="margin-top:34px" data-app="/campanha" data-ev="Lead">Testar grátis agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="phone-col rv" id="demo">
       <p class="mono"><i class="pulse"></i>Veja o Garimpo trabalhando</p>
@@ -758,7 +765,7 @@ footer nav a:hover{color:var(--gold)}
   </div>
 </footer>
 
-<div class="sticky" id="sticky"><a class="btn" data-app="/campanha" data-funnel data-ev="Lead">Testar grátis na minha cidade</a></div>
+<div class="sticky" id="sticky"><a class="btn" data-app="/campanha" data-ev="Lead">Testar grátis na minha cidade</a></div>
 
 <script>
 (function(){
@@ -766,8 +773,7 @@ footer nav a:hover{color:var(--gold)}
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pageParams = new URLSearchParams(location.search);
 
-  /* ===== Links para o app: base + parâmetros do anúncio + serviço escolhido ===== */
-  var chosen = null; // serviço que a pessoa escolheu de propósito na ficha
+  /* ===== Links para o app: base + parâmetros do anúncio ===== */
   function appHref(path){
     var url = new URL(APP + path);
     pageParams.forEach(function(v,k){ if (v && k !== 'canceled') url.searchParams.set(k, v); });
@@ -776,7 +782,6 @@ footer nav a:hover{color:var(--gold)}
   function refreshLinks(){
     document.querySelectorAll('a[data-app]').forEach(function(a){
       var url = appHref(a.getAttribute('data-app'));
-      if (a.hasAttribute('data-funnel') && chosen) url.searchParams.set('playbook', chosen);
       a.href = url.toString();
     });
   }
@@ -861,7 +866,6 @@ footer nav a:hover{color:var(--gold)}
   tabs.addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
     auto = false; tabs.classList.remove('auto');
-    chosen = b.dataset.pb; refreshLinks();
     show(b.dataset.pb);
   });
   show('paid_traffic', reduced);
