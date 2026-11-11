@@ -96,19 +96,18 @@ section{padding:72px 0}
 .hero-grid,.sieve-grid,.how-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
 .hero-grid>*,.sieve-grid>*,.how-grid>*,.faq-grid>*{min-width:0}
 .hero-grid{display:grid;gap:30px}
-.hero-svc{margin-bottom:22px}
-.hero-svc .kicker{margin-bottom:12px}
-.hero-svc nav{display:flex;flex-wrap:wrap;gap:8px}
-.hero-svc .br{flex-basis:100%;height:0}
-.hero-svc a{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 14px 0 12px;border:1px solid var(--line-2);border-radius:999px;background:rgba(22,20,15,.72);color:var(--ink);font-size:13px;font-weight:500;white-space:nowrap;transition:border-color .2s,background .2s}
-.hero-svc a svg{width:15px;height:15px;flex:none;color:var(--gold-2)}
-.hero-svc a .dn{display:none;width:13px;height:13px;margin-left:1px;color:var(--dim);transition:transform .2s,color .2s}
-.hero-svc a:hover{border-color:rgba(255,138,0,.55);background:var(--gold-wash)}
-.hero-svc a:hover .dn{color:var(--gold);transform:translateY(2px)}
-@media(min-width:400px){.hero-svc a .dn{display:block}}
+.hero-svc{margin-bottom:20px}
+.hero-svc .kicker{margin-bottom:9px;font-size:10.5px}
+.hero-svc nav{display:grid;grid-template-columns:1fr 1fr;max-width:440px;border:1px solid var(--line-2);border-radius:4px;background:rgba(22,20,15,.72);overflow:hidden}
+.hero-svc a{display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 6px;color:var(--ink);font-size:12.5px;font-weight:500;white-space:nowrap;transition:background .2s}
+.hero-svc a:nth-child(odd){border-right:1px solid var(--line-2)}
+.hero-svc a:nth-child(n+3){border-top:1px solid var(--line-2)}
+.hero-svc a svg{width:14px;height:14px;flex:none;color:var(--gold-2)}
+.hero-svc a:hover{background:var(--gold-wash)}
+@media(min-width:1000px){.hero-svc nav{display:inline-flex;max-width:none}.hero-svc a{padding:0 16px;font-size:13px}.hero-svc a:nth-child(n+3){border-top:0}.hero-svc a+a{border-left:1px solid var(--line-2)}.hero-svc a:nth-child(odd){border-right:0}}
 .pulse{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(255,138,0,.7);animation:pulse 2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(255,138,0,0)}100%{box-shadow:0 0 0 0 rgba(255,138,0,0)}}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.55rem,10.6vw,4.5rem);line-height:.98;letter-spacing:-.014em;text-wrap:balance}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,calc((100vw - 2*var(--gut))*.111),4.5rem);line-height:.98;letter-spacing:-.014em;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--gold);background:linear-gradient(100deg,#ff8a00 10%,#ffc56e 55%,#ff8a00 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero-sub{margin-top:18px;color:var(--mute);font-size:clamp(1rem,2vw,1.2rem);line-height:1.55;max-width:50ch}
 .hero-cta{margin-top:22px;display:flex;flex-direction:column;gap:14px;align-items:stretch}
@@ -120,7 +119,8 @@ section{padding:72px 0}
 @media(min-width:1000px){
   .hero{padding:72px 0 110px}
   .hero-grid{gap:56px}
-  .hero-svc{margin-bottom:22px}
+  .hero-svc{margin-bottom:24px}
+  .hero h1{font-size:min(4.3rem,calc((100vw - 120px)*.06))}
   .sources{display:flex}
   .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:56px;align-items:center}
 }
@@ -422,7 +422,7 @@ footer nav a:hover{color:var(--gold)}
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-svc"><p class="mono kicker">Você vende…</p><nav aria-label="Ver como funciona para o seu serviço"><a href="#svc-trafego"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Tráfego pago<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a href="#svc-sites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sites<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><i class="br" aria-hidden="true"></i><a href="#svc-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Social media<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a href="#svc-google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Google Meu Negócio<svg class="dn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a></nav></div>
+      <div class="hero-svc"><p class="mono kicker">Se você vende…</p><nav aria-label="Para quem vende"><a href="#svc-trafego"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Tráfego Pago</a><a href="#svc-sites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sites</a><a href="#svc-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Social Media</a><a href="#svc-google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Google Meu Negócio</a></nav></div>
       <h1>Converse com leads que <em>comprovadamente</em> precisam do seu serviço.</h1>
       <p class="hero-sub">Você escolhe o que vende e a cidade. O Garimpo descobre as empresas, investiga cada uma pela internet, mostra o que falta nelas e escreve a primeira mensagem a partir disso.</p>
       <div class="hero-cta">
