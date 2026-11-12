@@ -6,6 +6,21 @@
 <title>Garimpo | Prospecção com IA para Serviços Digitais</title>
 <meta name="description" content="Escolha o serviço que você vende e a cidade. O Garimpo encontra as empresas que ainda não têm o que você oferece, escreve a primeira mensagem e te ajuda a fechar."/>
 <meta name="theme-color" content="#0c0b09"/>
+<link rel="canonical" href="https://lp.garimpoleads.com.br/"/>
+<link rel="icon" type="image/png" href="./assets/favicon.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Garimpo"/>
+<meta property="og:locale" content="pt_BR"/>
+<meta property="og:url" content="https://lp.garimpoleads.com.br/"/>
+<meta property="og:title" content="Converse com leads que comprovadamente precisam do seu serviço"/>
+<meta property="og:description" content="Escolha o que você vende e a cidade. O Garimpo mostra 5 empresas reais que precisam de você, com a primeira mensagem pronta. Grátis, sem cartão."/>
+<meta property="og:image" content="https://lp.garimpoleads.com.br/assets/og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Converse com leads que comprovadamente precisam do seu serviço"/>
+<meta name="twitter:description" content="5 empresas reais da sua cidade, com a primeira mensagem pronta. Grátis, sem cartão."/>
+<meta name="twitter:image" content="https://lp.garimpoleads.com.br/assets/og.jpg"/>
 <script>
 /* Em localhost nenhum pixel é carregado e os links apontam para o app local. */
 window.GARIMPO_LOCAL = /^(localhost|127\.|192\.168\.)/.test(location.hostname);
@@ -776,11 +791,20 @@ footer nav a:hover{color:var(--gold)}
   var APP = window.GARIMPO_APP;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pageParams = new URLSearchParams(location.search);
+  var ORIGIN = (function(){
+    try {
+      if (!document.referrer) return '';
+      var host = new URL(document.referrer).hostname.replace(/^(www|l|m|lm|out)\./, '');
+      return /garimpoleads\.com\.br$/.test(host) ? '' : host.slice(0, 60);
+    } catch (e) { return ''; }
+  })();
 
   /* ===== Links para o app: base + parâmetros do anúncio ===== */
   function appHref(path){
     var url = new URL(APP + path);
     pageParams.forEach(function(v,k){ if (v && k !== 'canceled') url.searchParams.set(k, v); });
+    /* Visita sem UTM (link na bio, indicação, busca): leva o site de origem junto, senão o app só enxerga "veio da página de vendas". */
+    if (!url.searchParams.get('utm_source') && ORIGIN) { url.searchParams.set('utm_source', ORIGIN); url.searchParams.set('utm_medium', 'organico'); }
     return url;
   }
   function refreshLinks(){
