@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/es", "destination": "/", "permanent": false },
+    { "source": "/es/(.*)", "destination": "/", "permanent": false },
+    { "source": "/quiz", "destination": "/", "permanent": false },
+    { "source": "/quiz/(.*)", "destination": "/", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
